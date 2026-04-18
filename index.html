@@ -4,104 +4,175 @@
 <head>
 
 <meta charset="UTF-8">
+<title>Truvyo — Trust Built by People</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Truvyo — Coming Soon</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Social Icons Library -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
 
-  background: linear-gradient(
-    135deg,
-    #4f46e5,
-    #0ea5e9,
-    #9333ea
-  );
+    margin: 0;
+    font-family: Arial, sans-serif;
 
-  height: 100vh;
+    height: 100vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background: radial-gradient(
+        circle at center,
+        #7B3FF2 0%,
+        #4A148C 50%,
+        #1A237E 100%
+    );
 
-  color: white;
-  text-align: center;
+    color: white;
 }
+
+/* Main container */
 
 .container {
-  max-width: 520px;
-  padding: 40px;
 
-  background: rgba(0,0,0,0.25);
+    height: 100vh;
 
-  border-radius: 14px;
+    display: flex;
+    flex-direction: column;
 
-  backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 20px;
 }
+
+/* Logo */
 
 .logo {
-  font-size: 44px;
-  font-weight: 700;
-  letter-spacing: 1px;
+
+    width: 120px;
+    margin-bottom: 20px;
 }
+
+/* Title */
+
+.title {
+
+    font-size: 46px;
+    font-weight: bold;
+}
+
+/* Tagline */
 
 .tagline {
-  margin-top: 12px;
-  font-size: 20px;
-  font-weight: 500;
+
+    font-size: 20px;
+    margin-top: 10px;
 }
+
+/* Description */
 
 .description {
-  margin-top: 18px;
-  font-size: 15px;
-  color: #e5e7eb;
+
+    margin-top: 18px;
+    max-width: 440px;
+
+    font-size: 16px;
 }
 
-.email-box {
-  margin-top: 26px;
+/* Coming soon */
+
+.coming {
+
+    margin-top: 24px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-input[type=email] {
+/* Email Form */
 
-  padding: 14px;
-  width: 65%;
+.email-form {
 
-  border-radius: 8px;
-  border: none;
-
-  outline: none;
+    margin-top: 22px;
 }
 
-button {
+.email-form input {
 
-  padding: 14px 18px;
+    padding: 12px;
 
-  border-radius: 8px;
-  border: none;
+    width: 240px;
 
-  background: white;
-  color: #111827;
+    border-radius: 6px;
+    border: none;
 
-  font-weight: 600;
-
-  cursor: pointer;
+    outline: none;
 }
 
-button:hover {
-  background: #e5e7eb;
+.email-form button {
+
+    padding: 12px 16px;
+
+    border-radius: 6px;
+
+    border: none;
+
+    background: white;
+
+    color: #1A237E;
+
+    font-weight: bold;
+
+    cursor: pointer;
 }
+
+.email-form button:hover {
+
+    background: #e0e0e0;
+}
+
+/* Social Icons */
+
+.social {
+
+    margin-top: 24px;
+}
+
+.social a {
+
+    margin: 0 10px;
+
+    font-size: 22px;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+.social a:hover {
+
+    color: #ffd54f;
+}
+
+/* Contact */
+
+.contact {
+
+    margin-top: 18px;
+
+    font-size: 14px;
+}
+
+/* Footer */
 
 .footer {
 
-  margin-top: 28px;
+    position: absolute;
 
-  font-size: 13px;
-  color: #d1d5db;
+    bottom: 20px;
+
+    font-size: 13px;
 }
 
 </style>
@@ -112,20 +183,27 @@ button:hover {
 
 <div class="container">
 
-<div class="logo">
+<img src="logo.png" class="logo">
+
+<div class="title">
 Truvyo
 </div>
 
 <div class="tagline">
-Trust. Verify. Connect.
+Trust Built by People
 </div>
 
 <div class="description">
-We're building something powerful.
-Join the waitlist and be the first to know when we launch.
+A human-verified platform where real people share trusted experiences and businesses earn credibility.
 </div>
 
-<div class="email-box">
+<div class="coming">
+🚀 Coming Soon
+</div>
+
+<!-- Email Waitlist -->
+
+<div class="email-form">
 
 <form action="https://formspree.io/f/YOUR-ID" method="POST">
 
@@ -133,8 +211,7 @@ Join the waitlist and be the first to know when we launch.
 type="email"
 name="email"
 placeholder="Enter your email"
-required
->
+required>
 
 <button type="submit">
 Notify Me
@@ -144,10 +221,32 @@ Notify Me
 
 </div>
 
-<div class="footer">
-© 2026 Truvyo — All rights reserved
+<!-- Social Media Icons -->
+
+<div class="social">
+
+<a href="https://instagram.com/truvyo" target="_blank">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://twitter.com/truvyo" target="_blank">
+<i class="fab fa-x-twitter"></i>
+</a>
+
+<a href="https://linkedin.com/company/truvyo" target="_blank">
+<i class="fab fa-linkedin"></i>
+</a>
+
 </div>
 
+<div class="contact">
+Contact: hello@truvyo.app
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Truvyo
 </div>
 
 </body>
