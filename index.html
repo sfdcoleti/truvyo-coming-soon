@@ -205,15 +205,9 @@ A human-verified platform where real people share trusted experiences and busine
 
 <div class="email-form">
 
-<form action="https://formspree.io/f/xojywdpj" method="POST">
-
-<input type="hidden"
-name="_next"
-value="https://truvyo.app/thankyou.html">
-
-<input type="hidden"
-name="_subject"
-value="New Truvyo Waitlist Signup">
+<form action="https://formspree.io/f/xojywdpj"
+method="POST"
+onsubmit="redirectAfterSubmit()">
 
 <input
 type="email"
@@ -226,6 +220,20 @@ Notify Me
 </button>
 
 </form>
+
+<script>
+
+function redirectAfterSubmit() {
+
+setTimeout(function() {
+
+window.location.href = "thankyou.html";
+
+}, 800);
+
+}
+
+</script>
 </div>
 
 <!-- Social Media Icons -->
