@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,74 +8,100 @@
 
 <title>Truvyo — Coming Soon</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #ffffff;
-  color: #111827;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #0ea5e9,
+    #9333ea
+  );
+
+  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
+  color: white;
   text-align: center;
 }
 
 .container {
-  max-width: 500px;
+  max-width: 520px;
   padding: 40px;
+
+  background: rgba(0,0,0,0.25);
+
+  border-radius: 14px;
+
+  backdrop-filter: blur(10px);
 }
 
-.brand {
-  font-size: 36px;
-  font-weight: 600;
+.logo {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .tagline {
-  font-size: 18px;
-  margin-top: 10px;
-  color: #374151;
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .description {
-  margin-top: 16px;
+  margin-top: 18px;
   font-size: 15px;
-  color: #6b7280;
+  color: #e5e7eb;
 }
 
 .email-box {
-  margin-top: 24px;
+  margin-top: 26px;
 }
 
 input[type=email] {
-  padding: 12px;
+
+  padding: 14px;
   width: 65%;
-  border-radius: 6px;
-  border: 1px solid #d1d5db;
+
+  border-radius: 8px;
+  border: none;
+
   outline: none;
 }
 
 button {
-  padding: 12px 18px;
-  border-radius: 6px;
+
+  padding: 14px 18px;
+
+  border-radius: 8px;
   border: none;
-  background: #111827;
-  color: white;
+
+  background: white;
+  color: #111827;
+
   font-weight: 600;
+
   cursor: pointer;
 }
 
 button:hover {
-  background: #374151;
+  background: #e5e7eb;
 }
 
 .footer {
+
   margin-top: 28px;
+
   font-size: 13px;
-  color: #9ca3af;
+  color: #d1d5db;
 }
 
 </style>
@@ -85,7 +112,7 @@ button:hover {
 
 <div class="container">
 
-<div class="brand">
+<div class="logo">
 Truvyo
 </div>
 
@@ -94,8 +121,8 @@ Trust. Verify. Connect.
 </div>
 
 <div class="description">
-We're working on something exciting.  
-Be the first to know when we launch.
+We're building something powerful.
+Join the waitlist and be the first to know when we launch.
 </div>
 
 <div class="email-box">
@@ -118,10 +145,11 @@ Notify Me
 </div>
 
 <div class="footer">
-© 2026 Truvyo
+© 2026 Truvyo — All rights reserved
 </div>
 
 </div>
 
 </body>
+
 </html>
