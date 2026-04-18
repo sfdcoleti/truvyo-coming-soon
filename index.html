@@ -2,77 +2,89 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Truvyo — Trust Built by People</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Truvyo — Coming Soon</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-
-    background: radial-gradient(
-        circle at center,
-        #7B3FF2 0%,
-        #4A148C 50%,
-        #1A237E 100%
-    );
-
-    color: white;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg,#0f172a,#020617);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
 }
 
 .container {
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 20px;
+  max-width: 500px;
+  padding: 40px;
 }
 
 .logo {
-    width: 120px;
-    margin-bottom: 20px;
-}
-
-.title {
-    font-size: 46px;
-    font-weight: bold;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .tagline {
-    font-size: 20px;
-    margin-top: 10px;
+  font-size: 20px;
+  margin-top: 12px;
+  color: #cbd5f5;
 }
 
 .description {
-    margin-top: 18px;
-    max-width: 420px;
-    font-size: 16px;
+  margin-top: 18px;
+  font-size: 15px;
+  color: #94a3b8;
 }
 
-.coming {
-    margin-top: 25px;
-    font-size: 22px;
-    font-weight: bold;
+.email-box {
+  margin-top: 28px;
 }
 
-.email {
-    margin-top: 20px;
-    font-size: 15px;
+input[type=email] {
+  padding: 14px;
+  width: 70%;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+button {
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #4f46e5;
 }
 
 .footer {
-    position: absolute;
-    bottom: 20px;
-    font-size: 13px;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.social {
+  margin-top: 20px;
+}
+
+.social a {
+  margin: 0 10px;
+  color: #cbd5f5;
+  text-decoration: none;
 }
 
 </style>
@@ -83,32 +95,52 @@ body {
 
 <div class="container">
 
-<img src="logo.png" class="logo">
-
-<div class="title">
+<div class="logo">
 Truvyo
 </div>
 
 <div class="tagline">
-Trust Built by People
+Trust. Verify. Connect.
 </div>
 
 <div class="description">
-A human-verified platform where real people share trusted experiences and businesses earn credibility.
+We're building something powerful.  
+Join the waitlist and be the first to experience Truvyo.
 </div>
 
-<div class="coming">
-🚀 Coming Soon
+<div class="email-box">
+
+<form action="https://formspree.io/f/YOUR-ID" method="POST">
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email"
+required
+>
+
+<button type="submit">
+Notify Me
+</button>
+
+</form>
+
 </div>
 
-<div class="email">
-Contact: hello@truvyo.app
-</div>
+<div class="social">
+
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+<a href="#">LinkedIn</a>
 
 </div>
 
 <div class="footer">
-© 2026 Truvyo
+
+© 2026 Truvyo — All rights reserved
+
+</div>
+
 </div>
 
 </body>
