@@ -183,12 +183,12 @@ required>
 
 <br><br>
 
-<!-- OPTIONAL TERMS (you can remove if not needed) -->
+<!-- OPTIONAL TERMS (you can remove if not needed) 
 
 <label style="font-size:13px;">
 <input type="checkbox" id="agreeTerms">
  I agree to Privacy Policy
-</label>
+</label>-->
 
 <br><br>
 
@@ -226,19 +226,6 @@ document.getElementById("formMessage");
 var button =
 document.getElementById("submitBtn");
 
-/* Optional Terms Check */
-
-var terms =
-document.getElementById("agreeTerms");
-
-if (terms && !terms.checked) {
-
-message.innerHTML =
-"⚠️ Please accept Privacy Policy";
-
-return;
-
-}
 
 /* Disable Button */
 
