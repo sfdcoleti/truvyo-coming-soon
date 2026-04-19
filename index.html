@@ -354,7 +354,7 @@ A human-verified platform where real people share trusted experiences and busine
 
 <form action="https://formspree.io/f/xojywdpj"
 method="POST"
-onsubmit="redirectAfterSubmit()">
+onsubmit="submitBackup(event)">
 
 <input
 type="email"
@@ -375,11 +375,52 @@ Notify Me
 
 <script>
 
-function redirectAfterSubmit() {
+function submitBackup(event) {
+
+var email =
+document.querySelector('input[name="email"]').value;
+
+/* Send to Google Sheet */
+
+fetch("https://script.google.com/macros/s/AKfycbyqYZ0keaStvhnz1yPWTjirh-i8uIHb4HKWeJs6DrG588xsPKV4nOr4ftzDJ14MEWnn/exec", {
+
+method: "POST",
+
+body:
+new URLSearchParams({
+email: email
+})
+
+});
+
+/* Redirect after submit */
+
+<script>
+
+function submitBackup(event) {
+
+var email =
+document.querySelector('input[name="email"]').value;
+
+/* Send to Google Sheet */
+
+fetch("PASTE_GOOGLE_SCRIPT_URL_HERE", {
+
+method: "POST",
+
+body:
+new URLSearchParams({
+email: email
+})
+
+});
+
+/* Redirect after submit */
 
 setTimeout(function() {
 
-window.location.href = "/thankyou.html";
+window.location.href =
+"/thankyou.html";
 
 }, 1200);
 
