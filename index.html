@@ -13,9 +13,6 @@ content="width=device-width, initial-scale=1.0">
 <meta name="description"
 content="Truvyo — A human-verified platform where real people share trusted experiences. Join early access today.">
 
-<meta name="author"
-content="Truvyo">
-
 <link rel="icon"
 type="image/png"
 href="/favicon.png">
@@ -36,109 +33,255 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
+/* ========================= */
+/* Animated Background */
+/* ========================= */
+
 body {
+
 margin: 0;
+
 font-family: Arial, sans-serif;
+
 height: 100vh;
 
-background: radial-gradient(
-circle at center,
-#7B3FF2 0%,
-#4A148C 50%,
-#1A237E 100%
+background: linear-gradient(
+270deg,
+#7B3FF2,
+#4A148C,
+#1A237E
 );
 
+background-size: 600% 600%;
+
+animation: gradientMove 15s ease infinite;
+
 color: white;
+
+overflow: hidden;
+
 }
+
+@keyframes gradientMove {
+
+0% { background-position: 0% 50%; }
+
+50% { background-position: 100% 50%; }
+
+100% { background-position: 0% 50%; }
+
+}
+
+/* ========================= */
+/* Layout */
+/* ========================= */
 
 .container {
+
 height: 100vh;
+
 display: flex;
+
 flex-direction: column;
+
 justify-content: center;
+
 align-items: center;
+
 text-align: center;
+
 padding: 20px;
+
 }
+
+/* ========================= */
+/* Logo Animation */
+/* ========================= */
 
 .logo {
+
 width: 120px;
+
 margin-bottom: 20px;
+
+animation: floatLogo 4s ease-in-out infinite;
+
 }
 
+@keyframes floatLogo {
+
+0% { transform: translateY(0px); }
+
+50% { transform: translateY(-10px); }
+
+100% { transform: translateY(0px); }
+
+}
+
+/* ========================= */
+
 .title {
+
 font-size: 46px;
+
 font-weight: bold;
+
 }
 
 .tagline {
+
 font-size: 20px;
+
 margin-top: 10px;
+
 }
 
 .description {
+
 margin-top: 18px;
+
 max-width: 440px;
+
 font-size: 16px;
+
 }
 
 .coming {
+
 margin-top: 24px;
+
 font-size: 22px;
+
 font-weight: bold;
+
 }
 
+/* ========================= */
+/* Form */
+/* ========================= */
+
 .email-form {
+
 margin-top: 22px;
+
 }
 
 .email-form input {
+
 padding: 12px;
+
 width: 240px;
+
 border-radius: 6px;
+
 border: none;
+
 outline: none;
+
 }
 
 .email-form button {
+
 padding: 12px 16px;
+
 border-radius: 6px;
+
 border: none;
+
 background: white;
+
 color: #1A237E;
+
 font-weight: bold;
+
 cursor: pointer;
+
+transition: 0.3s;
+
 }
 
 .email-form button:hover {
+
 background: #e0e0e0;
+
+transform: scale(1.05);
+
 }
 
 .message {
+
 margin-top: 12px;
+
 font-size: 14px;
+
 }
 
+/* ========================= */
+/* Social Icons Animation */
+/* ========================= */
+
 .social {
-margin-top: 24px;
+
+margin-top: 26px;
+
 }
 
 .social a {
-margin: 0 10px;
+
+margin: 0 12px;
+
 font-size: 22px;
+
 color: white;
+
+display: inline-block;
+
+transition: 0.3s;
+
 }
 
+.social a:hover {
+
+transform: translateY(-6px) scale(1.2);
+
+color: #FFD700;
+
+}
+
+/* ========================= */
+/* Footer Fix */
+/* ========================= */
+
 .footer {
+
 position: absolute;
+
 bottom: 20px;
+
+width: 100%;
+
+text-align: center;
+
 font-size: 13px;
+
+line-height: 1.6;
+
 }
 
 .footer a {
+
 color: white;
+
 text-decoration: none;
+
 margin: 0 6px;
+
+}
+
+.footer a:hover {
+
+text-decoration: underline;
+
 }
 
 </style>
@@ -169,7 +312,7 @@ A human-verified platform where real people share trusted experiences and busine
 🚀 Coming Soon
 </div>
 
-<!-- FORM -->
+<!-- Email Form -->
 
 <div class="email-form">
 
@@ -180,15 +323,6 @@ type="email"
 name="email"
 placeholder="Enter your email"
 required>
-
-<!--<br><br>
-
- OPTIONAL TERMS (you can remove if not needed) 
-
-<label style="font-size:13px;">
-<input type="checkbox" id="agreeTerms">
- I agree to Privacy Policy
-</label>-->
 
 <br><br>
 
@@ -226,17 +360,14 @@ document.getElementById("formMessage");
 var button =
 document.getElementById("submitBtn");
 
-
-/* Disable Button */
-
 button.innerHTML =
 "⏳ Please wait...";
 
 button.disabled = true;
 
-/* STEP 1 — GOOGLE SHEETS */
-
 try {
+
+/* Google Sheets First */
 
 var response =
 await fetch("https://script.google.com/macros/s/AKfycbzMXVz-IyyjHN48a6Az6qnpsCfFd68cBoIFRoiAJbfw8F6YeLqkzSNGwR7dHjzc5yqg/exec", {
@@ -268,7 +399,7 @@ return;
 
 }
 
-/* STEP 2 — FORMSPREE */
+/* Send to Formspree */
 
 await fetch("https://formspree.io/f/xojywdpj", {
 
@@ -282,7 +413,7 @@ body: new FormData(form)
 
 });
 
-/* STEP 3 — SUCCESS */
+/* Success */
 
 message.innerHTML =
 "✅ Successfully registered!";
@@ -316,6 +447,8 @@ button.disabled = false;
 
 </script>
 
+<!-- Social Icons -->
+
 <div class="social">
 
 <a href="https://instagram.com/truvyoapp"
@@ -341,11 +474,13 @@ target="_blank">
 
 </div>
 
+<!-- Footer Fixed -->
+
 <div class="footer">
 
 © 2026 Truvyo
 
-<br><br>
+<br>
 
 <a href="/privacy.html">
 Privacy
