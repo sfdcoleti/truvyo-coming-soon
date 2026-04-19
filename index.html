@@ -186,7 +186,7 @@ Notify Me
 
 document
 .getElementById("emailForm")
-.addEventListener("submit", function(event) {
+.addEventListener("submit", async function(event) {
 
 event.preventDefault();
 
@@ -195,9 +195,35 @@ var form = this;
 var email =
 form.querySelector('input[name="email"]').value;
 
-/* Send to Formspree */
+/* STEP 1 — Send to Google Sheets FIRST */
 
-fetch("https://formspree.io/f/xojywdpj", {
+var response =
+await fetch("https://script.google.com/macros/s/AKfycbwdTiRf5k8ybju734sxphTRVohzCCXz7XWWCjeNlL9NP_TDnRFdJxiakfAk70DqM2X7/exec", {
+
+method: "POST",
+
+body: new URLSearchParams({
+email: email
+})
+
+});
+
+var result =
+await response.text();
+
+/* STEP 2 — If Duplicate */
+
+if (result === "Duplicate") {
+
+alert("⚠️ Email already registered!");
+
+return;
+
+}
+
+/* STEP 3 — Send to Formspree ONLY if success */
+
+await fetch("https://formspree.io/f/xojywdpj", {
 
 method: "POST",
 
@@ -209,31 +235,18 @@ body: new FormData(form)
 
 });
 
-/* Send to Google Sheets (NEW DEPLOYMENT URL) */
-
-fetch("https://script.google.com/macros/s/AKfycbwdTiRf5k8ybju734sxphTRVohzCCXz7XWWCjeNlL9NP_TDnRFdJxiakfAk70DqM2X7/exec", {
-
-method: "POST",
-
-body: new URLSearchParams({
-email: email
-})
-
-});
-
-/* Redirect */
+/* STEP 4 — Redirect */
 
 setTimeout(function() {
 
 window.location.href =
 "/thankyou.html";
 
-}, 1500);
+}, 800);
 
 });
 
-</script>
-<div class="social">
+</script><div class="social">
 
 <a href="https://instagram.com/truvyoapp"
 target="_blank">
