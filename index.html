@@ -197,57 +197,81 @@ Notify Me
 
 </div>
 
+<!-- Email Waitlist -->
+
+<div class="email-form">
+
+<form id="emailForm">
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email"
+required>
+
+<button
+type="submit"
+onclick="gtag('event','notify_click');">
+
+Notify Me
+
+</button>
+
+</form>
+
+</div>
+
 <script>
 
 document
 .getElementById("emailForm")
 .addEventListener("submit", function(event) {
 
-event.preventDefault();
+event.preventDefault(); // Prevent redirect to Formspree
+
+var form = this;
 
 var email =
 document.querySelector('input[name="email"]').value;
 
-/* Send to Google Sheet */
+/* Send to Formspree silently */
 
-fetch(
-"https://script.google.com/macros/s/AKfycbyqYZ0keaStvhnz1yPWTjirh-i8uIHb4HKWeJs6DrG588xsPKV4nOr4ftzDJ14MEWnn/exec",
-{
+fetch("https://formspree.io/f/xojywdpj", {
+
 method: "POST",
-body: new URLSearchParams({
-email: email
-})
-}
-);
 
-/* Send to Formspree */
-
-fetch(
-"https://formspree.io/f/xojywdpj",
-{
-method: "POST",
 headers: {
-"Accept": "application/json"
+'Accept': 'application/json'
 },
+
+body: new FormData(form)
+
+});
+
+/* Send to Google Sheets (NEW URL) */
+
+fetch("https://script.google.com/macros/s/AKfycbzK0d1vf80mzlBb-FnJAkU5ZVhIuVxxNvaG-rKU2Uq0rVqPu__tuFnvr5JNg25Lk35t/exec", {
+
+method: "POST",
+
 body: new URLSearchParams({
 email: email
 })
-}
-);
 
-/* Redirect */
+});
+
+/* Redirect to Thank You */
 
 setTimeout(function() {
 
 window.location.href =
 "/thankyou.html";
 
-}, 1000);
+}, 1200);
 
 });
 
 </script>
-
 <div class="social">
 
 <a href="https://instagram.com/truvyoapp"
