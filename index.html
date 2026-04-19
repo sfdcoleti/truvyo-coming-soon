@@ -27,7 +27,7 @@ content="Truvyo">
 type="image/png"
 href="/favicon.png">
 
-<!-- Open Graph (WhatsApp Preview) -->
+<!-- Open Graph -->
 
 <meta property="og:title"
 content="Truvyo — Trust Built by People">
@@ -44,13 +44,7 @@ content="https://truvyo.app">
 <meta property="og:type"
 content="website">
 
-<meta property="og:image:width"
-content="1200">
-
-<meta property="og:image:height"
-content="630">
-
-<!-- Twitter Preview -->
+<!-- Twitter -->
 
 <meta name="twitter:card"
 content="summary_large_image">
@@ -64,7 +58,7 @@ content="Join early access to the human-verified trust platform.">
 <meta name="twitter:image"
 content="https://truvyo.app/logo.png">
 
-<!-- Social Icons -->
+<!-- Icons -->
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -83,10 +77,7 @@ gtag('config', 'G-WGC55NWD1Z');
 
 <style>
 
-/* Body */
-
 body {
-
 margin: 0;
 font-family: Arial, sans-serif;
 
@@ -100,10 +91,7 @@ circle at center,
 );
 
 color: white;
-
 }
-
-/* Container */
 
 .container {
 
@@ -118,86 +106,52 @@ align-items: center;
 text-align: center;
 
 padding: 20px;
-
 }
-
-/* Logo */
 
 .logo {
-
 width: 120px;
 margin-bottom: 20px;
-
 }
-
-/* Title */
 
 .title {
-
 font-size: 46px;
 font-weight: bold;
-
 }
-
-/* Tagline */
 
 .tagline {
-
 font-size: 20px;
 margin-top: 10px;
-
 }
-
-/* Description */
 
 .description {
-
 margin-top: 18px;
-
 max-width: 440px;
-
 font-size: 16px;
-
 }
-
-/* Coming Soon */
 
 .coming {
-
 margin-top: 24px;
-
 font-size: 22px;
-
 font-weight: bold;
-
 }
 
-/* Email Form */
-
 .email-form {
-
 margin-top: 22px;
-
 }
 
 .email-form input {
 
 padding: 12px;
-
 width: 240px;
 
 border-radius: 6px;
-
 border: none;
 
 outline: none;
-
 }
 
 .email-form input:focus {
-
 box-shadow: 0 0 0 2px #7B3FF2;
-
 }
 
 .email-form button {
@@ -205,107 +159,71 @@ box-shadow: 0 0 0 2px #7B3FF2;
 padding: 12px 16px;
 
 border-radius: 6px;
-
 border: none;
 
 background: white;
-
 color: #1A237E;
 
 font-weight: bold;
-
 cursor: pointer;
-
 }
 
 .email-form button:hover {
-
 background: #e0e0e0;
-
 }
 
-/* Social Icons */
-
 .social {
-
 margin-top: 24px;
-
 }
 
 .social a {
 
 margin: 0 10px;
-
 font-size: 22px;
 
 color: white;
-
 transition: 0.3s;
-
 }
 
 .social a:hover {
-
 color: #ffd54f;
-
 }
-
-/* Contact */
 
 .contact {
-
 margin-top: 18px;
-
 font-size: 14px;
-
 }
-
-/* Footer */
 
 .footer {
 
 position: absolute;
-
 bottom: 20px;
 
 font-size: 13px;
-
 }
 
 .footer a {
 
 color: white;
-
 text-decoration: none;
-
 }
 
 .footer a:hover {
-
 text-decoration: underline;
-
 }
-
-/* Mobile Optimization */
 
 @media (max-width: 480px) {
 
 .title {
-
 font-size: 32px;
-
 }
 
 .tagline {
-
 font-size: 16px;
-
 }
 
 .email-form input {
-
 width: 200px;
-
 }
 
 }
@@ -318,41 +236,30 @@ width: 200px;
 
 <div class="container">
 
-<!-- Logo -->
-
 <img src="logo.png"
 class="logo"
 alt="Truvyo Logo">
-
-<!-- Title -->
 
 <div class="title">
 Truvyo
 </div>
 
-<!-- Tagline -->
-
 <div class="tagline">
 Trust Built by People
 </div>
-
-<!-- Description -->
 
 <div class="description">
 A human-verified platform where real people share trusted experiences and businesses earn credibility.
 </div>
 
-<!-- Coming Soon -->
-
 <div class="coming">
 🚀 Coming Soon
 </div>
 
-<!-- Email Waitlist -->
-
 <div class="email-form">
 
-<form action="https://formspree.io/f/xojywdpj"
+<form
+action="https://formspree.io/f/xojywdpj"
 method="POST"
 onsubmit="submitBackup(event)">
 
@@ -362,20 +269,25 @@ name="email"
 placeholder="Enter your email"
 required>
 
-<button type="submit"
+<button
+type="submit"
 onclick="gtag('event','notify_click');">
+
 Notify Me
+
 </button>
 
 </form>
 
 </div>
 
-<!-- Redirect Script -->
-
 <script>
 
 function submitBackup(event) {
+
+event.preventDefault();
+
+/* Get Email */
 
 var email =
 document.querySelector('input[name="email"]').value;
@@ -386,36 +298,17 @@ fetch("https://script.google.com/macros/s/AKfycbyqYZ0keaStvhnz1yPWTjirh-i8uIHb4H
 
 method: "POST",
 
-body:
-new URLSearchParams({
+body: new URLSearchParams({
 email: email
 })
 
 });
 
-/* Redirect after submit */
+/* Send to Formspree */
 
-<script>
+event.target.submit();
 
-function submitBackup(event) {
-
-var email =
-document.querySelector('input[name="email"]').value;
-
-/* Send to Google Sheet */
-
-fetch("PASTE_GOOGLE_SCRIPT_URL_HERE", {
-
-method: "POST",
-
-body:
-new URLSearchParams({
-email: email
-})
-
-});
-
-/* Redirect after submit */
+/* Redirect */
 
 setTimeout(function() {
 
@@ -427,8 +320,6 @@ window.location.href =
 }
 
 </script>
-
-<!-- Social Media -->
 
 <div class="social">
 
@@ -458,15 +349,11 @@ rel="noopener noreferrer">
 
 </div>
 
-<!-- Contact -->
-
 <div class="contact">
 Contact: hello@truvyo.app
 </div>
 
 </div>
-
-<!-- Footer -->
 
 <div class="footer">
 
