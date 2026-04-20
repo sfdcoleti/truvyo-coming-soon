@@ -490,7 +490,19 @@ button.disabled = false;
 });
 
 </script>
+  
+/* Capture Referral Code */
 
+function getReferral() {
+
+var params =
+new URLSearchParams(
+window.location.search
+);
+
+return params.get("ref");
+
+}
 <!-- Social -->
 
 <div class="social">
