@@ -11,13 +11,11 @@
 content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
-content="Truvyo — A human-verified platform where real people share trusted experiences. Join early access today.">
+content="A human-verified platform where real people share trusted experiences. Join early access today.">
 
 <link rel="icon"
 type="image/png"
 href="/favicon.png">
-
-<!-- Google Analytics -->
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGC55NWD1Z"></script>
 
@@ -34,8 +32,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
-
-/* Background */
 
 body {
 
@@ -66,8 +62,6 @@ overflow-x: hidden;
 
 }
 
-/* Particles */
-
 #particles-js {
 
 position: fixed;
@@ -76,8 +70,6 @@ height: 100%;
 z-index: 0;
 
 }
-
-/* Container */
 
 .container {
 
@@ -96,8 +88,6 @@ padding: 20px;
 
 }
 
-/* Logo */
-
 .logo {
 
 width: 120px;
@@ -114,8 +104,6 @@ animation: floatLogo 4s ease-in-out infinite;
 100% { transform: translateY(0px); }
 
 }
-
-/* Text */
 
 .title {
 
@@ -146,8 +134,6 @@ font-weight: bold;
 
 }
 
-/* Glass Form */
-
 .email-form {
 
 margin-top: 26px;
@@ -165,8 +151,6 @@ box-shadow:
 
 }
 
-/* Input */
-
 .email-form input {
 
 padding: 12px;
@@ -181,8 +165,6 @@ background: rgba(255,255,255,0.15);
 color: white;
 
 }
-
-/* Button */
 
 .email-form button {
 
@@ -219,35 +201,25 @@ box-shadow:
 
 }
 
-/* Message */
-
 .message {
 
 margin-top: 10px;
-
 font-size: 14px;
-
-min-height: 18px;
 
 }
 
-/* Referral */
-
 .referral-box {
 
-margin-top: 6px;
-
+margin-top: 10px;
 font-size: 13px;
-
-word-break: break-all;
 
 color: #FFD700;
 
 display: none;
 
-}
+width: 100%;
 
-/* WhatsApp Button */
+}
 
 .whatsapp-btn {
 
@@ -269,74 +241,13 @@ cursor: pointer;
 
 display: none;
 
-transition: 0.3s;
-
 }
-
-.whatsapp-btn:hover {
-
-transform: scale(1.05);
-
-box-shadow:
-0 0 12px rgba(37,211,102,0.6);
-
-}
-
-/* Social */
-
-.social {
-
-margin-top: 26px;
-
-}
-
-.social a {
-
-margin: 0 12px;
-
-font-size: 22px;
-
-color: white;
-
-transition: 0.3s;
-
-}
-
-.social a:hover {
-
-transform: translateY(-6px) scale(1.2);
-
-color: #FFD700;
-
-}
-
-/* Footer */
 
 .footer {
 
 margin-top: 30px;
 
 font-size: 13px;
-
-line-height: 1.6;
-
-text-align: center;
-
-}
-
-.footer a {
-
-color: white;
-
-text-decoration: none;
-
-margin: 0 6px;
-
-}
-
-.footer a:hover {
-
-text-decoration: underline;
 
 }
 
@@ -351,25 +262,23 @@ text-decoration: underline;
 <div class="container">
 
 <img src="logo.png"
-class="logo"
-alt="Truvyo Logo">
+class="logo">
 
-<div class="title">
-Truvyo
-</div>
+<div class="title">Truvyo</div>
 
 <div class="tagline">
 Trust Built by People
 </div>
 
 <div class="description">
-A human-verified platform where real people share trusted experiences and businesses earn credibility.
+A human-verified platform where real people share trusted experiences.
 </div>
 
 <div class="coming">
 🚀 Coming Soon
 </div>
-  <div id="waitlistCount"
+
+<div id="waitlistCount"
 style="margin-top:8px;font-size:15px;color:#FFD700;">
 🔥 Loading waitlist count...
 </div>
@@ -412,34 +321,9 @@ class="whatsapp-btn">
 
 </div>
 
-<!-- Social -->
-
-<div class="social">
-
-<a href="https://instagram.com/truvyoapp" target="_blank">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="https://twitter.com/truvyo" target="_blank">
-<i class="fab fa-x-twitter"></i>
-</a>
-
-<a href="https://linkedin.com/company/truvyo" target="_blank">
-<i class="fab fa-linkedin"></i>
-</a>
-
-</div>
-
-<!-- Footer -->
-
 <div class="footer">
 
 © 2026 Truvyo
-
-<br>
-
-<a href="/privacy.html">Privacy</a> |
-<a href="/terms.html">Terms</a>
 
 </div>
 
@@ -468,7 +352,8 @@ move: { enable: true, speed: 1 }
 }
 
 });
-  /* Load Waitlist Count */
+
+/* Load Waitlist Count */
 
 async function loadCount() {
 
@@ -495,19 +380,13 @@ document.getElementById(
 
 }
 
-catch(e) {
-
-document.getElementById(
-"waitlistCount"
-).innerHTML = "";
-
-}
+catch(e) {}
 
 }
 
 loadCount();
 
-/* Get Referral */
+/* Referral */
 
 function getReferral() {
 
@@ -552,8 +431,6 @@ button.disabled = true;
 
 try {
 
-/* Google Script */
-
 var response =
 await fetch(
 "https://script.google.com/macros/s/AKfycbzcNXyqVBLW9AB3vcRj_iI12PprRYzpraLof9I3zMIFYOcu_4p2yUMf1ocgZLHobxq9/exec",
@@ -589,21 +466,7 @@ return;
 
 }
 
-/* Formspree */
-
-await fetch("https://formspree.io/f/xojywdpj", {
-
-method: "POST",
-
-headers: {
-'Accept': 'application/json'
-},
-
-body: new FormData(form)
-
-});
-
-/* Show Waitlist */
+/* Validate */
 
 if (isNaN(result)) {
 
@@ -619,12 +482,14 @@ return;
 
 }
 
+/* Show Position */
+
 message.innerHTML =
 "🎉 You're #" +
 result +
 " on the waitlist!";
 
-/* Referral */
+/* Referral Link */
 
 var referralLink =
 window.location.origin +
@@ -637,9 +502,34 @@ referralBox.innerHTML =
 
 "🔗 Share your link:<br>" +
 
-"<b>" +
-referralLink +
-"</b>";
+"<input id='refLinkBox' " +
+
+"style='width:100%;padding:6px;border-radius:6px;border:none;margin-top:5px;' " +
+
+"value='" + referralLink + "' readonly>" +
+
+"<button id='copyBtn' " +
+
+"style='margin-top:6px;padding:6px 10px;border:none;border-radius:6px;'>📋 Copy Link</button>";
+
+referralBox.scrollIntoView({
+behavior: "smooth"
+});
+
+/* Copy Button */
+
+document
+.getElementById("copyBtn")
+.onclick = function() {
+
+navigator.clipboard.writeText(
+referralLink
+);
+
+this.innerHTML =
+"✅ Copied!";
+
+};
 
 /* WhatsApp */
 
@@ -651,8 +541,6 @@ whatsappBtn.onclick = function() {
 var msg =
 
 "🚀 I just joined Truvyo!\n\n" +
-
-"A human-verified platform where real people share trusted experiences.\n\n" +
 
 "Join early using my link 👇\n" +
 
@@ -667,6 +555,8 @@ encodeURIComponent(msg);
 window.open(url, "_blank");
 
 };
+
+loadCount();
 
 gtag('event','email_signup');
 
