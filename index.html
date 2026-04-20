@@ -369,6 +369,10 @@ A human-verified platform where real people share trusted experiences and busine
 <div class="coming">
 🚀 Coming Soon
 </div>
+  <div id="waitlistCount"
+style="margin-top:8px;font-size:15px;color:#FFD700;">
+🔥 Loading waitlist count...
+</div>
 
 <div class="email-form">
 
@@ -464,6 +468,44 @@ move: { enable: true, speed: 1 }
 }
 
 });
+  /* Load Waitlist Count */
+
+async function loadCount() {
+
+try {
+
+var response =
+await fetch(
+"https://script.google.com/macros/s/AKfycbzcNXyqVBLW9AB3vcRj_iI12PprRYzpraLof9I3zMIFYOcu_4p2yUMf1ocgZLHobxq9/exec"
+);
+
+var text =
+await response.text();
+
+if (!isNaN(text)) {
+
+document.getElementById(
+"waitlistCount"
+).innerHTML =
+
+"🔥 " + text +
+" people already joined!";
+
+}
+
+}
+
+catch(e) {
+
+document.getElementById(
+"waitlistCount"
+).innerHTML = "";
+
+}
+
+}
+
+loadCount();
 
 /* Get Referral */
 
