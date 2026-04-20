@@ -31,13 +31,11 @@ gtag('config', 'G-WGC55NWD1Z');
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Particles -->
-
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
 
-/* Background Animation */
+/* Background */
 
 body {
 
@@ -55,7 +53,9 @@ background-size: 600% 600%;
 animation: gradientMove 15s ease infinite;
 
 color: white;
-overflow: hidden;
+
+/* IMPORTANT FIX */
+overflow-x: hidden;
 
 }
 
@@ -171,7 +171,6 @@ box-shadow:
 .email-form input {
 
 padding: 12px;
-
 width: 240px;
 
 border-radius: 8px;
@@ -225,38 +224,28 @@ box-shadow:
 
 .message {
 
-margin-top: 12px;
+margin-top: 10px;
+
 font-size: 14px;
+
 min-height: 18px;
 
 }
 
+/* Referral Box FIXED */
+
 .referral-box {
 
 margin-top: 6px;
+
 font-size: 13px;
 
 word-break: break-all;
 
 color: #FFD700;
 
-/* Hide until used */
-
+/* hidden until success */
 display: none;
-
-}
-
-/* Referral Box */
-
-.referral-box {
-
-margin-top: 10px;
-
-font-size: 13px;
-
-word-break: break-all;
-
-color: #FFD700;
 
 }
 
@@ -288,25 +277,17 @@ color: #FFD700;
 
 }
 
-/* Footer */
+/* Footer FIXED */
 
 .footer {
 
-position: fixed;
-
-bottom: 15px;
-
-left: 0;
-
-width: 100%;
-
-text-align: center;
+margin-top: 30px;
 
 font-size: 13px;
 
 line-height: 1.6;
 
-z-index: 2;
+text-align: center;
 
 }
 
@@ -355,8 +336,6 @@ A human-verified platform where real people share trusted experiences and busine
 <div class="coming">
 🚀 Coming Soon
 </div>
-
-<!-- FORM -->
 
 <div class="email-form">
 
@@ -445,7 +424,7 @@ move: { enable: true, speed: 1 }
 
 });
 
-/* Get Referral */
+/* Referral Capture */
 
 function getReferral() {
 
@@ -458,7 +437,7 @@ return params.get("ref");
 
 }
 
-/* Submit Form */
+/* Form Submit */
 
 document
 .getElementById("emailForm")
@@ -489,10 +468,10 @@ button.disabled = true;
 
 try {
 
-/* Google Sheet */
+/* Google Script */
 
 var response =
-await fetch("YOUR_GOOGLE_SCRIPT_URL_HERE", {
+await fetch("PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE", {
 
 method: "POST",
 
@@ -524,7 +503,7 @@ return;
 
 }
 
-/* Send to Formspree */
+/* Formspree */
 
 await fetch("https://formspree.io/f/xojywdpj", {
 
@@ -538,19 +517,21 @@ body: new FormData(form)
 
 });
 
-/* Show Waitlist */
+/* Success */
 
 message.innerHTML =
 "🎉 You're #" +
 result +
 " on the waitlist!";
 
-/* Generate Referral Link */
+/* Show referral */
 
 var referralLink =
 window.location.origin +
 "/?ref=" +
 result;
+
+referralBox.style.display = "block";
 
 referralBox.innerHTML =
 
