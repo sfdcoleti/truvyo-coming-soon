@@ -361,10 +361,7 @@ class="message"></div>
 </form>
 
 </div>
-
 <script>
-
-/* Particles */
 
 particlesJS("particles-js", {
 
@@ -380,29 +377,24 @@ opacity: { value: 0.4 },
 
 size: { value: 3 },
 
-move: {
-
-enable: true,
-speed: 1
-
-}
+move: { enable: true, speed: 1 }
 
 }
 
 });
 
-/* Form */
-
 document
 .getElementById("emailForm")
-.addEventListener("submit", async function(event) {
+.addEventListener("submit",
+async function(event) {
 
 event.preventDefault();
 
 var form = this;
 
 var email =
-form.querySelector('input[name="email"]').value;
+form.querySelector(
+'input[name="email"]').value;
 
 var message =
 document.getElementById("formMessage");
@@ -417,8 +409,10 @@ button.disabled = true;
 
 try {
 
+/* Google Sheet */
+
 var response =
-await fetch("https://script.google.com/macros/s/AKfycbzMXVz-IyyjHN48a6Az6qnpsCfFd68cBoIFRoiAJbfw8F6YeLqkzSNGwR7dHjzc5yqg/exec", {
+await fetch("YOUR_NEW_DEPLOYMENT_URL_HERE", {
 
 method: "POST",
 
@@ -430,6 +424,8 @@ email: email
 
 var result =
 await response.text();
+
+/* Duplicate */
 
 if (result === "Duplicate") {
 
@@ -445,6 +441,8 @@ return;
 
 }
 
+/* Send to Formspree */
+
 await fetch("https://formspree.io/f/xojywdpj", {
 
 method: "POST",
@@ -457,17 +455,23 @@ body: new FormData(form)
 
 });
 
+/* 🎉 Show Waitlist Number */
+
 message.innerHTML =
-"✅ Successfully registered!";
+"🎉 You're #" +
+result +
+" on the waitlist!";
 
 gtag('event','email_signup');
+
+/* Redirect */
 
 setTimeout(function() {
 
 window.location.href =
 "/thankyou.html";
 
-}, 1000);
+}, 1800);
 
 }
 
