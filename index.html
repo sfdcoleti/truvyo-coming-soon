@@ -522,7 +522,7 @@ method: "POST",
 body: new URLSearchParams({
 
 email: email,
-ref: getReferral()
+ref: getReferral() || ""
 
 })
 
@@ -562,6 +562,20 @@ body: new FormData(form)
 });
 
 /* Show Waitlist */
+
+if (isNaN(result)) {
+
+message.innerHTML =
+"❌ Server error — try again";
+
+button.innerHTML =
+"Notify Me";
+
+button.disabled = false;
+
+return;
+
+}
 
 message.innerHTML =
 "🎉 You're #" +
