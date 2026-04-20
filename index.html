@@ -4,34 +4,25 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Truvyo — Trust Built by People</title>
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
 
 <meta name="description"
 content="A human-verified platform where real people share trusted experiences. Join early access today.">
 
-<link rel="icon"
-type="image/png"
-href="/favicon.png">
+<link rel="icon" href="/favicon.png">
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WGC55NWD1Z"></script>
-
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-WGC55NWD1Z');
-</script>
-
+<!-- Font Awesome Icons -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- Particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
+
+/* Background */
 
 body {
 
@@ -46,6 +37,7 @@ background: linear-gradient(
 );
 
 background-size: 600% 600%;
+
 animation: gradientMove 15s ease infinite;
 
 color: white;
@@ -62,35 +54,49 @@ overflow-x: hidden;
 
 }
 
+/* Particles */
+
 #particles-js {
 
 position: fixed;
+
 width: 100%;
 height: 100%;
+
 z-index: 0;
 
 }
 
+/* Layout */
+
 .container {
 
 position: relative;
+
 z-index: 1;
 
 min-height: 100vh;
 
 display: flex;
+
 flex-direction: column;
+
 justify-content: center;
+
 align-items: center;
 
 text-align: center;
+
 padding: 20px;
 
 }
 
+/* Logo */
+
 .logo {
 
 width: 120px;
+
 margin-bottom: 20px;
 
 animation: floatLogo 4s ease-in-out infinite;
@@ -104,6 +110,8 @@ animation: floatLogo 4s ease-in-out infinite;
 100% { transform: translateY(0px); }
 
 }
+
+/* Text */
 
 .title {
 
@@ -122,6 +130,7 @@ margin-top: 10px;
 .description {
 
 margin-top: 18px;
+
 max-width: 440px;
 
 }
@@ -129,10 +138,26 @@ max-width: 440px;
 .coming {
 
 margin-top: 24px;
+
 font-size: 22px;
+
 font-weight: bold;
 
 }
+
+/* Waitlist Counter */
+
+#waitlistCount {
+
+margin-top: 8px;
+
+font-size: 15px;
+
+color: #FFD700;
+
+}
+
+/* Glass Card */
 
 .email-form {
 
@@ -151,9 +176,12 @@ box-shadow:
 
 }
 
+/* Input */
+
 .email-form input {
 
 padding: 12px;
+
 width: 240px;
 
 border-radius: 8px;
@@ -165,6 +193,8 @@ background: rgba(255,255,255,0.15);
 color: white;
 
 }
+
+/* Button */
 
 .email-form button {
 
@@ -201,9 +231,12 @@ box-shadow:
 
 }
 
+/* Messages */
+
 .message {
 
 margin-top: 10px;
+
 font-size: 14px;
 
 }
@@ -211,6 +244,7 @@ font-size: 14px;
 .referral-box {
 
 margin-top: 10px;
+
 font-size: 13px;
 
 color: #FFD700;
@@ -243,11 +277,79 @@ display: none;
 
 }
 
+/* Footer */
+
 .footer {
 
-margin-top: 30px;
+margin-top: 40px;
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+gap: 12px;
 
 font-size: 13px;
+
+}
+
+.social-icons {
+
+display: flex;
+
+gap: 18px;
+
+}
+
+.social-icons a {
+
+color: white;
+
+font-size: 18px;
+
+transition: 0.3s;
+
+}
+
+.social-icons a:hover {
+
+transform: scale(1.25);
+
+color: #FFD700;
+
+}
+
+.footer-links {
+
+display: flex;
+
+gap: 10px;
+
+align-items: center;
+
+}
+
+.footer-links a {
+
+color: rgba(255,255,255,0.8);
+
+text-decoration: none;
+
+}
+
+.footer-links a:hover {
+
+color: #FFD700;
+
+}
+
+.copyright {
+
+color: rgba(255,255,255,0.7);
+
+font-size: 12px;
 
 }
 
@@ -261,8 +363,7 @@ font-size: 13px;
 
 <div class="container">
 
-<img src="logo.png"
-class="logo">
+<img src="logo.png" class="logo">
 
 <div class="title">Truvyo</div>
 
@@ -278,8 +379,7 @@ A human-verified platform where real people share trusted experiences.
 🚀 Coming Soon
 </div>
 
-<div id="waitlistCount"
-style="margin-top:8px;font-size:15px;color:#FFD700;">
+<div id="waitlistCount">
 🔥 Loading waitlist count...
 </div>
 
@@ -321,7 +421,45 @@ class="whatsapp-btn">
 
 </div>
 
+<!-- Footer -->
+
 <div class="footer">
+
+<div class="social-icons">
+
+<a href="https://instagram.com/truvyo" target="_blank">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="https://x.com/truvyo" target="_blank">
+<i class="fab fa-x-twitter"></i>
+</a>
+
+<a href="https://linkedin.com/company/truvyo" target="_blank">
+<i class="fab fa-linkedin"></i>
+</a>
+
+<a href="https://wa.me/" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+</div>
+
+<div class="footer-links">
+
+<a href="/privacy.html">
+Privacy Policy
+</a>
+
+<span>|</span>
+
+<a href="/terms.html">
+Terms & Conditions
+</a>
+
+</div>
+
+<div class="copyright">
 
 © 2026 Truvyo
 
@@ -329,9 +467,11 @@ class="whatsapp-btn">
 
 </div>
 
+</div>
+
 <script>
 
-/* Particles */
+/* PARTICLES */
 
 particlesJS("particles-js", {
 
@@ -353,7 +493,7 @@ move: { enable: true, speed: 1 }
 
 });
 
-/* Load Waitlist Count */
+/* LOAD WAITLIST */
 
 async function loadCount() {
 
@@ -361,7 +501,7 @@ try {
 
 var response =
 await fetch(
-"https://script.google.com/macros/s/AKfycbzcNXyqVBLW9AB3vcRj_iI12PprRYzpraLof9I3zMIFYOcu_4p2yUMf1ocgZLHobxq9/exec"
+"https://script.google.com/macros/s/AKfycbyWFM8UCgmgLmVGkh7qUn-RQSyfpwPMWEtQ32tajJ8oVOsujIJ7rvJSpobbdXym9ssb/exec"
 );
 
 var text =
@@ -386,7 +526,7 @@ catch(e) {}
 
 loadCount();
 
-/* Referral */
+/* REFERRAL */
 
 function getReferral() {
 
@@ -399,6 +539,8 @@ return params.get("ref");
 
 }
 
+/* FORM SUBMIT */
+
 document
 .getElementById("emailForm")
 .addEventListener("submit",
@@ -406,10 +548,8 @@ async function(event) {
 
 event.preventDefault();
 
-var form = this;
-
 var email =
-form.querySelector(
+this.querySelector(
 'input[name="email"]').value;
 
 var message =
@@ -433,7 +573,7 @@ try {
 
 var response =
 await fetch(
-"https://script.google.com/macros/s/AKfycbzcNXyqVBLW9AB3vcRj_iI12PprRYzpraLof9I3zMIFYOcu_4p2yUMf1ocgZLHobxq9/exec",
+"https://script.google.com/macros/s/AKfycbyWFM8UCgmgLmVGkh7qUn-RQSyfpwPMWEtQ32tajJ8oVOsujIJ7rvJSpobbdXym9ssb/exec",
 {
 
 method: "POST",
@@ -450,7 +590,7 @@ ref: getReferral() || ""
 var result =
 await response.text();
 
-/* Duplicate */
+/* DUPLICATE */
 
 if (result === "Duplicate") {
 
@@ -466,7 +606,7 @@ return;
 
 }
 
-/* Validate */
+/* ERROR */
 
 if (isNaN(result)) {
 
@@ -482,21 +622,22 @@ return;
 
 }
 
-/* Show Position */
+/* SUCCESS */
 
 message.innerHTML =
 "🎉 You're #" +
 result +
 " on the waitlist!";
 
-/* Referral Link */
+/* REF LINK */
 
 var referralLink =
 window.location.origin +
 "/?ref=" +
 result;
 
-referralBox.style.display = "block";
+referralBox.style.display =
+"block";
 
 referralBox.innerHTML =
 
@@ -512,11 +653,7 @@ referralBox.innerHTML =
 
 "style='margin-top:6px;padding:6px 10px;border:none;border-radius:6px;'>📋 Copy Link</button>";
 
-referralBox.scrollIntoView({
-behavior: "smooth"
-});
-
-/* Copy Button */
+/* COPY */
 
 document
 .getElementById("copyBtn")
@@ -531,7 +668,7 @@ this.innerHTML =
 
 };
 
-/* WhatsApp */
+/* WHATSAPP */
 
 whatsappBtn.style.display =
 "inline-block";
@@ -540,9 +677,7 @@ whatsappBtn.onclick = function() {
 
 var msg =
 
-"🚀 I just joined Truvyo!\n\n" +
-
-"Join early using my link 👇\n" +
+"🚀 I just joined Truvyo!\n\nJoin early 👇\n" +
 
 referralLink;
 
@@ -557,8 +692,6 @@ window.open(url, "_blank");
 };
 
 loadCount();
-
-gtag('event','email_signup');
 
 }
 
