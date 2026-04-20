@@ -31,11 +31,13 @@ gtag('config', 'G-WGC55NWD1Z');
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- Particles.js -->
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 <style>
 
-/* ========================= */
-/* Animated Background */
-/* ========================= */
+/* Animated Gradient Background */
 
 body {
 
@@ -72,11 +74,27 @@ overflow: hidden;
 
 }
 
-/* ========================= */
-/* Layout */
-/* ========================= */
+/* Particle Layer */
+
+#particles-js {
+
+position: fixed;
+
+width: 100%;
+
+height: 100%;
+
+z-index: 0;
+
+}
+
+/* Content */
 
 .container {
+
+position: relative;
+
+z-index: 1;
 
 height: 100vh;
 
@@ -94,9 +112,7 @@ padding: 20px;
 
 }
 
-/* ========================= */
 /* Logo Animation */
-/* ========================= */
 
 .logo {
 
@@ -117,8 +133,6 @@ animation: floatLogo 4s ease-in-out infinite;
 100% { transform: translateY(0px); }
 
 }
-
-/* ========================= */
 
 .title {
 
@@ -156,9 +170,7 @@ font-weight: bold;
 
 }
 
-/* ========================= */
 /* Form */
-/* ========================= */
 
 .email-form {
 
@@ -216,9 +228,7 @@ font-size: 14px;
 
 }
 
-/* ========================= */
-/* Social Icons Animation */
-/* ========================= */
+/* Social Icons */
 
 .social {
 
@@ -248,9 +258,7 @@ color: #FFD700;
 
 }
 
-/* ========================= */
-/* Footer Fix */
-/* ========================= */
+/* Footer */
 
 .footer {
 
@@ -289,6 +297,10 @@ text-decoration: underline;
 </head>
 
 <body>
+
+<!-- Particle Container -->
+
+<div id="particles-js"></div>
 
 <div class="container">
 
@@ -343,6 +355,36 @@ class="message"></div>
 
 <script>
 
+/* PARTICLE SETTINGS */
+
+particlesJS("particles-js", {
+
+"particles": {
+
+"number": { "value": 55 },
+
+"color": { "value": "#ffffff" },
+
+"shape": { "type": "circle" },
+
+"opacity": { "value": 0.4 },
+
+"size": { "value": 3 },
+
+"move": {
+
+"enable": true,
+
+"speed": 1
+
+}
+
+}
+
+});
+
+/* FORM HANDLING */
+
 document
 .getElementById("emailForm")
 .addEventListener("submit", async function(event) {
@@ -367,8 +409,6 @@ button.disabled = true;
 
 try {
 
-/* Google Sheets First */
-
 var response =
 await fetch("https://script.google.com/macros/s/AKfycbzMXVz-IyyjHN48a6Az6qnpsCfFd68cBoIFRoiAJbfw8F6YeLqkzSNGwR7dHjzc5yqg/exec", {
 
@@ -382,8 +422,6 @@ email: email
 
 var result =
 await response.text();
-
-/* Duplicate Check */
 
 if (result === "Duplicate") {
 
@@ -399,8 +437,6 @@ return;
 
 }
 
-/* Send to Formspree */
-
 await fetch("https://formspree.io/f/xojywdpj", {
 
 method: "POST",
@@ -413,14 +449,10 @@ body: new FormData(form)
 
 });
 
-/* Success */
-
 message.innerHTML =
 "✅ Successfully registered!";
 
 gtag('event','email_signup');
-
-/* Redirect */
 
 setTimeout(function() {
 
@@ -447,34 +479,25 @@ button.disabled = false;
 
 </script>
 
-<!-- Social Icons -->
+<!-- Social -->
 
 <div class="social">
 
-<a href="https://instagram.com/truvyoapp"
-target="_blank">
-
+<a href="https://instagram.com/truvyoapp" target="_blank">
 <i class="fab fa-instagram"></i>
-
 </a>
 
-<a href="https://twitter.com/truvyo"
-target="_blank">
-
+<a href="https://twitter.com/truvyo" target="_blank">
 <i class="fab fa-x-twitter"></i>
-
 </a>
 
-<a href="https://linkedin.com/company/truvyo"
-target="_blank">
-
+<a href="https://linkedin.com/company/truvyo" target="_blank">
 <i class="fab fa-linkedin"></i>
-
 </a>
 
 </div>
 
-<!-- Footer Fixed -->
+<!-- Footer -->
 
 <div class="footer">
 
@@ -482,15 +505,8 @@ target="_blank">
 
 <br>
 
-<a href="/privacy.html">
-Privacy
-</a>
-
-|
-
-<a href="/terms.html">
-Terms
-</a>
+<a href="/privacy.html">Privacy</a> |
+<a href="/terms.html">Terms</a>
 
 </div>
 
