@@ -54,7 +54,6 @@ animation: gradientMove 15s ease infinite;
 
 color: white;
 
-/* IMPORTANT FIX */
 overflow-x: hidden;
 
 }
@@ -232,7 +231,7 @@ min-height: 18px;
 
 }
 
-/* Referral Box FIXED */
+/* Referral */
 
 .referral-box {
 
@@ -244,8 +243,42 @@ word-break: break-all;
 
 color: #FFD700;
 
-/* hidden until success */
 display: none;
+
+}
+
+/* WhatsApp Button */
+
+.whatsapp-btn {
+
+margin-top: 10px;
+
+padding: 10px 16px;
+
+border-radius: 8px;
+
+border: none;
+
+background: #25D366;
+
+color: white;
+
+font-weight: bold;
+
+cursor: pointer;
+
+display: none;
+
+transition: 0.3s;
+
+}
+
+.whatsapp-btn:hover {
+
+transform: scale(1.05);
+
+box-shadow:
+0 0 12px rgba(37,211,102,0.6);
 
 }
 
@@ -277,7 +310,7 @@ color: #FFD700;
 
 }
 
-/* Footer FIXED */
+/* Footer */
 
 .footer {
 
@@ -363,6 +396,14 @@ class="message"></div>
 <div id="referralBox"
 class="referral-box"></div>
 
+<button
+id="whatsappShare"
+class="whatsapp-btn">
+
+📲 Share on WhatsApp
+
+</button>
+
 </form>
 
 </div>
@@ -424,7 +465,7 @@ move: { enable: true, speed: 1 }
 
 });
 
-/* Referral Capture */
+/* Get Referral */
 
 function getReferral() {
 
@@ -436,8 +477,6 @@ window.location.search
 return params.get("ref");
 
 }
-
-/* Form Submit */
 
 document
 .getElementById("emailForm")
@@ -458,6 +497,9 @@ document.getElementById("formMessage");
 var referralBox =
 document.getElementById("referralBox");
 
+var whatsappBtn =
+document.getElementById("whatsappShare");
+
 var button =
 document.getElementById("submitBtn");
 
@@ -471,7 +513,9 @@ try {
 /* Google Script */
 
 var response =
-await fetch("PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE", {
+await fetch(
+"https://script.google.com/macros/s/AKfycbyWFM8UCgmgLmVGkh7qUn-RQSyfpwPMWEtQ32tajJ8oVOsujIJ7rvJSpobbdXym9ssb/exec",
+{
 
 method: "POST",
 
@@ -517,14 +561,14 @@ body: new FormData(form)
 
 });
 
-/* Success */
+/* Show Waitlist */
 
 message.innerHTML =
 "🎉 You're #" +
 result +
 " on the waitlist!";
 
-/* Show referral */
+/* Referral */
 
 var referralLink =
 window.location.origin +
@@ -540,6 +584,33 @@ referralBox.innerHTML =
 "<b>" +
 referralLink +
 "</b>";
+
+/* WhatsApp */
+
+whatsappBtn.style.display =
+"inline-block";
+
+whatsappBtn.onclick = function() {
+
+var msg =
+
+"🚀 Join me on Truvyo!\n\n" +
+
+"Trust Built by People.\n\n" +
+
+"Join using my referral link:\n" +
+
+referralLink;
+
+var url =
+
+"https://wa.me/?text=" +
+
+encodeURIComponent(msg);
+
+window.open(url, "_blank");
+
+};
 
 gtag('event','email_signup');
 
