@@ -31,20 +31,18 @@ gtag('config', 'G-WGC55NWD1Z');
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Particles.js -->
+<!-- Particles -->
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
 
-/* Animated Gradient Background */
+/* Animated Background */
 
 body {
 
 margin: 0;
-
 font-family: Arial, sans-serif;
-
 height: 100vh;
 
 background: linear-gradient(
@@ -55,11 +53,9 @@ background: linear-gradient(
 );
 
 background-size: 600% 600%;
-
 animation: gradientMove 15s ease infinite;
 
 color: white;
-
 overflow: hidden;
 
 }
@@ -67,23 +63,18 @@ overflow: hidden;
 @keyframes gradientMove {
 
 0% { background-position: 0% 50%; }
-
 50% { background-position: 100% 50%; }
-
 100% { background-position: 0% 50%; }
 
 }
 
-/* Particle Layer */
+/* Particles */
 
 #particles-js {
 
 position: fixed;
-
 width: 100%;
-
 height: 100%;
-
 z-index: 0;
 
 }
@@ -93,21 +84,16 @@ z-index: 0;
 .container {
 
 position: relative;
-
 z-index: 1;
 
 height: 100vh;
 
 display: flex;
-
 flex-direction: column;
-
 justify-content: center;
-
 align-items: center;
 
 text-align: center;
-
 padding: 20px;
 
 }
@@ -117,7 +103,6 @@ padding: 20px;
 .logo {
 
 width: 120px;
-
 margin-bottom: 20px;
 
 animation: floatLogo 4s ease-in-out infinite;
@@ -127,17 +112,16 @@ animation: floatLogo 4s ease-in-out infinite;
 @keyframes floatLogo {
 
 0% { transform: translateY(0px); }
-
 50% { transform: translateY(-10px); }
-
 100% { transform: translateY(0px); }
 
 }
 
+/* Text */
+
 .title {
 
 font-size: 46px;
-
 font-weight: bold;
 
 }
@@ -145,7 +129,6 @@ font-weight: bold;
 .tagline {
 
 font-size: 20px;
-
 margin-top: 10px;
 
 }
@@ -153,9 +136,7 @@ margin-top: 10px;
 .description {
 
 margin-top: 18px;
-
 max-width: 440px;
-
 font-size: 16px;
 
 }
@@ -163,20 +144,33 @@ font-size: 16px;
 .coming {
 
 margin-top: 24px;
-
 font-size: 22px;
-
 font-weight: bold;
 
 }
 
-/* Form */
+/* 💎 Glass Form */
 
 .email-form {
 
-margin-top: 22px;
+margin-top: 26px;
+
+background: rgba(255,255,255,0.1);
+
+backdrop-filter: blur(12px);
+
+-webkit-backdrop-filter: blur(12px);
+
+border-radius: 14px;
+
+padding: 24px;
+
+box-shadow:
+0 8px 32px rgba(0,0,0,0.25);
 
 }
+
+/* Input */
 
 .email-form input {
 
@@ -184,23 +178,35 @@ padding: 12px;
 
 width: 240px;
 
-border-radius: 6px;
+border-radius: 8px;
 
-border: none;
+border: 1px solid rgba(255,255,255,0.3);
+
+background: rgba(255,255,255,0.15);
+
+color: white;
 
 outline: none;
 
 }
 
+/* Button */
+
 .email-form button {
 
-padding: 12px 16px;
+margin-top: 14px;
 
-border-radius: 6px;
+padding: 12px 18px;
+
+border-radius: 8px;
 
 border: none;
 
-background: white;
+background: linear-gradient(
+45deg,
+#ffffff,
+#dcdcdc
+);
 
 color: #1A237E;
 
@@ -214,11 +220,14 @@ transition: 0.3s;
 
 .email-form button:hover {
 
-background: #e0e0e0;
-
 transform: scale(1.05);
 
+box-shadow:
+0 0 15px rgba(255,255,255,0.6);
+
 }
+
+/* Message */
 
 .message {
 
@@ -226,9 +235,11 @@ margin-top: 12px;
 
 font-size: 14px;
 
+min-height: 18px;
+
 }
 
-/* Social Icons */
+/* Social */
 
 .social {
 
@@ -298,8 +309,6 @@ text-decoration: underline;
 
 <body>
 
-<!-- Particle Container -->
-
 <div id="particles-js"></div>
 
 <div class="container">
@@ -324,7 +333,7 @@ A human-verified platform where real people share trusted experiences and busine
 🚀 Coming Soon
 </div>
 
-<!-- Email Form -->
+<!-- Glass Form -->
 
 <div class="email-form">
 
@@ -336,7 +345,7 @@ name="email"
 placeholder="Enter your email"
 required>
 
-<br><br>
+<br>
 
 <button
 type="submit"
@@ -355,27 +364,26 @@ class="message"></div>
 
 <script>
 
-/* PARTICLE SETTINGS */
+/* Particles */
 
 particlesJS("particles-js", {
 
-"particles": {
+particles: {
 
-"number": { "value": 55 },
+number: { value: 55 },
 
-"color": { "value": "#ffffff" },
+color: { value: "#ffffff" },
 
-"shape": { "type": "circle" },
+shape: { type: "circle" },
 
-"opacity": { "value": 0.4 },
+opacity: { value: 0.4 },
 
-"size": { "value": 3 },
+size: { value: 3 },
 
-"move": {
+move: {
 
-"enable": true,
-
-"speed": 1
+enable: true,
+speed: 1
 
 }
 
@@ -383,7 +391,7 @@ particlesJS("particles-js", {
 
 });
 
-/* FORM HANDLING */
+/* Form */
 
 document
 .getElementById("emailForm")
