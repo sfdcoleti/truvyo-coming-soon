@@ -20,7 +20,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
-/* YOUR CSS UNCHANGED */
+/* BACKGROUND */
 
 body {
 margin: 0;
@@ -50,6 +50,8 @@ height: 100%;
 z-index: 0;
 }
 
+/* CONTAINER */
+
 .container {
 position: relative;
 z-index: 1;
@@ -62,6 +64,8 @@ text-align: center;
 padding: 20px;
 }
 
+/* LOGO */
+
 .logo {
 width: 120px;
 margin-bottom: 20px;
@@ -73,6 +77,8 @@ animation: floatLogo 4s ease-in-out infinite;
 50% { transform: translateY(-12px); }
 100% { transform: translateY(0px); }
 }
+
+/* TEXT */
 
 .title {
 font-size: 46px;
@@ -95,51 +101,142 @@ font-size: 22px;
 font-weight: bold;
 }
 
+.limited {
+margin-top: 6px;
+font-size: 14px;
+color: #FFD700;
+font-weight: bold;
+}
+
 #waitlistCount {
 margin-top: 8px;
 font-size: 15px;
 color: #FFD700;
 }
 
-.email-form {
-margin-top: 26px;
-background: rgba(255,255,255,0.1);
-backdrop-filter: blur(12px);
-border-radius: 14px;
-padding: 24px;
-box-shadow:
-0 8px 32px rgba(0,0,0,0.25);
-}
+/* PROGRESS BAR */
 
-.email-form input {
-padding: 12px;
+.progress-bar {
 width: 240px;
-border-radius: 8px;
-border: 1px solid rgba(255,255,255,0.3);
-background: rgba(255,255,255,0.15);
-color: white;
+height: 8px;
+background: rgba(255,255,255,0.2);
+border-radius: 10px;
+margin-top: 8px;
+overflow: hidden;
 }
 
-.email-form button {
-margin-top: 14px;
-padding: 12px 18px;
-border-radius: 8px;
-border: none;
+.progress-fill {
+height: 100%;
+width: 0%;
 background: linear-gradient(
-45deg,
-#ffffff,
-#dcdcdc
+90deg,
+#FFD700,
+#FFA500
 );
-color: #1A237E;
-font-weight: bold;
-cursor: pointer;
+transition: 0.4s;
+}
+
+/* TRUST BADGES */
+
+.trust-badges {
+margin-top: 18px;
+font-size: 14px;
+color: #FFD700;
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+/* FORM CARD */
+
+.email-form {
+
+margin-top: 26px;
+
+background:
+rgba(255,255,255,0.12);
+
+backdrop-filter: blur(18px);
+
+border-radius: 18px;
+
+padding: 26px;
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.35);
+
+border:
+1px solid rgba(255,255,255,0.18);
+
 transition: 0.3s;
 }
 
+.email-form:hover {
+transform: translateY(-4px);
+}
+
+/* INPUT */
+
+.email-form input {
+
+padding: 14px;
+
+width: 260px;
+
+border-radius: 10px;
+
+border: 1px solid rgba(255,255,255,0.35);
+
+background:
+rgba(255,255,255,0.18);
+
+color: white;
+
+font-size: 14px;
+
+outline: none;
+
+}
+
+/* BUTTON */
+
+.email-form button {
+
+margin-top: 14px;
+
+padding: 13px 22px;
+
+border-radius: 10px;
+
+border: none;
+
+background:
+linear-gradient(
+45deg,
+#FFD700,
+#ffffff
+);
+
+color: #1A237E;
+
+font-weight: bold;
+
+font-size: 15px;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+}
+
 .email-form button:hover {
-transform: scale(1.05);
+
+transform: scale(1.06);
+
 box-shadow:
-0 0 15px rgba(255,255,255,0.6);
+0 0 18px rgba(255,215,0,0.7);
+
 }
 
 .message {
@@ -156,15 +253,75 @@ width: 100%;
 }
 
 .whatsapp-btn {
+
 margin-top: 10px;
+
 padding: 10px 16px;
+
 border-radius: 8px;
+
 border: none;
+
 background: #25D366;
+
 color: white;
+
 font-weight: bold;
+
 cursor: pointer;
+
 display: none;
+
+}
+
+/* FOOTER */
+
+.footer {
+
+margin-top: 40px;
+
+font-size: 13px;
+
+color: rgba(255,255,255,0.7);
+
+text-align: center;
+
+}
+
+.footer a {
+
+color: #FFD700;
+
+text-decoration: none;
+
+margin: 0 8px;
+
+}
+
+.social-icons {
+
+margin-top: 8px;
+
+}
+
+.social-icons i {
+
+margin: 0 6px;
+
+font-size: 18px;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+}
+
+.social-icons i:hover {
+
+transform: scale(1.2);
+
+color: #FFD700;
+
 }
 
 </style>
@@ -193,15 +350,30 @@ A human-verified platform where real people share trusted experiences.
 🚀 Coming Soon
 </div>
 
+<div class="limited">
+⚡ Only 100 Early Users
+</div>
+
 <div id="waitlistCount">
 🔥 Loading waitlist count...
+</div>
+
+<div class="progress-bar">
+<div
+id="progressFill"
+class="progress-fill">
+</div>
+</div>
+
+<div class="trust-badges">
+✔ Human Verified  
+✔ No Fake Reviews  
+✔ Privacy First  
 </div>
 
 <div class="email-form">
 
 <form id="emailForm">
-
-<!-- Honeypot -->
 
 <input
 type="text"
@@ -243,9 +415,42 @@ class="whatsapp-btn">
 
 </div>
 
+<div class="footer">
+
+<div>
+
+© <span id="year"></span> Truvyo  
+
+<a href="privacy.html">
+Privacy
+</a>
+
+<a href="terms.html">
+Terms
+</a>
+
+</div>
+
+<div class="social-icons">
+
+<i class="fab fa-instagram"></i>
+
+<i class="fab fa-twitter"></i>
+
+<i class="fab fa-linkedin"></i>
+
+</div>
+
+</div>
+
 </div>
 
 <script>
+
+/* YEAR */
+
+document.getElementById("year")
+.innerHTML = new Date().getFullYear();
 
 /* SETTINGS */
 
@@ -281,21 +486,6 @@ await response.text();
 
 if (!isNaN(text)) {
 
-if (Number(text) >= MAX_USERS) {
-
-document.getElementById(
-"waitlistCount"
-).innerHTML =
-"🚫 Early access full — stay tuned!";
-
-document.getElementById(
-"submitBtn"
-).disabled = true;
-
-return;
-
-}
-
 document.getElementById(
 "waitlistCount"
 ).innerHTML =
@@ -303,6 +493,14 @@ document.getElementById(
 "🔥 " + text +
 " of " + MAX_USERS +
 " early spots filled!";
+
+var percent =
+(text / MAX_USERS) * 100;
+
+document.getElementById(
+"progressFill"
+).style.width =
+percent + "%";
 
 }
 
@@ -321,245 +519,8 @@ document.getElementById(
 
 loadCount();
 
-/* REFERRAL */
-
-function getReferral() {
-
-var params =
-new URLSearchParams(
-window.location.search
-);
-
-var ref =
-params.get("ref");
-
-if (!ref || isNaN(ref)) {
-
-return "";
-
-}
-
-return ref;
-
-}
-
-/* FORM SUBMIT */
-
-let lastSubmitTime = 0;
-
-document
-.getElementById("emailForm")
-.addEventListener("submit",
-async function(event) {
-
-event.preventDefault();
-
-var message =
-document.getElementById("formMessage");
-
-var button =
-document.getElementById("submitBtn");
-
-var referralBox =
-document.getElementById("referralBox");
-
-var whatsappBtn =
-document.getElementById("whatsappShare");
-
-/* RATE LIMIT */
-
-if (Date.now() - lastSubmitTime < 5000) {
-
-message.innerHTML =
-"⏳ Please wait a few seconds";
-
-return;
-
-}
-
-lastSubmitTime = Date.now();
-
-/* HONEYPOT */
-
-var honeypot =
-document.getElementById("website").value;
-
-if (honeypot !== "") {
-
-message.innerHTML =
-"❌ Spam detected";
-
-return;
-
-}
-
-/* EMAIL */
-
-var email =
-this.querySelector(
-'input[name="email"]').value;
-
-/* EMAIL VALIDATION */
-
-var emailPattern =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if (!emailPattern.test(email)) {
-
-message.innerHTML =
-"⚠️ Enter a valid email";
-
-return;
-
-}
-
-button.innerHTML =
-"⏳ Please wait...";
-
-button.disabled = true;
-
-try {
-
-var response =
-await fetch(
-SCRIPT_URL,
-{
-method: "POST",
-body: new URLSearchParams({
-email: email,
-ref: getReferral()
-})
-});
-
-var result =
-await response.text();
-
-/* DUPLICATE */
-
-if (result === "Duplicate") {
-
-message.innerHTML =
-"⚠️ Email already registered!";
-
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
-return;
-
-}
-
-/* ERROR */
-
-if (isNaN(result)) {
-
-message.innerHTML =
-"❌ Server error — try again";
-
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
-return;
-
-}
-
-/* SUCCESS */
-
-message.innerHTML =
-"🎉 You're #" +
-result +
-" on the waitlist!<br>🏅 Early Access Member";
-
-/* REF LINK */
-
-var referralLink =
-window.location.origin +
-window.location.pathname +
-"?ref=" +
-result;
-
-referralBox.style.display =
-"block";
-
-referralBox.innerHTML =
-
-"🔗 Share your link:<br>" +
-
-"<input id='refLinkBox' " +
-
-"style='width:100%;padding:6px;border-radius:6px;border:none;margin-top:5px;' " +
-
-"value='" + referralLink + "' readonly>" +
-
-"<button id='copyBtn' " +
-
-"style='margin-top:6px;padding:6px 10px;border:none;border-radius:6px;'>📋 Copy Link</button>";
-
-document
-.getElementById("copyBtn")
-.onclick = function() {
-
-navigator.clipboard.writeText(
-referralLink
-);
-
-this.innerHTML =
-"✅ Copied!";
-
-};
-
-/* WHATSAPP */
-
-whatsappBtn.style.display =
-"inline-block";
-
-whatsappBtn.onclick = function() {
-
-var msg =
-
-"🚀 I just joined Truvyo — a platform built on trusted experiences.\n\n" +
-
-"🔥 Only first 100 users get early access.\n\n" +
-
-"Join before spots fill 👇\n" +
-
-referralLink;
-
-var url =
-"https://wa.me/?text=" +
-encodeURIComponent(msg);
-
-window.open(url, "_blank");
-
-};
-
-loadCount();
-
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
-}
-
-catch(error) {
-
-message.innerHTML =
-"❌ Something went wrong";
-
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
-}
-
-});
-
 </script>
 
 </body>
+
 </html>
