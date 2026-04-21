@@ -20,32 +20,27 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
-/* 🌌 PREMIUM BACKGROUND */
-
 body {
 margin: 0;
-font-family: Arial, sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
 background:
-radial-gradient(circle at 20% 30%, rgba(123,63,242,0.35), transparent 40%),
-radial-gradient(circle at 80% 70%, rgba(74,20,140,0.35), transparent 40%),
-linear-gradient(270deg,#0f0c29,#302b63,#24243e);
+radial-gradient(circle at 20% 25%, rgba(123,63,242,0.28), transparent 42%),
+radial-gradient(circle at 80% 75%, rgba(74,20,140,0.24), transparent 42%),
+linear-gradient(180deg, #0b0b1a, #1a1a2e, #121226);
 
-background-size: 600% 600%;
-animation: gradientMove 18s ease infinite;
+background-size: 400% 400%;
+animation: gradientMove 22s ease infinite;
 
-color: white;
+color: #f5f5f7;
 overflow-x: hidden;
 }
 
-/* soft ambient glow */
 body::before {
 content: "";
 position: fixed;
-width: 100%;
-height: 100%;
-background:
-radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 70%);
+inset: 0;
+background: radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 70%);
 z-index: 0;
 pointer-events: none;
 }
@@ -56,16 +51,12 @@ pointer-events: none;
 100% { background-position: 0% 50%; }
 }
 
-/* PARTICLES */
-
 #particles-js {
 position: fixed;
 width: 100%;
 height: 100%;
 z-index: 0;
 }
-
-/* CONTAINER */
 
 .container {
 position: relative;
@@ -76,180 +67,278 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-padding: 20px;
+padding: 24px;
 }
 
-/* LOGO */
-
 .logo {
-width: 120px;
-margin-bottom: 20px;
-animation: floatLogo 4s ease-in-out infinite;
+width: 110px;
+margin-bottom: 18px;
+animation: floatLogo 5s ease-in-out infinite;
+opacity: 0.96;
 }
 
 @keyframes floatLogo {
 0% { transform: translateY(0px); }
-50% { transform: translateY(-12px); }
+50% { transform: translateY(-10px); }
 100% { transform: translateY(0px); }
 }
 
-/* TEXT */
+.title {
+font-size: 42px;
+font-weight: 600;
+letter-spacing: 0.5px;
+}
 
-.title { font-size: 46px; font-weight: bold; }
-.tagline { font-size: 20px; margin-top: 10px; }
-.description { margin-top: 18px; max-width: 440px; }
+.tagline {
+font-size: 18px;
+margin-top: 8px;
+color: rgba(255,255,255,0.78);
+}
 
-.coming { margin-top: 24px; font-size: 22px; font-weight: bold; }
+.description {
+margin-top: 14px;
+max-width: 430px;
+font-size: 15px;
+line-height: 1.55;
+color: rgba(255,255,255,0.66);
+}
+
+.coming {
+margin-top: 22px;
+font-size: 20px;
+font-weight: 500;
+}
 
 .limited {
 margin-top: 6px;
-font-size: 14px;
-color: #FFD700;
-font-weight: bold;
+font-size: 13px;
+color: #e6c76b;
+font-weight: 600;
 }
 
 #waitlistCount {
 margin-top: 8px;
-font-size: 15px;
-color: #FFD700;
+font-size: 14px;
+color: #e6c76b;
 }
-
-/* PROGRESS BAR */
 
 .progress-bar {
 width: 240px;
-height: 8px;
-background: rgba(255,255,255,0.2);
-border-radius: 10px;
-margin-top: 8px;
+height: 6px;
+background: rgba(255,255,255,0.12);
+border-radius: 999px;
+margin-top: 10px;
 overflow: hidden;
 }
 
 .progress-fill {
 height: 100%;
 width: 0%;
-background: linear-gradient(90deg,#FFD700,#FFA500);
-transition: 0.4s;
+background: linear-gradient(90deg, #e6c76b, #caa94c);
+transition: width 0.45s ease;
 }
 
-/* TRUST BADGES */
-
 .trust-badges {
-margin-top: 18px;
-font-size: 14px;
-color: #FFD700;
+margin-top: 16px;
+font-size: 13px;
+color: rgba(255,255,255,0.74);
 display: flex;
-gap: 12px;
+gap: 10px;
 flex-wrap: wrap;
 justify-content: center;
 }
 
-/* 💎 GLASS CARD */
-
 .email-form {
 position: relative;
+overflow: hidden;
 
 margin-top: 26px;
 
-background: rgba(255,255,255,0.12);
-backdrop-filter: blur(18px);
+background: rgba(255,255,255,0.08);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
 
-border-radius: 18px;
+border-radius: 20px;
 padding: 26px;
 
-box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+border: 1px solid rgba(255,255,255,0.12);
 
-border: 1px solid rgba(255,255,255,0.18);
-transition: 0.3s;
-}
+box-shadow: 0 20px 60px rgba(0,0,0,0.35);
 
-/* ✨ glow behind card */
-.email-form::before {
-content: "";
-position: absolute;
-width: 280px;
-height: 280px;
-background: radial-gradient(circle, rgba(255,215,0,0.25), transparent 70%);
-filter: blur(70px);
-z-index: -1;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .email-form:hover {
-transform: translateY(-4px);
+transform: translateY(-3px);
+box-shadow: 0 24px 70px rgba(0,0,0,0.4);
 }
 
-/* INPUT */
+.email-form::before {
+content: "";
+position: absolute;
+width: 240px;
+height: 240px;
+background: radial-gradient(circle, rgba(230,199,107,0.14), transparent 70%);
+filter: blur(60px);
+z-index: -1;
+}
 
-.email-form input {
+.email-form::after {
+content: "";
+position: absolute;
+width: 220px;
+height: 220px;
+background: radial-gradient(circle, rgba(255,255,255,0.14), transparent 60%);
+top: var(--y, 50%);
+left: var(--x, 50%);
+transform: translate(-50%, -50%);
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+
+.email-form:hover::after {
+opacity: 1;
+}
+
+.email-form input[type="email"] {
 padding: 14px;
 width: 260px;
 border-radius: 10px;
-border: 1px solid rgba(255,255,255,0.35);
-background: rgba(255,255,255,0.18);
+border: 1px solid rgba(255,255,255,0.25);
+background: rgba(255,255,255,0.12);
 color: white;
 font-size: 14px;
 outline: none;
+transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* BUTTON */
+.email-form input[type="email"]:focus {
+border-color: rgba(230,199,107,0.8);
+box-shadow: 0 0 0 3px rgba(230,199,107,0.12);
+}
+
+.email-form input::placeholder {
+color: rgba(255,255,255,0.65);
+}
 
 .email-form button {
 margin-top: 14px;
 padding: 13px 22px;
 border-radius: 10px;
 border: none;
-background: linear-gradient(45deg,#FFD700,#ffffff);
-color: #1A237E;
-font-weight: bold;
+background: linear-gradient(45deg, #f5f5f7, #e6c76b);
+color: #1a1a2e;
+font-weight: 600;
 font-size: 15px;
 cursor: pointer;
-transition: 0.3s;
+transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
 }
 
 .email-form button:hover {
-transform: scale(1.06);
-box-shadow: 0 0 18px rgba(255,215,0,0.7);
+transform: scale(1.04);
+box-shadow: 0 0 16px rgba(230,199,107,0.38);
 }
 
-.message { margin-top: 10px; font-size: 14px; }
+.email-form button:disabled {
+cursor: not-allowed;
+opacity: 0.9;
+}
+
+button.success {
+background: linear-gradient(45deg, #4CAF50, #81C784);
+color: white;
+transform: scale(1.04);
+box-shadow: 0 0 14px rgba(76,175,80,0.4);
+}
+
+.message {
+margin-top: 12px;
+font-size: 14px;
+color: rgba(255,255,255,0.88);
+line-height: 1.5;
+}
+
+.success-animate {
+animation: successFade 0.6s ease;
+}
+
+@keyframes successFade {
+0% {
+transform: scale(0.96);
+opacity: 0.6;
+}
+100% {
+transform: scale(1);
+opacity: 1;
+}
+}
 
 .referral-box {
-margin-top: 10px;
+margin-top: 12px;
 font-size: 13px;
-color: #FFD700;
+color: #e6c76b;
 display: none;
 width: 100%;
 }
 
-/* FOOTER */
+.share-actions {
+display: flex;
+gap: 10px;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 10px;
+}
+
+.share-actions button {
+margin-top: 0;
+padding: 10px 14px;
+font-size: 14px;
+border-radius: 9px;
+}
+
+.whatsapp-btn {
+background: #25D366;
+color: white;
+display: none;
+}
+
+.copy-btn-inline {
+background: linear-gradient(45deg,#ffffff,#e4e4e4);
+color: #1a1a2e;
+}
 
 .footer {
 margin-top: 40px;
-font-size: 13px;
-color: rgba(255,255,255,0.7);
+font-size: 12px;
+color: rgba(255,255,255,0.52);
 text-align: center;
 }
 
 .footer a {
-color: #FFD700;
+color: rgba(255,255,255,0.74);
 text-decoration: none;
-margin: 0 8px;
+margin: 0 6px;
+}
+
+.footer a:hover {
+color: #e6c76b;
 }
 
 .social-icons {
 margin-top: 8px;
 }
 
-.social-icons i {
+.social-icons a {
+color: rgba(255,255,255,0.72);
 margin: 0 6px;
-font-size: 18px;
-cursor: pointer;
-transition: 0.3s;
+font-size: 16px;
+transition: 0.25s ease;
 }
 
-.social-icons i:hover {
-transform: scale(1.2);
-color: #FFD700;
+.social-icons a:hover {
+color: #e6c76b;
+transform: scale(1.15);
 }
 
 </style>
@@ -262,7 +351,7 @@ color: #FFD700;
 
 <div class="container">
 
-<img src="logo.png" class="logo">
+<img src="logo.png" class="logo" alt="Truvyo logo">
 
 <div class="title">Truvyo</div>
 
@@ -283,34 +372,74 @@ A human-verified platform where real people share trusted experiences.
 </div>
 
 <div class="trust-badges">
-✔ Human Verified ✔ No Fake Reviews ✔ Privacy First
+<span>✔ Human Verified</span>
+<span>✔ No Fake Reviews</span>
+<span>✔ Privacy First</span>
 </div>
 
 <div class="email-form">
 
 <form id="emailForm">
 
-<input type="email" name="email" placeholder="Enter your email" required>
+<input
+type="text"
+name="website"
+id="website"
+style="display:none"
+tabindex="-1"
+autocomplete="off">
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email"
+required
+autocomplete="email">
 
 <br>
 
-<button type="submit" id="submitBtn">Notify Me</button>
+<button
+type="submit"
+id="submitBtn">
+Notify Me
+</button>
 
 <div id="formMessage" class="message"></div>
+
+<div id="referralBox" class="referral-box"></div>
+
+<div class="share-actions">
+<button
+type="button"
+id="copyShareBtn"
+class="copy-btn-inline"
+style="display:none;">
+📋 Copy Link
+</button>
+
+<button
+type="button"
+id="whatsappShare"
+class="whatsapp-btn"
+style="display:none;">
+📲 Share on WhatsApp
+</button>
+</div>
 
 </form>
 
 </div>
 
 <div class="footer">
-© <span id="year"></span> Truvyo  
+
+© <span id="year"></span> Truvyo
 <a href="privacy.html">Privacy</a>
 <a href="terms.html">Terms</a>
 
 <div class="social-icons">
-<i class="fab fa-instagram"></i>
-<i class="fab fa-twitter"></i>
-<i class="fab fa-linkedin"></i>
+<a href="https://instagram.com/truvyoapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+<a href="https://x.com/truvyo" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+<a href="https://linkedin.com/company/truvyo" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
 </div>
 
 </div>
@@ -319,20 +448,207 @@ A human-verified platform where real people share trusted experiences.
 
 <script>
 
-/* YEAR */
-document.getElementById("year").innerHTML = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-/* PARTICLES (refined) */
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbx1aSeB2hyDGRQkhHelL5h5uQh0c1JbPH_NSAEDOWyY76PLKc22O4YIqShOI2yRsLVi/exec";
 
+const MAX_USERS = 100;
+let lastSubmitTime = 0;
+
+/* calmer particles */
 particlesJS("particles-js", {
 particles: {
-number: { value: 50 },
+number: { value: 45 },
 color: { value: "#ffffff" },
 shape: { type: "circle" },
-opacity: { value: 0.3 },
-size: { value: 2.5 },
-move: { enable: true, speed: 0.7 }
+opacity: { value: 0.25 },
+size: { value: 2 },
+move: { enable: true, speed: 0.5 }
 }
+});
+
+/* card hover glow tracking */
+const card = document.querySelector(".email-form");
+
+card.addEventListener("mousemove", (e) => {
+const rect = card.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
+card.style.setProperty("--x", x + "px");
+card.style.setProperty("--y", y + "px");
+});
+
+async function loadCount() {
+try {
+const response = await fetch(SCRIPT_URL);
+const text = await response.text();
+
+if (!isNaN(text)) {
+const count = Number(text);
+
+if (count >= MAX_USERS) {
+document.getElementById("waitlistCount").innerHTML =
+"🚫 Early access full — stay tuned!";
+document.getElementById("submitBtn").disabled = true;
+document.getElementById("progressFill").style.width = "100%";
+return;
+}
+
+document.getElementById("waitlistCount").innerHTML =
+"🔥 " + count + " of " + MAX_USERS + " early spots filled!";
+
+const percent = (count / MAX_USERS) * 100;
+document.getElementById("progressFill").style.width = percent + "%";
+}
+} catch (e) {
+document.getElementById("waitlistCount").innerHTML =
+"🔥 Join the waitlist today!";
+}
+}
+
+loadCount();
+
+function getReferral() {
+const params = new URLSearchParams(window.location.search);
+const ref = params.get("ref");
+
+if (!ref || isNaN(ref)) {
+return "";
+}
+
+return ref;
+}
+
+document
+.getElementById("emailForm")
+.addEventListener("submit", async function(event) {
+
+event.preventDefault();
+
+const message = document.getElementById("formMessage");
+const button = document.getElementById("submitBtn");
+const referralBox = document.getElementById("referralBox");
+const whatsappBtn = document.getElementById("whatsappShare");
+const copyShareBtn = document.getElementById("copyShareBtn");
+const honeypot = document.getElementById("website").value;
+const email = this.querySelector('input[name="email"]').value.trim();
+
+/* rate limit */
+if (Date.now() - lastSubmitTime < 5000) {
+message.innerHTML = "⏳ Please wait a few seconds";
+return;
+}
+lastSubmitTime = Date.now();
+
+/* honeypot */
+if (honeypot !== "") {
+message.innerHTML = "❌ Spam detected";
+return;
+}
+
+/* email validation */
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailPattern.test(email)) {
+message.innerHTML = "⚠️ Enter a valid email";
+return;
+}
+
+button.innerHTML = "⏳ Please wait...";
+button.disabled = true;
+
+try {
+
+const response = await fetch(SCRIPT_URL, {
+method: "POST",
+body: new URLSearchParams({
+email: email,
+ref: getReferral()
+})
+});
+
+const result = await response.text();
+
+if (result === "Duplicate") {
+message.innerHTML = "⚠️ Email already registered!";
+button.innerHTML = "Notify Me";
+button.disabled = false;
+return;
+}
+
+if (isNaN(result)) {
+message.innerHTML = "❌ Server error — try again";
+button.innerHTML = "Notify Me";
+button.disabled = false;
+return;
+}
+
+/* refined success UX */
+message.innerHTML =
+"🎉 You're #" + result + " on the waitlist!<br>" +
+"🏅 You're now part of our first 100 early members.";
+
+message.classList.remove("success-animate");
+void message.offsetWidth;
+message.classList.add("success-animate");
+
+button.classList.add("success");
+button.innerHTML = "✅ Joined";
+
+/* referral link */
+const referralLink =
+window.location.origin +
+window.location.pathname +
+"?ref=" +
+result;
+
+referralBox.style.display = "block";
+referralBox.innerHTML =
+"🔗 Your invite link is ready:<br>" +
+"<input id='refLinkBox' " +
+"style='width:100%;padding:8px;border-radius:8px;border:none;margin-top:6px;background:rgba(255,255,255,0.95);color:#121226;' " +
+"value='" + referralLink + "' readonly>";
+
+copyShareBtn.style.display = "inline-block";
+whatsappBtn.style.display = "inline-block";
+
+copyShareBtn.onclick = function() {
+navigator.clipboard.writeText(referralLink);
+copyShareBtn.innerHTML = "✅ Copied!";
+setTimeout(() => {
+copyShareBtn.innerHTML = "📋 Copy Link";
+}, 1800);
+};
+
+whatsappBtn.onclick = function() {
+const msg =
+"🚀 I just joined Truvyo — a platform built on trusted experiences.\n\n" +
+"🔥 Only first 100 users get early access.\n\n" +
+"Join before spots fill 👇\n" +
+referralLink;
+
+const url =
+"https://wa.me/?text=" +
+encodeURIComponent(msg);
+
+window.open(url, "_blank");
+};
+
+this.reset();
+loadCount();
+
+setTimeout(() => {
+button.classList.remove("success");
+button.innerHTML = "Notify Me";
+button.disabled = false;
+}, 2500);
+
+} catch (error) {
+message.innerHTML = "❌ Something went wrong";
+button.innerHTML = "Notify Me";
+button.disabled = false;
+}
+
 });
 
 </script>
