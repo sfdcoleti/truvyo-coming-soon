@@ -13,7 +13,7 @@ content="A human-verified platform where real people share trusted experiences. 
 
 <link rel="icon" href="/favicon.png">
 
-<!-- Font Awesome Icons -->
+<!-- Font Awesome -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -130,7 +130,6 @@ margin-top: 10px;
 .description {
 
 margin-top: 18px;
-
 max-width: 440px;
 
 }
@@ -140,12 +139,11 @@ max-width: 440px;
 margin-top: 24px;
 
 font-size: 22px;
-
 font-weight: bold;
 
 }
 
-/* Waitlist Counter */
+/* Waitlist */
 
 #waitlistCount {
 
@@ -493,7 +491,7 @@ move: { enable: true, speed: 1 }
 
 });
 
-/* LOAD WAITLIST */
+/* LOAD WAITLIST COUNT */
 
 async function loadCount() {
 
@@ -526,7 +524,7 @@ catch(e) {}
 
 loadCount();
 
-/* REFERRAL */
+/* SAFE REFERRAL */
 
 function getReferral() {
 
@@ -535,7 +533,21 @@ new URLSearchParams(
 window.location.search
 );
 
-return params.get("ref");
+var ref =
+params.get("ref");
+
+if (
+!ref ||
+ref === "null" ||
+ref === "undefined" ||
+isNaN(ref)
+) {
+
+return "";
+
+}
+
+return ref;
 
 }
 
@@ -581,7 +593,7 @@ method: "POST",
 body: new URLSearchParams({
 
 email: email,
-ref: getReferral() || ""
+ref: getReferral()
 
 })
 
