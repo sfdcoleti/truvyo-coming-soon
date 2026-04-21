@@ -13,16 +13,14 @@ content="A human-verified platform where real people share trusted experiences. 
 
 <link rel="icon" href="/favicon.png">
 
-<!-- Font Awesome -->
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Particles -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
 
-/* (Your FULL existing CSS remains unchanged — kept exactly same) */
+/* YOUR CSS UNCHANGED */
 
 body {
 margin: 0;
@@ -169,51 +167,6 @@ cursor: pointer;
 display: none;
 }
 
-.footer {
-margin-top: 40px;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 12px;
-font-size: 13px;
-}
-
-.social-icons {
-display: flex;
-gap: 18px;
-}
-
-.social-icons a {
-color: white;
-font-size: 18px;
-transition: 0.3s;
-}
-
-.social-icons a:hover {
-transform: scale(1.25);
-color: #FFD700;
-}
-
-.footer-links {
-display: flex;
-gap: 10px;
-align-items: center;
-}
-
-.footer-links a {
-color: rgba(255,255,255,0.8);
-text-decoration: none;
-}
-
-.footer-links a:hover {
-color: #FFD700;
-}
-
-.copyright {
-color: rgba(255,255,255,0.7);
-font-size: 12px;
-}
-
 </style>
 
 </head>
@@ -247,13 +200,15 @@ A human-verified platform where real people share trusted experiences.
 <div class="email-form">
 
 <form id="emailForm">
-<!-- Honeypot Field (Spam Trap) -->
+
+<!-- Honeypot -->
 
 <input
 type="text"
 name="website"
 id="website"
 style="display:none">
+
 <input
 type="email"
 name="email"
@@ -288,55 +243,16 @@ class="whatsapp-btn">
 
 </div>
 
-<!-- Footer unchanged -->
-
-<div class="footer">
-
-<div class="social-icons">
-
-<a href="https://instagram.com/truvyoapp" target="_blank">
-<i class="fab fa-instagram"></i>
-</a>
-
-<a href="https://x.com/truvyo" target="_blank">
-<i class="fab fa-x-twitter"></i>
-</a>
-
-<a href="https://linkedin.com/company/truvyo" target="_blank">
-<i class="fab fa-linkedin"></i>
-</a>
-
-<a href="https://wa.me/" target="_blank">
-<i class="fab fa-whatsapp"></i>
-</a>
-
-</div>
-
-<div class="footer-links">
-
-<a href="/privacy.html">
-Privacy Policy
-</a>
-
-<span>|</span>
-
-<a href="/terms.html">
-Terms & Conditions
-</a>
-
-</div>
-
-<div class="copyright">
-
-© 2026 Truvyo
-
-</div>
-
-</div>
-
 </div>
 
 <script>
+
+/* SETTINGS */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbx1aSeB2hyDGRQkhHelL5h5uQh0c1JbPH_NSAEDOWyY76PLKc22O4YIqShOI2yRsLVi/exec";
+
+const MAX_USERS = 100;
 
 /* PARTICLES */
 
@@ -350,11 +266,6 @@ size: { value: 3 },
 move: { enable: true, speed: 1 }
 }
 });
-
-/* YOUR NEW SCRIPT URL */
-
-const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbx1aSeB2hyDGRQkhHelL5h5uQh0c1JbPH_NSAEDOWyY76PLKc22O4YIqShOI2yRsLVi/exec";
 
 /* LOAD COUNT */
 
@@ -370,12 +281,28 @@ await response.text();
 
 if (!isNaN(text)) {
 
+if (Number(text) >= MAX_USERS) {
+
+document.getElementById(
+"waitlistCount"
+).innerHTML =
+"🚫 Early access full — stay tuned!";
+
+document.getElementById(
+"submitBtn"
+).disabled = true;
+
+return;
+
+}
+
 document.getElementById(
 "waitlistCount"
 ).innerHTML =
 
 "🔥 " + text +
-" people already joined!";
+" of " + MAX_USERS +
+" early spots filled!";
 
 }
 
@@ -406,12 +333,7 @@ window.location.search
 var ref =
 params.get("ref");
 
-if (
-!ref ||
-ref === "null" ||
-ref === "undefined" ||
-isNaN(ref)
-) {
+if (!ref || isNaN(ref)) {
 
 return "";
 
@@ -423,6 +345,8 @@ return ref;
 
 /* FORM SUBMIT */
 
+let lastSubmitTime = 0;
+
 document
 .getElementById("emailForm")
 .addEventListener("submit",
@@ -430,11 +354,32 @@ async function(event) {
 
 event.preventDefault();
 
-var email =
-this.querySelector(
-'input[name="email"]').value;
+var message =
+document.getElementById("formMessage");
 
-/* HONEYPOT CHECK */
+var button =
+document.getElementById("submitBtn");
+
+var referralBox =
+document.getElementById("referralBox");
+
+var whatsappBtn =
+document.getElementById("whatsappShare");
+
+/* RATE LIMIT */
+
+if (Date.now() - lastSubmitTime < 5000) {
+
+message.innerHTML =
+"⏳ Please wait a few seconds";
+
+return;
+
+}
+
+lastSubmitTime = Date.now();
+
+/* HONEYPOT */
 
 var honeypot =
 document.getElementById("website").value;
@@ -444,26 +389,29 @@ if (honeypot !== "") {
 message.innerHTML =
 "❌ Spam detected";
 
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
 return;
 
 }
 
-var message =
-document.getElementById("formMessage");
+/* EMAIL */
 
-var referralBox =
-document.getElementById("referralBox");
+var email =
+this.querySelector(
+'input[name="email"]').value;
 
-var whatsappBtn =
-document.getElementById("whatsappShare");
+/* EMAIL VALIDATION */
 
-var button =
-document.getElementById("submitBtn");
+var emailPattern =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!emailPattern.test(email)) {
+
+message.innerHTML =
+"⚠️ Enter a valid email";
+
+return;
+
+}
 
 button.innerHTML =
 "⏳ Please wait...";
@@ -523,27 +471,8 @@ return;
 message.innerHTML =
 "🎉 You're #" +
 result +
-" on the waitlist!";
-button.innerHTML = "Notify Me";
-button.disabled = false;
-/* EMAIL VALIDATION */
+" on the waitlist!<br>🏅 Early Access Member";
 
-var emailPattern =
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if (!emailPattern.test(email)) {
-
-message.innerHTML =
-"⚠️ Enter a valid email";
-
-button.innerHTML =
-"Notify Me";
-
-button.disabled = false;
-
-return;
-
-}
 /* REF LINK */
 
 var referralLink =
@@ -569,8 +498,6 @@ referralBox.innerHTML =
 
 "style='margin-top:6px;padding:6px 10px;border:none;border-radius:6px;'>📋 Copy Link</button>";
 
-/* COPY */
-
 document
 .getElementById("copyBtn")
 .onclick = function() {
@@ -593,14 +520,16 @@ whatsappBtn.onclick = function() {
 
 var msg =
 
-"🚀 I just joined Truvyo!\n\nJoin early 👇\n" +
+"🚀 I just joined Truvyo — a platform built on trusted experiences.\n\n" +
+
+"🔥 Only first 100 users get early access.\n\n" +
+
+"Join before spots fill 👇\n" +
 
 referralLink;
 
 var url =
-
 "https://wa.me/?text=" +
-
 encodeURIComponent(msg);
 
 window.open(url, "_blank");
@@ -608,6 +537,11 @@ window.open(url, "_blank");
 };
 
 loadCount();
+
+button.innerHTML =
+"Notify Me";
+
+button.disabled = false;
 
 }
 
