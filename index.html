@@ -247,7 +247,13 @@ A human-verified platform where real people share trusted experiences.
 <div class="email-form">
 
 <form id="emailForm">
+<!-- Honeypot Field (Spam Trap) -->
 
+<input
+type="text"
+name="website"
+id="website"
+style="display:none">
 <input
 type="email"
 name="email"
@@ -348,7 +354,7 @@ move: { enable: true, speed: 1 }
 /* YOUR NEW SCRIPT URL */
 
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
+"https://script.google.com/macros/s/AKfycbx1aSeB2hyDGRQkhHelL5h5uQh0c1JbPH_NSAEDOWyY76PLKc22O4YIqShOI2yRsLVi/exec";
 
 /* LOAD COUNT */
 
@@ -428,6 +434,25 @@ var email =
 this.querySelector(
 'input[name="email"]').value;
 
+/* HONEYPOT CHECK */
+
+var honeypot =
+document.getElementById("website").value;
+
+if (honeypot !== "") {
+
+message.innerHTML =
+"❌ Spam detected";
+
+button.innerHTML =
+"Notify Me";
+
+button.disabled = false;
+
+return;
+
+}
+
 var message =
 document.getElementById("formMessage");
 
@@ -501,7 +526,24 @@ result +
 " on the waitlist!";
 button.innerHTML = "Notify Me";
 button.disabled = false;
+/* EMAIL VALIDATION */
 
+var emailPattern =
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (!emailPattern.test(email)) {
+
+message.innerHTML =
+"⚠️ Enter a valid email";
+
+button.innerHTML =
+"Notify Me";
+
+button.disabled = false;
+
+return;
+
+}
 /* REF LINK */
 
 var referralLink =
