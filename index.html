@@ -27,12 +27,12 @@ margin: 0;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
 background:
-radial-gradient(circle at 20% 25%, rgba(123,63,242,0.35), transparent 45%),
-radial-gradient(circle at 80% 75%, rgba(26,35,126,0.35), transparent 45%),
-linear-gradient(180deg, #1a237e, #4a148c, #0f172a);
+radial-gradient(circle at 18% 22%, rgba(123,63,242,0.28), transparent 42%),
+radial-gradient(circle at 82% 76%, rgba(26,35,126,0.26), transparent 42%),
+linear-gradient(180deg, #0f172a 0%, #1a237e 42%, #4a148c 100%);
 
-background-size: 400% 400%;
-animation: gradientMove 18s ease infinite;
+background-size: 320% 320%;
+animation: gradientMove 20s ease infinite;
 
 color: #f5f5f7;
 overflow-x: hidden;
@@ -43,7 +43,24 @@ content: "";
 position: fixed;
 inset: 0;
 background:
+linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.5)),
 radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 70%);
+z-index: 0;
+pointer-events: none;
+}
+
+/* subtle ambient center glow */
+body::after {
+content: "";
+position: fixed;
+top: 50%;
+left: 50%;
+width: 650px;
+height: 650px;
+transform: translate(-50%, -50%);
+background:
+radial-gradient(circle, rgba(123,63,242,0.14), transparent 60%);
+filter: blur(120px);
 z-index: 0;
 pointer-events: none;
 }
@@ -52,6 +69,28 @@ pointer-events: none;
 0% { background-position: 0% 50%; }
 50% { background-position: 100% 50%; }
 100% { background-position: 0% 50%; }
+}
+
+/* floating grain texture */
+.grain {
+position: fixed;
+inset: -50%;
+z-index: 1;
+pointer-events: none;
+opacity: 0.09;
+background-image:
+radial-gradient(circle, rgba(255,255,255,0.22) 0.6px, transparent 0.8px);
+background-size: 12px 12px;
+animation: grainFloat 16s linear infinite;
+mix-blend-mode: soft-light;
+}
+
+@keyframes grainFloat {
+0% { transform: translate(0, 0); }
+25% { transform: translate(2%, -2%); }
+50% { transform: translate(-2%, 2%); }
+75% { transform: translate(1.5%, 1%); }
+100% { transform: translate(0, 0); }
 }
 
 /* PARTICLES */
@@ -67,7 +106,7 @@ z-index: 0;
 
 .container {
 position: relative;
-z-index: 1;
+z-index: 2;
 min-height: 100vh;
 display: flex;
 flex-direction: column;
@@ -377,6 +416,7 @@ transform: scale(1.15);
 <body>
 
 <div id="particles-js"></div>
+<div class="grain"></div>
 
 <div class="container">
 
@@ -486,12 +526,12 @@ let lastSubmitTime = 0;
 /* calmer particles */
 particlesJS("particles-js", {
 particles: {
-number: { value: 45 },
+number: { value: 40 },
 color: { value: "#ffffff" },
 shape: { type: "circle" },
-opacity: { value: 0.25 },
+opacity: { value: 0.2 },
 size: { value: 2 },
-move: { enable: true, speed: 0.5 }
+move: { enable: true, speed: 0.4 }
 }
 });
 
@@ -611,7 +651,6 @@ button.disabled = false;
 return;
 }
 
-/* refined success UX */
 message.innerHTML =
 "🎉 You're #" + result + " on the waitlist!<br>" +
 "🏅 You're now part of our first 100 early members.";
@@ -623,7 +662,6 @@ message.classList.add("success-animate");
 button.classList.add("success");
 button.innerHTML = "✅ Joined";
 
-/* referral link */
 const referralLink =
 window.location.origin +
 window.location.pathname +
