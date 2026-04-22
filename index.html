@@ -27,8 +27,8 @@ margin: 0;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
 background:
-radial-gradient(circle at 18% 22%, rgba(123,63,242,0.28), transparent 42%),
-radial-gradient(circle at 82% 76%, rgba(26,35,126,0.26), transparent 42%),
+radial-gradient(circle at 18% 22%, rgba(123,63,242,0.30), transparent 42%),
+radial-gradient(circle at 82% 76%, rgba(26,35,126,0.28), transparent 42%),
 linear-gradient(180deg, #0f172a 0%, #1a237e 42%, #4a148c 100%);
 
 background-size: 320% 320%;
@@ -43,20 +43,19 @@ content: "";
 position: fixed;
 inset: 0;
 background:
-linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.5)),
+linear-gradient(180deg, rgba(0,0,0,0.24), rgba(0,0,0,0.46)),
 radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 70%);
 z-index: 0;
 pointer-events: none;
 }
 
-/* center focus glow */
 body::after {
 content: "";
 position: fixed;
 top: 50%;
 left: 50%;
-width: 700px;
-height: 700px;
+width: 760px;
+height: 760px;
 transform: translate(-50%, -50%);
 background: radial-gradient(circle,
 rgba(123,63,242,0.18),
@@ -73,22 +72,71 @@ pointer-events: none;
 100% { background-position: 0% 50%; }
 }
 
-/* floating glass grain */
+/* FLOATING ORBS */
+
+.bg-orb {
+position: fixed;
+border-radius: 50%;
+filter: blur(70px);
+pointer-events: none;
+z-index: 0;
+opacity: 0.35;
+mix-blend-mode: screen;
+}
+
+.orb-1 {
+width: 220px;
+height: 220px;
+background: rgba(170, 90, 255, 0.28);
+top: 12%;
+left: 10%;
+animation: floatOrb1 18s ease-in-out infinite;
+}
+
+.orb-2 {
+width: 260px;
+height: 260px;
+background: rgba(70, 180, 255, 0.18);
+bottom: 8%;
+right: 10%;
+animation: floatOrb2 22s ease-in-out infinite;
+}
+
+.orb-3 {
+width: 180px;
+height: 180px;
+background: rgba(255, 210, 120, 0.14);
+top: 58%;
+left: 20%;
+animation: floatOrb3 20s ease-in-out infinite;
+}
+
+@keyframes floatOrb1 {
+0%,100% { transform: translate(0,0); }
+50% { transform: translate(40px, -30px); }
+}
+
+@keyframes floatOrb2 {
+0%,100% { transform: translate(0,0); }
+50% { transform: translate(-35px, 35px); }
+}
+
+@keyframes floatOrb3 {
+0%,100% { transform: translate(0,0); }
+50% { transform: translate(28px, -20px); }
+}
+
+/* GRAIN */
 
 .grain {
 position: fixed;
 inset: -50%;
 z-index: 1;
 pointer-events: none;
-opacity: 0.06;
-
+opacity: 0.05;
 background-image:
-radial-gradient(circle,
-rgba(255,255,255,0.25) 0.5px,
-transparent 0.6px);
-
+radial-gradient(circle, rgba(255,255,255,0.25) 0.5px, transparent 0.6px);
 background-size: 10px 10px;
-
 animation: grainFloat 20s linear infinite;
 mix-blend-mode: overlay;
 }
@@ -103,59 +151,16 @@ mix-blend-mode: overlay;
 
 /* PARTICLES */
 
-particlesJS("particles-js", {
-  particles: {
+#particles-js {
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: 0;
+}
 
-    number: { value: 28 },
-
-    color: {
-      value: ["#ffffff", "#e6c76b"]  // white + soft gold mix
-    },
-
-    shape: { type: "circle" },
-
-    opacity: {
-      value: 0.18,
-      random: true,
-      anim: {
-        enable: true,
-        speed: 0.6,     // slow breathing
-        opacity_min: 0.05,
-        sync: false
-      }
-    },
-
-    size: {
-      value: 1.8,
-      random: true,
-      anim: {
-        enable: true,
-        speed: 1,
-        size_min: 0.8,
-        sync: false
-      }
-    },
-
-    move: {
-      enable: true,
-      speed: 0.25,
-      out_mode: "out"
-    },
-
-    line_linked: {
-      enable: true,
-      distance: 130,
-      color: "#ffffff",
-      opacity: 0.08,   // keep very subtle
-      width: 1
-    }
-
-  }
-});
-  /* subtle glow overlay for particles */
 #particles-js canvas {
-filter: blur(0.3px) brightness(1.2);
-opacity: 0.85;
+filter: blur(0.3px) brightness(1.18);
+opacity: 0.95;
 }
 
 /* CONTAINER */
@@ -317,7 +322,7 @@ transition: opacity 0.3s ease;
 opacity: 1;
 }
 
-/* FORM ELEMENTS */
+/* FORM */
 
 .email-form input[type="email"] {
 padding: 14px;
@@ -392,7 +397,7 @@ transform: scale(1.04);
 box-shadow: 0 0 14px rgba(76,175,80,0.4);
 }
 
-/* SUCCESS + SHARE */
+/* SUCCESS */
 
 .message {
 margin-top: 12px;
@@ -499,6 +504,9 @@ transform: scale(1.15);
 
 <div id="particles-js"></div>
 <div class="grain"></div>
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-orb orb-3"></div>
 
 <div class="container">
 
@@ -605,17 +613,75 @@ const SCRIPT_URL =
 const MAX_USERS = 100;
 let lastSubmitTime = 0;
 
-/* softer particles 
+/* particles with shine + lines */
 particlesJS("particles-js", {
 particles: {
-number: { value: 30 },
-color: { value: "#ffffff" },
+
+number: { value: 28 },
+
+color: {
+value: ["#ffffff", "#e6c76b"]
+},
+
 shape: { type: "circle" },
-opacity: { value: 0.12 },
-size: { value: 1.6 },
-move: { enable: true, speed: 0.25 }
+
+opacity: {
+value: 0.18,
+random: true,
+anim: {
+enable: true,
+speed: 0.6,
+opacity_min: 0.05,
+sync: false
 }
-});*/
+},
+
+size: {
+value: 1.8,
+random: true,
+anim: {
+enable: true,
+speed: 1,
+size_min: 0.8,
+sync: false
+}
+},
+
+move: {
+enable: true,
+speed: 0.25,
+out_mode: "out"
+},
+
+line_linked: {
+enable: true,
+distance: 130,
+color: "#ffffff",
+opacity: 0.08,
+width: 1
+}
+
+},
+interactivity: {
+detect_on: "canvas",
+events: {
+onhover: {
+enable: true,
+mode: "grab"
+},
+resize: true
+},
+modes: {
+grab: {
+distance: 120,
+line_linked: {
+opacity: 0.16
+}
+}
+}
+},
+retina_detect: true
+});
 
 /* card hover glow tracking */
 const card = document.querySelector(".email-form");
@@ -684,20 +750,17 @@ const shareActions = document.getElementById("shareActions");
 const honeypot = document.getElementById("website").value;
 const email = this.querySelector('input[name="email"]').value.trim();
 
-/* rate limit */
 if (Date.now() - lastSubmitTime < 5000) {
 message.innerHTML = "⏳ Please wait a few seconds";
 return;
 }
 lastSubmitTime = Date.now();
 
-/* honeypot */
 if (honeypot !== "") {
 message.innerHTML = "❌ Spam detected";
 return;
 }
 
-/* email validation */
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 if (!emailPattern.test(email)) {
 message.innerHTML = "⚠️ Enter a valid email";
