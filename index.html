@@ -136,10 +136,53 @@ filter: drop-shadow(0 0 18px rgba(0,220,255,0.28));
 100% { transform: translateY(0); }
 }
 
+/* Attractive Truvyo title */
+
 .title {
-font-size: 44px;
-font-weight: 700;
-letter-spacing: 0.5px;
+font-size: 50px;
+font-weight: 800;
+letter-spacing: 0.8px;
+
+background: linear-gradient(
+90deg,
+#ffffff,
+#d9d7ff,
+#8FEFFF,
+#bfa8ff,
+#ffffff
+);
+
+background-size: 260% auto;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+text-shadow:
+var(--titleGlowX, 0px) var(--titleGlowY, 0px) 22px rgba(143,239,255,0.25),
+0 0 38px rgba(123,63,242,0.16);
+
+animation: textShimmer 7s linear infinite;
+transition:
+transform 0.25s ease,
+text-shadow 0.25s ease;
+will-change: transform, text-shadow;
+}
+
+@keyframes textShimmer {
+0% { background-position: 0% center; }
+100% { background-position: 260% center; }
+}
+
+.title:hover {
+transform: scale(1.04);
+text-shadow:
+var(--titleGlowX, 0px) var(--titleGlowY, 0px) 28px rgba(143,239,255,0.45),
+0 0 52px rgba(123,63,242,0.3);
+}
+
+.title .accent {
+background: linear-gradient(45deg, #8FEFFF, #BFA8FF);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
 .tagline {
@@ -459,7 +502,8 @@ color: #b9c6ff;
 
 <img src="logo.png" class="logo" alt="Truvyo logo">
 
-<div class="title">Truvyo</div>
+<div class="title" id="titleGlow">Truv<span class="accent">yo</span></div>
+
 <div class="tagline">Trust Built by People</div>
 
 <div class="description">
@@ -587,12 +631,44 @@ opacity: 0.3
 retina_detect: true
 });
 
+/* Form card glow */
+
 const card = document.querySelector(".email-form");
 
 card.addEventListener("mousemove", (e) => {
 const rect = card.getBoundingClientRect();
 card.style.setProperty("--x", e.clientX - rect.left + "px");
 card.style.setProperty("--y", e.clientY - rect.top + "px");
+});
+
+/* Title parallax glow */
+
+const titleGlow = document.getElementById("titleGlow");
+
+document.addEventListener("mousemove", (e) => {
+const centerX = window.innerWidth / 2;
+const centerY = window.innerHeight / 2;
+
+const moveX = (e.clientX - centerX) / centerX;
+const moveY = (e.clientY - centerY) / centerY;
+
+const glowX = moveX * 10;
+const glowY = moveY * 10;
+
+const tiltX = moveY * -2;
+const tiltY = moveX * 2;
+
+titleGlow.style.setProperty("--titleGlowX", glowX + "px");
+titleGlow.style.setProperty("--titleGlowY", glowY + "px");
+titleGlow.style.transform =
+"perspective(600px) rotateX(" + tiltX + "deg) rotateY(" + tiltY + "deg)";
+});
+
+document.addEventListener("mouseleave", () => {
+titleGlow.style.setProperty("--titleGlowX", "0px");
+titleGlow.style.setProperty("--titleGlowY", "0px");
+titleGlow.style.transform =
+"perspective(600px) rotateX(0deg) rotateY(0deg)";
 });
 
 async function loadCount() {
