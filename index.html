@@ -23,11 +23,10 @@ color: white;
 overflow: hidden;
 
 background:
-radial-gradient(circle at 35% 38%, rgba(123, 63, 242, 0.28), transparent 34%),
-radial-gradient(circle at 62% 36%, rgba(0, 220, 255, 0.18), transparent 30%),
-linear-gradient(180deg, #14154a 0%, #24165e 50%, #121a45 100%);
+radial-gradient(circle at 30% 40%, rgba(123,63,242,0.25), transparent 35%),
+radial-gradient(circle at 70% 30%, rgba(0,220,255,0.15), transparent 30%),
+linear-gradient(180deg,#15164a,#23165f,#121a45);
 
-background-size: 180% 180%;
 animation: bgFlow 18s ease infinite;
 }
 
@@ -49,13 +48,11 @@ z-index: 1;
 .container {
 position: relative;
 z-index: 2;
-
 min-height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-
 text-align: center;
 padding: 20px;
 }
@@ -77,15 +74,12 @@ animation: floatLogo 5s ease-in-out infinite;
 /* ===== TITLE ===== */
 
 .title {
-font-size: clamp(36px, 5vw, 52px);
+font-size: clamp(36px,5vw,52px);
 font-weight: 800;
-letter-spacing: 1px;
-
 background: linear-gradient(90deg,#fff,#bfa8ff,#8FEFFF,#fff);
 background-size: 250%;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-
 animation: shine 6s linear infinite;
 }
 
@@ -102,20 +96,19 @@ margin-top: 4px;
 color: rgba(255,255,255,0.85);
 }
 
-/* ===== DESCRIPTION (INTRIGUE) ===== */
+/* ===== DESCRIPTION ===== */
 
 .description {
 margin-top: 12px;
 max-width: 420px;
 font-size: 15px;
 color: rgba(255,255,255,0.7);
-line-height: 1.5;
 }
 
 /* ===== COMING ===== */
 
 .coming {
-margin-top: 20px;
+margin-top: 18px;
 font-size: 20px;
 }
 
@@ -132,7 +125,7 @@ color: #8FEFFF;
 .email-form {
 margin-top: 20px;
 background: rgba(255,255,255,0.08);
-backdrop-filter: blur(18px);
+backdrop-filter: blur(16px);
 border-radius: 18px;
 padding: 24px;
 border: 1px solid rgba(255,255,255,0.15);
@@ -165,6 +158,38 @@ cursor: pointer;
 .message {
 margin-top: 10px;
 font-size: 14px;
+}
+
+/* ===== SECRET ANIMATION ===== */
+
+.secret-check {
+margin-top: 10px;
+font-size: 14px;
+color: rgba(255,255,255,0.75);
+animation: pulseCheck 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseCheck {
+0% { opacity: 0.4; transform: translateY(2px); }
+50% { opacity: 1; transform: translateY(0); }
+100% { opacity: 0.4; transform: translateY(2px); }
+}
+
+.secret-success {
+animation: revealSecret 0.7s ease;
+}
+
+@keyframes revealSecret {
+0% {
+opacity: 0;
+transform: scale(0.96) translateY(8px);
+filter: blur(4px);
+}
+100% {
+opacity: 1;
+transform: scale(1) translateY(0);
+filter: blur(0);
+}
 }
 
 /* ===== FOOTER ===== */
@@ -240,8 +265,8 @@ Loading...
 © 2026 Truvyo
 
 <div class="social-icons">
-<a href="#"><i class="fab fa-instagram">https://www.instagram.com/truvyoapp/</i></a>
-<a href="#"><i class="fab fa-x-twitter"></i>https://x.com/truvyo</a>
+<a href="https://www.instagram.com/truvyoapp/"><i class="fab fa-instagram"></i></a>
+<a href="https://x.com/truvyo"><i class="fab fa-x-twitter"></i></a>
 <a href="#"><i class="fab fa-linkedin"></i></a>
 </div>
 
@@ -255,7 +280,7 @@ Loading...
 
 particlesJS("particles-js", {
 particles: {
-number: { value: 45 },
+number: { value: 40 },
 color: { value: "#ffffff" },
 opacity: { value: 0.3 },
 size: { value: 2 },
@@ -266,7 +291,6 @@ move: { enable: true, speed: 0.3 }
 /* CONFIG */
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
-const MAX = 100;
 
 /* LOAD COUNT */
 
@@ -295,7 +319,7 @@ let email = this.email.value;
 let msg = document.getElementById("formMessage");
 let btn = document.getElementById("submitBtn");
 
-btn.innerHTML="⏳...";
+btn.innerHTML="Verifying...";
 btn.disabled=true;
 
 try{
@@ -308,9 +332,21 @@ body:new URLSearchParams({email})
 let result = await res.text();
 
 if(result==="Duplicate"){
-msg.innerHTML="⚠️ Already in";
+msg.innerHTML="⚠️ Already inside";
 }else if(!isNaN(result)){
-msg.innerHTML="🎉 You're in.";
+
+msg.className = "secret-check";
+msg.innerHTML = "🔎 Checking your invite...";
+
+setTimeout(function(){
+
+msg.className = "message secret-success";
+msg.innerHTML =
+"🎉 Invite unlocked.<br>" +
+"You're #" + result + " inside the first 100.";
+
+},1400);
+
 }else{
 msg.innerHTML="❌ Try again";
 }
