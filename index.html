@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Truvyo — Trust Built by People</title>
-<meta name="description" content="A human-verified platform where real people share trusted experiences. Join early access today.">
+<title>Truvyo</title>
+<meta name="description" content="Search before you trust.">
 
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,80 +14,27 @@
 
 <style>
 
+/* ===== BACKGROUND ===== */
+
 body {
 margin: 0;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
 color: white;
-overflow-x: hidden;
+overflow: hidden;
 
 background:
 radial-gradient(circle at 35% 38%, rgba(123, 63, 242, 0.28), transparent 34%),
-radial-gradient(circle at 62% 36%, rgba(0, 220, 255, 0.22), transparent 30%),
-radial-gradient(circle at 50% 64%, rgba(80, 90, 255, 0.24), transparent 42%),
-linear-gradient(180deg, #15164a 0%, #25165f 48%, #121a45 100%);
+radial-gradient(circle at 62% 36%, rgba(0, 220, 255, 0.18), transparent 30%),
+linear-gradient(180deg, #14154a 0%, #24165e 50%, #121a45 100%);
 
 background-size: 180% 180%;
-animation: bgFlow 20s ease infinite;
+animation: bgFlow 18s ease infinite;
 }
 
 @keyframes bgFlow {
 0% { background-position: 0% 50%; }
 50% { background-position: 100% 50%; }
 100% { background-position: 0% 50%; }
-}
-
-.wave {
-position: fixed;
-inset: 0;
-z-index: 0;
-pointer-events: none;
-overflow: hidden;
-}
-
-.wave::before,
-.wave::after {
-content: "";
-position: absolute;
-width: 120%;
-height: 120%;
-left: -10%;
-top: -10%;
-background:
-radial-gradient(ellipse at center, transparent 36%, rgba(123,63,242,0.13) 45%, transparent 58%),
-radial-gradient(ellipse at center, transparent 42%, rgba(0,220,255,0.12) 50%, transparent 64%);
-filter: blur(48px);
-animation: waveMove 16s ease-in-out infinite;
-}
-
-.wave::after {
-animation-delay: -8s;
-transform: rotate(25deg);
-opacity: 0.7;
-}
-
-@keyframes waveMove {
-0% { transform: translateX(-4%) translateY(2%) rotate(0deg) scale(1); }
-50% { transform: translateX(4%) translateY(-3%) rotate(12deg) scale(1.08); }
-100% { transform: translateX(-4%) translateY(2%) rotate(0deg) scale(1); }
-}
-
-.grain {
-position: fixed;
-inset: -50%;
-z-index: 1;
-pointer-events: none;
-opacity: 0.045;
-background-image:
-radial-gradient(circle, rgba(255,255,255,0.25) 0.5px, transparent 0.6px);
-background-size: 10px 10px;
-animation: grainFloat 22s linear infinite;
-mix-blend-mode: overlay;
-}
-
-@keyframes grainFloat {
-0% { transform: translate(0, 0); }
-50% { transform: translate(-2%, 2%); }
-100% { transform: translate(0, 0); }
 }
 
 #particles-js {
@@ -97,30 +44,28 @@ height: 100%;
 z-index: 1;
 }
 
-#particles-js canvas {
-filter: blur(0.12px) brightness(1.2);
-opacity: 0.9;
-}
+/* ===== LAYOUT ===== */
 
 .container {
 position: relative;
 z-index: 2;
+
 min-height: 100vh;
-min-height: 100dvh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
 text-align: center;
-padding: clamp(12px, 2.4vh, 24px);
-box-sizing: border-box;
+padding: 20px;
 }
 
+/* ===== LOGO ===== */
+
 .logo {
-width: clamp(82px, 10vh, 105px);
+width: 90px;
 margin-bottom: 6px;
 animation: floatLogo 5s ease-in-out infinite;
-filter: drop-shadow(0 0 18px rgba(0,220,255,0.28));
 }
 
 @keyframes floatLogo {
@@ -129,378 +74,122 @@ filter: drop-shadow(0 0 18px rgba(0,220,255,0.28));
 100% { transform: translateY(0); }
 }
 
+/* ===== TITLE ===== */
+
 .title {
-font-size: clamp(34px, 5vw, 50px);
+font-size: clamp(36px, 5vw, 52px);
 font-weight: 800;
-letter-spacing: 0.8px;
+letter-spacing: 1px;
 
-background: linear-gradient(
-90deg,
-#ffffff,
-#d9d7ff,
-#8FEFFF,
-#bfa8ff,
-#ffffff
-);
-
-background-size: 260% auto;
+background: linear-gradient(90deg,#fff,#bfa8ff,#8FEFFF,#fff);
+background-size: 250%;
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 
-text-shadow:
-var(--titleGlowX, 0px) var(--titleGlowY, 0px) 22px rgba(143,239,255,0.25),
-0 0 38px rgba(123,63,242,0.16);
-
-animation: textShimmer 7s linear infinite;
-transition:
-transform 0.25s ease,
-text-shadow 0.25s ease;
-will-change: transform, text-shadow;
-line-height: 1.05;
+animation: shine 6s linear infinite;
 }
 
-@keyframes textShimmer {
-0% { background-position: 0% center; }
-100% { background-position: 260% center; }
+@keyframes shine {
+0% { background-position: 0% }
+100% { background-position: 250% }
 }
 
-.title:hover {
-transform: scale(1.04);
-text-shadow:
-var(--titleGlowX, 0px) var(--titleGlowY, 0px) 28px rgba(143,239,255,0.45),
-0 0 52px rgba(123,63,242,0.3);
-}
-
-.title .accent {
-background: linear-gradient(45deg, #8FEFFF, #BFA8FF);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
+/* ===== TAGLINE ===== */
 
 .tagline {
-font-size: clamp(14px, 2vw, 18px);
+font-size: 18px;
 margin-top: 4px;
-color: rgba(255,255,255,0.82);
+color: rgba(255,255,255,0.85);
 }
+
+/* ===== DESCRIPTION (INTRIGUE) ===== */
 
 .description {
-margin-top: 8px;
-max-width: 430px;
-font-size: clamp(13px, 1.8vw, 15px);
-line-height: 1.45;
-color: rgba(255,255,255,0.72);
+margin-top: 12px;
+max-width: 420px;
+font-size: 15px;
+color: rgba(255,255,255,0.7);
+line-height: 1.5;
 }
+
+/* ===== COMING ===== */
 
 .coming {
-margin-top: 14px;
-font-size: clamp(18px, 2.4vw, 21px);
-font-weight: 600;
+margin-top: 20px;
+font-size: 20px;
 }
 
-.limited,
+/* ===== WAITLIST ===== */
+
 #waitlistCount {
 margin-top: 6px;
-font-size: clamp(12px, 1.8vw, 14px);
+font-size: 14px;
 color: #8FEFFF;
-font-weight: 600;
 }
 
-.progress-bar {
-width: min(250px, 72vw);
-height: 7px;
-background: rgba(255,255,255,0.13);
-border-radius: 999px;
-margin-top: 8px;
-overflow: hidden;
-}
-
-.progress-fill {
-height: 100%;
-width: 0%;
-background: linear-gradient(90deg, #7B3FF2, #00DFFF);
-box-shadow: 0 0 14px rgba(0,220,255,0.45);
-transition: width 0.45s ease;
-}
-
-.trust-badges {
-margin-top: 12px;
-font-size: clamp(12px, 1.8vw, 13px);
-color: rgba(255,255,255,0.78);
-display: flex;
-gap: 8px;
-flex-wrap: wrap;
-justify-content: center;
-}
+/* ===== FORM ===== */
 
 .email-form {
-position: relative;
-overflow: hidden;
-margin-top: 18px;
+margin-top: 20px;
 background: rgba(255,255,255,0.08);
-backdrop-filter: blur(22px);
--webkit-backdrop-filter: blur(22px);
-border-radius: 22px;
-padding: clamp(18px, 2.8vh, 28px);
-border: 1px solid rgba(255,255,255,0.17);
-box-shadow:
-0 24px 70px rgba(0,0,0,0.35),
-0 0 35px rgba(0,220,255,0.10),
-inset 0 1px 0 rgba(255,255,255,0.14);
-transition: 0.3s ease;
+backdrop-filter: blur(18px);
+border-radius: 18px;
+padding: 24px;
+border: 1px solid rgba(255,255,255,0.15);
 }
 
-.email-form:hover {
-transform: translateY(-3px);
-box-shadow:
-0 28px 80px rgba(0,0,0,0.4),
-0 0 42px rgba(0,220,255,0.14),
-inset 0 1px 0 rgba(255,255,255,0.16);
-}
-
-.email-form::after {
-content: "";
-position: absolute;
-width: 220px;
-height: 220px;
-background: radial-gradient(circle, rgba(0,220,255,0.16), transparent 60%);
-top: var(--y, 50%);
-left: var(--x, 50%);
-transform: translate(-50%, -50%);
-pointer-events: none;
-opacity: 0;
-transition: opacity 0.3s ease;
-}
-
-.email-form:hover::after {
-opacity: 1;
-}
-
-.email-form input[type="email"] {
-padding: 14px;
-width: min(260px, 74vw);
-border-radius: 12px;
-border: 1px solid rgba(255,255,255,0.28);
-background: rgba(255,255,255,0.12);
+.email-form input {
+padding: 12px;
+width: 240px;
+border-radius: 10px;
+border: none;
+background: rgba(255,255,255,0.15);
 color: white;
-font-size: 14px;
-outline: none;
-box-sizing: border-box;
-}
-
-.email-form input[type="email"]:focus {
-border-color: rgba(0,220,255,0.85);
-box-shadow: 0 0 0 3px rgba(0,220,255,0.16);
 }
 
 .email-form input::placeholder {
-color: rgba(255,255,255,0.66);
+color: rgba(255,255,255,0.6);
 }
 
 .email-form button {
-position: relative;
-overflow: hidden;
 margin-top: 12px;
-padding: 12px 22px;
-border-radius: 12px;
+padding: 12px 20px;
+border-radius: 10px;
 border: none;
-background: linear-gradient(45deg, #ffffff, #8FEFFF);
-color: #10142a;
-font-weight: 700;
-font-size: 15px;
+background: linear-gradient(45deg,#fff,#8FEFFF);
+color: #111;
+font-weight: bold;
 cursor: pointer;
-transition: 0.25s ease;
-}
-
-.email-form button:hover {
-transform: scale(1.04);
-box-shadow: 0 0 20px rgba(0,220,255,0.45);
-}
-
-.email-form button::after {
-content: "";
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-transition: 0.6s;
-}
-
-.email-form button:hover::after {
-left: 100%;
-}
-
-button.success {
-background: linear-gradient(45deg, #00c853, #81f7d8);
-color: white;
 }
 
 .message {
 margin-top: 10px;
 font-size: 14px;
-color: rgba(255,255,255,0.9);
-line-height: 1.4;
 }
 
-.reveal {
-opacity: 0;
-transform: translateY(10px);
-transition: all 0.4s ease;
-}
-
-.reveal.show {
-opacity: 1;
-transform: translateY(0);
-}
-
-.success-animate {
-animation: successPulse 0.5s ease;
-}
-
-@keyframes successPulse {
-0% { transform: scale(0.96); opacity: 0.6; }
-100% { transform: scale(1); opacity: 1; }
-}
-
-.referral-box {
-margin-top: 10px;
-font-size: 13px;
-color: #8FEFFF;
-display: none;
-width: 100%;
-}
-
-.share-actions {
-display: flex;
-gap: 10px;
-justify-content: center;
-flex-wrap: wrap;
-margin-top: 10px;
-}
-
-.share-actions button {
-margin-top: 0;
-padding: 9px 13px;
-font-size: 14px;
-border-radius: 9px;
-}
-
-.whatsapp-btn {
-background: #25D366;
-color: white;
-display: none;
-}
-
-.copy-btn-inline {
-background: linear-gradient(45deg,#ffffff,#e4e4e4);
-color: #10142a;
-display: none;
-}
+/* ===== FOOTER ===== */
 
 .footer {
-margin-top: 18px;
+margin-top: 20px;
 font-size: 12px;
 color: rgba(255,255,255,0.6);
-text-align: center;
-}
-
-.footer a {
-color: rgba(255,255,255,0.78);
-text-decoration: none;
-margin: 0 6px;
-}
-
-.footer a:hover {
-color: #8FEFFF;
 }
 
 .social-icons {
 margin-top: 8px;
 display: flex;
-justify-content: center;
 gap: 14px;
+justify-content: center;
 }
 
 .social-icons a {
-width: 28px;
-height: 28px;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-border-radius: 50%;
-color: rgba(255,255,255,0.68);
-font-size: 16px;
-opacity: 0.72;
-transform: translateY(6px) scale(0.96);
-transition:
-opacity 0.3s ease,
-transform 0.3s ease,
-color 0.3s ease,
-box-shadow 0.3s ease,
-background 0.3s ease;
-}
-
-.social-icons:hover a {
-opacity: 0.85;
-transform: translateY(0) scale(1);
+color: rgba(255,255,255,0.6);
+transition: 0.3s;
 }
 
 .social-icons a:hover {
 color: #8FEFFF;
-background: rgba(255,255,255,0.08);
-box-shadow:
-0 0 12px rgba(0,220,255,0.45),
-0 0 24px rgba(123,63,242,0.3);
-transform: translateY(-5px) scale(1.18);
-}
-
-.social-icons a:nth-child(1):hover {
-color: #d9b8ff;
-box-shadow:
-0 0 12px rgba(191,168,255,0.5),
-0 0 24px rgba(123,63,242,0.32);
-}
-
-.social-icons a:nth-child(2):hover {
-color: #8FEFFF;
-}
-
-.social-icons a:nth-child(3):hover {
-color: #b9c6ff;
-}
-
-@media (max-height: 720px) {
-.logo {
-width: 76px;
-margin-bottom: 4px;
-}
-
-.title {
-font-size: 34px;
-}
-
-.description {
-max-width: 380px;
-line-height: 1.35;
-}
-
-.coming {
-margin-top: 10px;
-}
-
-.trust-badges {
-margin-top: 8px;
-}
-
-.email-form {
-margin-top: 12px;
-padding: 16px;
-}
-
-.footer {
-margin-top: 10px;
-}
+transform: translateY(-3px);
 }
 
 </style>
@@ -509,346 +198,129 @@ margin-top: 10px;
 <body>
 
 <div id="particles-js"></div>
-<div class="wave"></div>
-<div class="grain"></div>
 
 <div class="container">
 
-<img src="logo.png" class="logo" alt="Truvyo logo">
+<img src="logo.png" class="logo">
 
-<div class="title" id="titleGlow">Truv<span class="accent">yo</span></div>
+<div class="title">Truvyo</div>
 
-<div class="tagline">Trust Built by People</div>
+<div class="tagline">Search before you trust.</div>
 
 <div class="description">
-A human-verified platform where real people share trusted experiences.
+Some people already search before they trust.
 </div>
 
 <div class="coming">🚀 Coming Soon</div>
-<div class="limited">⚡ Only 100 Early Users</div>
-<div id="waitlistCount">🔥 Loading waitlist count...</div>
 
-<div class="progress-bar">
-<div id="progressFill" class="progress-fill"></div>
-</div>
-
-<div class="trust-badges">
-<span>✔ Human Verified</span>
-<span>✔ No Fake Reviews</span>
-<span>✔ Privacy First</span>
+<div id="waitlistCount">
+Only 100 early access spots<br>
+Loading...
 </div>
 
 <div class="email-form">
 
 <form id="emailForm">
 
-<input type="text" name="website" id="website" style="display:none" tabindex="-1" autocomplete="off">
+<input type="text" name="website" style="display:none">
 
-<input type="email" name="email" placeholder="Enter your email" required autocomplete="email">
+<input type="email" name="email" placeholder="Get early access" required>
 
 <br>
 
-<button type="submit" id="submitBtn">Notify Me</button>
+<button type="submit" id="submitBtn">Join Waitlist</button>
 
 <div id="formMessage" class="message"></div>
-<div id="referralBox" class="referral-box reveal"></div>
-
-<div class="share-actions reveal" id="shareActions">
-<button type="button" id="copyShareBtn" class="copy-btn-inline">📋 Copy Link</button>
-<button type="button" id="whatsappShare" class="whatsapp-btn">📲 Share on WhatsApp</button>
-</div>
 
 </form>
 
 </div>
 
 <div class="footer">
-© <span id="year"></span> Truvyo
-<a href="privacy.html">Privacy</a>
-<a href="terms.html">Terms</a>
+© 2026 Truvyo
 
 <div class="social-icons">
-<a href="https://instagram.com/truvyoapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-<a href="https://x.com/truvyo" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-<a href="https://linkedin.com/company/truvyo" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-x-twitter"></i></a>
+<a href="#"><i class="fab fa-linkedin"></i></a>
 </div>
+
 </div>
 
 </div>
 
 <script>
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
-
-const MAX_USERS = 100;
-let lastSubmitTime = 0;
+/* PARTICLES */
 
 particlesJS("particles-js", {
 particles: {
-number: { value: 42 },
-color: { value: ["#ffffff", "#8FEFFF", "#BFA8FF"] },
-shape: { type: "circle" },
-opacity: {
-value: 0.34,
-random: true,
-anim: {
-enable: true,
-speed: 0.8,
-opacity_min: 0.12,
-sync: false
+number: { value: 45 },
+color: { value: "#ffffff" },
+opacity: { value: 0.3 },
+size: { value: 2 },
+move: { enable: true, speed: 0.3 }
 }
-},
-size: {
-value: 2.8,
-random: true,
-anim: {
-enable: true,
-speed: 1.2,
-size_min: 1.2,
-sync: false
-}
-},
-move: {
-enable: true,
-speed: 0.34,
-out_mode: "out"
-},
-line_linked: {
-enable: true,
-distance: 145,
-color: "#ffffff",
-opacity: 0.18,
-width: 1.1
-}
-},
-interactivity: {
-detect_on: "canvas",
-events: {
-onhover: {
-enable: true,
-mode: "grab"
-},
-resize: true
-},
-modes: {
-grab: {
-distance: 140,
-line_linked: {
-opacity: 0.3
-}
-}
-}
-},
-retina_detect: true
 });
 
-const card = document.querySelector(".email-form");
+/* CONFIG */
 
-card.addEventListener("mousemove", (e) => {
-const rect = card.getBoundingClientRect();
-card.style.setProperty("--x", e.clientX - rect.left + "px");
-card.style.setProperty("--y", e.clientY - rect.top + "px");
-});
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
+const MAX = 100;
 
-const titleGlow = document.getElementById("titleGlow");
+/* LOAD COUNT */
 
-document.addEventListener("mousemove", (e) => {
-const centerX = window.innerWidth / 2;
-const centerY = window.innerHeight / 2;
+async function loadCount(){
+try{
+let res = await fetch(SCRIPT_URL);
+let count = await res.text();
 
-const moveX = (e.clientX - centerX) / centerX;
-const moveY = (e.clientY - centerY) / centerY;
-
-const glowX = moveX * 10;
-const glowY = moveY * 10;
-
-const tiltX = moveY * -2;
-const tiltY = moveX * 2;
-
-titleGlow.style.setProperty("--titleGlowX", glowX + "px");
-titleGlow.style.setProperty("--titleGlowY", glowY + "px");
-titleGlow.style.transform =
-"perspective(600px) rotateX(" + tiltX + "deg) rotateY(" + tiltY + "deg)";
-});
-
-document.addEventListener("mouseleave", () => {
-titleGlow.style.setProperty("--titleGlowX", "0px");
-titleGlow.style.setProperty("--titleGlowY", "0px");
-titleGlow.style.transform =
-"perspective(600px) rotateX(0deg) rotateY(0deg)";
-});
-
-async function loadCount() {
-try {
-const response = await fetch(SCRIPT_URL);
-const text = await response.text();
-
-if (!isNaN(text)) {
-const count = Number(text);
-
-if (count >= MAX_USERS) {
+if(!isNaN(count)){
 document.getElementById("waitlistCount").innerHTML =
-"🚫 Early access full — stay tuned!";
-document.getElementById("submitBtn").disabled = true;
-document.getElementById("progressFill").style.width = "100%";
-return;
+"Only 100 early access spots<br>" +
+count + " already taken";
 }
-
-document.getElementById("waitlistCount").innerHTML =
-"🔥 " + count + " of " + MAX_USERS + " early spots filled!";
-
-document.getElementById("progressFill").style.width =
-(count / MAX_USERS) * 100 + "%";
-}
-} catch (e) {
-document.getElementById("waitlistCount").innerHTML =
-"🔥 Join the waitlist today!";
-}
+}catch{}
 }
 
 loadCount();
 
-function getReferral() {
-const params = new URLSearchParams(window.location.search);
-const ref = params.get("ref");
-return (!ref || isNaN(ref)) ? "" : ref;
-}
+/* FORM */
 
-document.getElementById("emailForm").addEventListener("submit", async function(event) {
+document.getElementById("emailForm").addEventListener("submit", async function(e){
 
-event.preventDefault();
+e.preventDefault();
 
-const message = document.getElementById("formMessage");
-const button = document.getElementById("submitBtn");
-const referralBox = document.getElementById("referralBox");
-const whatsappBtn = document.getElementById("whatsappShare");
-const copyShareBtn = document.getElementById("copyShareBtn");
-const shareActions = document.getElementById("shareActions");
-const honeypot = document.getElementById("website").value;
-const email = this.querySelector('input[name="email"]').value.trim();
+let email = this.email.value;
+let msg = document.getElementById("formMessage");
+let btn = document.getElementById("submitBtn");
 
-if (Date.now() - lastSubmitTime < 5000) {
-message.innerHTML = "⏳ Please wait a few seconds";
-return;
-}
+btn.innerHTML="⏳...";
+btn.disabled=true;
 
-lastSubmitTime = Date.now();
+try{
 
-if (honeypot !== "") {
-message.innerHTML = "❌ Spam detected";
-return;
-}
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if (!emailPattern.test(email)) {
-message.innerHTML = "⚠️ Enter a valid email";
-return;
-}
-
-button.innerHTML = "⏳ Please wait...";
-button.disabled = true;
-
-try {
-
-const response = await fetch(SCRIPT_URL, {
-method: "POST",
-body: new URLSearchParams({
-email: email,
-ref: getReferral()
-})
+let res = await fetch(SCRIPT_URL,{
+method:"POST",
+body:new URLSearchParams({email})
 });
 
-const result = await response.text();
+let result = await res.text();
 
-if (result === "Duplicate") {
-message.innerHTML = "⚠️ Email already registered!";
-button.innerHTML = "Notify Me";
-button.disabled = false;
-return;
+if(result==="Duplicate"){
+msg.innerHTML="⚠️ Already in";
+}else if(!isNaN(result)){
+msg.innerHTML="🎉 You're in.";
+}else{
+msg.innerHTML="❌ Try again";
 }
 
-if (isNaN(result)) {
-message.innerHTML = "❌ Server error — try again";
-button.innerHTML = "Notify Me";
-button.disabled = false;
-return;
+}catch{
+msg.innerHTML="❌ Error";
 }
 
-message.innerHTML =
-"🎉 You're #" + result + " on the waitlist!<br>" +
-"🏅 You're now part of our first 100 early members.";
-
-message.classList.remove("success-animate");
-void message.offsetWidth;
-message.classList.add("success-animate");
-
-button.classList.add("success");
-button.innerHTML = "✅ Joined";
-
-const referralLink =
-window.location.origin +
-window.location.pathname +
-"?ref=" +
-result;
-
-referralBox.style.display = "block";
-referralBox.innerHTML =
-"🔗 Your invite link is ready:<br>" +
-"<input id='refLinkBox' " +
-"style='width:100%;padding:8px;border-radius:8px;border:none;margin-top:6px;background:rgba(255,255,255,0.95);color:#121226;' " +
-"value='" + referralLink + "' readonly>";
-
-setTimeout(() => {
-referralBox.classList.add("show");
-}, 100);
-
-copyShareBtn.style.display = "inline-block";
-whatsappBtn.style.display = "inline-block";
-
-setTimeout(() => {
-shareActions.classList.add("show");
-}, 200);
-
-copyShareBtn.onclick = function() {
-navigator.clipboard.writeText(referralLink);
-copyShareBtn.innerHTML = "✅ Copied!";
-setTimeout(() => {
-copyShareBtn.innerHTML = "📋 Copy Link";
-}, 1800);
-};
-
-whatsappBtn.onclick = function() {
-const msg =
-"🚀 I just joined Truvyo — a platform built on trusted experiences.\n\n" +
-"🔥 Only first 100 users get early access.\n\n" +
-"Join before spots fill 👇\n" +
-referralLink;
-
-const url =
-"https://wa.me/?text=" +
-encodeURIComponent(msg);
-
-window.open(url, "_blank");
-};
-
-this.reset();
-loadCount();
-
-setTimeout(() => {
-button.classList.remove("success");
-button.innerHTML = "Notify Me";
-button.disabled = false;
-}, 2500);
-
-} catch (error) {
-message.innerHTML = "❌ Something went wrong";
-button.innerHTML = "Notify Me";
-button.disabled = false;
-}
+btn.innerHTML="Join Waitlist";
+btn.disabled=false;
 
 });
 
