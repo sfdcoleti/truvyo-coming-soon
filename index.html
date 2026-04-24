@@ -9,7 +9,6 @@
 <meta name="description" content="A human-verified platform where real people share trusted experiences. Join early access today.">
 
 <link rel="icon" href="/favicon.png">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
@@ -36,8 +35,6 @@ animation: bgFlow 20s ease infinite;
 50% { background-position: 100% 50%; }
 100% { background-position: 0% 50%; }
 }
-
-/* Wave background */
 
 .wave {
 position: fixed;
@@ -74,8 +71,6 @@ opacity: 0.7;
 100% { transform: translateX(-4%) translateY(2%) rotate(0deg) scale(1); }
 }
 
-/* Soft grain */
-
 .grain {
 position: fixed;
 inset: -50%;
@@ -95,8 +90,6 @@ mix-blend-mode: overlay;
 100% { transform: translate(0, 0); }
 }
 
-/* Particles */
-
 #particles-js {
 position: fixed;
 width: 100%;
@@ -109,37 +102,35 @@ filter: blur(0.12px) brightness(1.2);
 opacity: 0.9;
 }
 
-/* Layout */
-
 .container {
 position: relative;
 z-index: 2;
 min-height: 100vh;
+min-height: 100dvh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 text-align: center;
-padding: 24px;
+padding: clamp(12px, 2.4vh, 24px);
+box-sizing: border-box;
 }
 
 .logo {
-width: 110px;
-margin-bottom: 18px;
+width: clamp(82px, 10vh, 105px);
+margin-bottom: 6px;
 animation: floatLogo 5s ease-in-out infinite;
 filter: drop-shadow(0 0 18px rgba(0,220,255,0.28));
 }
 
 @keyframes floatLogo {
 0% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
+50% { transform: translateY(-8px); }
 100% { transform: translateY(0); }
 }
 
-/* Attractive Truvyo title */
-
 .title {
-font-size: 50px;
+font-size: clamp(34px, 5vw, 50px);
 font-weight: 800;
 letter-spacing: 0.8px;
 
@@ -165,6 +156,7 @@ transition:
 transform 0.25s ease,
 text-shadow 0.25s ease;
 will-change: transform, text-shadow;
+line-height: 1.05;
 }
 
 @keyframes textShimmer {
@@ -186,41 +178,39 @@ background: linear-gradient(45deg, #8FEFFF, #BFA8FF);
 }
 
 .tagline {
-font-size: 18px;
-margin-top: 8px;
+font-size: clamp(14px, 2vw, 18px);
+margin-top: 4px;
 color: rgba(255,255,255,0.82);
 }
 
 .description {
-margin-top: 14px;
+margin-top: 8px;
 max-width: 430px;
-font-size: 15px;
-line-height: 1.55;
+font-size: clamp(13px, 1.8vw, 15px);
+line-height: 1.45;
 color: rgba(255,255,255,0.72);
 }
 
 .coming {
-margin-top: 22px;
-font-size: 21px;
+margin-top: 14px;
+font-size: clamp(18px, 2.4vw, 21px);
 font-weight: 600;
 }
 
 .limited,
 #waitlistCount {
-margin-top: 8px;
-font-size: 14px;
+margin-top: 6px;
+font-size: clamp(12px, 1.8vw, 14px);
 color: #8FEFFF;
 font-weight: 600;
 }
 
-/* Progress */
-
 .progress-bar {
-width: 250px;
+width: min(250px, 72vw);
 height: 7px;
 background: rgba(255,255,255,0.13);
 border-radius: 999px;
-margin-top: 10px;
+margin-top: 8px;
 overflow: hidden;
 }
 
@@ -232,29 +222,25 @@ box-shadow: 0 0 14px rgba(0,220,255,0.45);
 transition: width 0.45s ease;
 }
 
-/* Trust */
-
 .trust-badges {
-margin-top: 16px;
-font-size: 13px;
+margin-top: 12px;
+font-size: clamp(12px, 1.8vw, 13px);
 color: rgba(255,255,255,0.78);
 display: flex;
-gap: 10px;
+gap: 8px;
 flex-wrap: wrap;
 justify-content: center;
 }
 
-/* Form */
-
 .email-form {
 position: relative;
 overflow: hidden;
-margin-top: 26px;
+margin-top: 18px;
 background: rgba(255,255,255,0.08);
 backdrop-filter: blur(22px);
 -webkit-backdrop-filter: blur(22px);
 border-radius: 22px;
-padding: 28px;
+padding: clamp(18px, 2.8vh, 28px);
 border: 1px solid rgba(255,255,255,0.17);
 box-shadow:
 0 24px 70px rgba(0,0,0,0.35),
@@ -291,13 +277,14 @@ opacity: 1;
 
 .email-form input[type="email"] {
 padding: 14px;
-width: 260px;
+width: min(260px, 74vw);
 border-radius: 12px;
 border: 1px solid rgba(255,255,255,0.28);
 background: rgba(255,255,255,0.12);
 color: white;
 font-size: 14px;
 outline: none;
+box-sizing: border-box;
 }
 
 .email-form input[type="email"]:focus {
@@ -312,8 +299,8 @@ color: rgba(255,255,255,0.66);
 .email-form button {
 position: relative;
 overflow: hidden;
-margin-top: 14px;
-padding: 13px 24px;
+margin-top: 12px;
+padding: 12px 22px;
 border-radius: 12px;
 border: none;
 background: linear-gradient(45deg, #ffffff, #8FEFFF);
@@ -349,13 +336,11 @@ background: linear-gradient(45deg, #00c853, #81f7d8);
 color: white;
 }
 
-/* Success */
-
 .message {
-margin-top: 12px;
+margin-top: 10px;
 font-size: 14px;
 color: rgba(255,255,255,0.9);
-line-height: 1.5;
+line-height: 1.4;
 }
 
 .reveal {
@@ -379,7 +364,7 @@ animation: successPulse 0.5s ease;
 }
 
 .referral-box {
-margin-top: 12px;
+margin-top: 10px;
 font-size: 13px;
 color: #8FEFFF;
 display: none;
@@ -396,7 +381,7 @@ margin-top: 10px;
 
 .share-actions button {
 margin-top: 0;
-padding: 10px 14px;
+padding: 9px 13px;
 font-size: 14px;
 border-radius: 9px;
 }
@@ -413,10 +398,8 @@ color: #10142a;
 display: none;
 }
 
-/* Footer */
-
 .footer {
-margin-top: 40px;
+margin-top: 18px;
 font-size: 12px;
 color: rgba(255,255,255,0.6);
 text-align: center;
@@ -432,10 +415,8 @@ margin: 0 6px;
 color: #8FEFFF;
 }
 
-/* Social media glow */
-
 .social-icons {
-margin-top: 10px;
+margin-top: 8px;
 display: flex;
 justify-content: center;
 gap: 14px;
@@ -487,6 +468,39 @@ color: #8FEFFF;
 
 .social-icons a:nth-child(3):hover {
 color: #b9c6ff;
+}
+
+@media (max-height: 720px) {
+.logo {
+width: 76px;
+margin-bottom: 4px;
+}
+
+.title {
+font-size: 34px;
+}
+
+.description {
+max-width: 380px;
+line-height: 1.35;
+}
+
+.coming {
+margin-top: 10px;
+}
+
+.trust-badges {
+margin-top: 8px;
+}
+
+.email-form {
+margin-top: 12px;
+padding: 16px;
+}
+
+.footer {
+margin-top: 10px;
+}
 }
 
 </style>
@@ -631,8 +645,6 @@ opacity: 0.3
 retina_detect: true
 });
 
-/* Form card glow */
-
 const card = document.querySelector(".email-form");
 
 card.addEventListener("mousemove", (e) => {
@@ -640,8 +652,6 @@ const rect = card.getBoundingClientRect();
 card.style.setProperty("--x", e.clientX - rect.left + "px");
 card.style.setProperty("--y", e.clientY - rect.top + "px");
 });
-
-/* Title parallax glow */
 
 const titleGlow = document.getElementById("titleGlow");
 
