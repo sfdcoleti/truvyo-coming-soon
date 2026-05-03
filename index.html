@@ -1,571 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Truvyo — Trust Built by People</title>
 
-<title>Truvyo</title>
-<meta name="description" content="Search before you trust.">
+  <meta name="description" content="Truvyo is opening soon. Request your invite." />
+  <meta name="theme-color" content="#08040f" />
 
-<link rel="icon" href="/favicon.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    :root {
+      --bg: #06050b;
+      --card: rgba(28, 18, 42, 0.72);
+      --card-border: rgba(255, 255, 255, 0.14);
+      --text: #f6f1ff;
+      --muted: rgba(246, 241, 255, 0.62);
+      --soft: rgba(246, 241, 255, 0.38);
+      --pink: #ff4fd8;
+      --violet: #a855ff;
+      --cyan: #8befff;
+      --blue: #c8e9ff;
+      --success: #7cffc7;
+    }
 
-<style>
-:root {
---mouse-x: 50%;
---mouse-y: 28%;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-* {
-box-sizing: border-box;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
 
-body {
-margin: 0;
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
-color: white;
-overflow: hidden;
-background:
-radial-gradient(circle at 30% 40%, rgba(123,63,242,0.25), transparent 35%),
-radial-gradient(circle at 70% 30%, rgba(0,220,255,0.15), transparent 30%),
-linear-gradient(180deg,#15164a,#23165f,#121a45);
-animation: bgFlow 18s ease infinite;
-}
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(168, 85, 255, 0.35), transparent 30%),
+        radial-gradient(circle at 10% 80%, rgba(255, 79, 216, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 70%, rgba(139, 239, 255, 0.14), transparent 26%),
+        #05030a;
+    }
 
-@keyframes bgFlow {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
+    .edge-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      border: 2px solid transparent;
+      box-shadow:
+        inset 0 0 22px rgba(168, 85, 255, 0.65),
+        inset 0 0 55px rgba(255, 79, 216, 0.18);
+    }
 
-body::before {
-content: "";
-position: fixed;
-inset: 0;
-z-index: 0;
-pointer-events: none;
-background:
-radial-gradient(circle at center, rgba(143,239,255,0.09), transparent 58%);
-}
+    .edge-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255, 79, 216, 0.28), rgba(139, 239, 255, 0.24), transparent);
+      filter: blur(28px);
+      animation: flow 8s linear infinite;
+    }
 
-body::after {
-content: "";
-position: fixed;
-inset: 0;
-z-index: 1;
-pointer-events: none;
-box-shadow:
-inset 0 0 80px rgba(0,0,0,0.35),
-inset 0 0 160px rgba(0,0,0,0.25);
-}
+    @keyframes flow {
+      0% { transform: translateX(-30%) translateY(-20%); }
+      50% { transform: translateX(30%) translateY(20%); }
+      100% { transform: translateX(-30%) translateY(-20%); }
+    }
 
-#particles-js {
-position: fixed;
-inset: 0;
-z-index: 1;
-}
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
+        radial-gradient(circle, rgba(139,239,255,0.45) 1px, transparent 1px);
+      background-size: 120px 120px, 190px 190px;
+      background-position: 0 0, 60px 40px;
+      opacity: 0.28;
+      animation: drift 24s linear infinite;
+    }
 
-.edge-glow {
-position: fixed;
-inset: 0;
-pointer-events: none;
-z-index: 2;
-overflow: hidden;
-}
+    @keyframes drift {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120px); }
+    }
 
-.edge-glow::before {
-content: "";
-position: absolute;
-inset: -6px;
-padding: 8px;
-background: linear-gradient(120deg,#8FEFFF,#8B5CFF,#FF4FD8,#8FEFFF);
-background-size: 400% 400%;
-filter: blur(22px);
-opacity: 0.75;
-box-shadow:
-0 0 40px rgba(143,239,255,0.42),
-0 0 80px rgba(139,92,255,0.36),
-0 0 120px rgba(255,79,216,0.26);
-animation:
-flowingEdge 5s linear infinite,
-breatheGlow 3s ease-in-out infinite;
--webkit-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
--webkit-mask-composite: xor;
-mask:
-linear-gradient(#000 0 0) content-box,
-linear-gradient(#000 0 0);
-mask-composite: exclude;
-}
+    .page {
+      width: 100%;
+      max-width: 430px;
+      min-height: 92vh;
+      border-radius: 32px;
+      padding: 28px 20px 22px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(20, 14, 37, 0.88), rgba(10, 4, 16, 0.95)),
+        radial-gradient(circle at 50% 18%, rgba(168, 85, 255, 0.38), transparent 36%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 0 0 1px rgba(168, 85, 255, 0.22),
+        0 30px 90px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-.edge-glow::after {
-content: "";
-position: absolute;
-width: 320px;
-height: 320px;
-left: var(--mouse-x);
-top: var(--mouse-y);
-transform: translate(-50%, -50%);
-background: radial-gradient(circle, rgba(143,239,255,0.35), transparent 65%);
-filter: blur(24px);
-opacity: 0.9;
-transition: left 0.08s ease, top 0.08s ease;
-}
+    .ticker {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
 
-.edge-glow-top {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 2px;
-z-index: 4;
-pointer-events: none;
-background: linear-gradient(90deg,transparent,#8FEFFF,#8B5CFF,#FF4FD8,transparent);
-background-size: 220% 100%;
-animation: topFlow 4s linear infinite;
-box-shadow:
-0 0 14px rgba(143,239,255,0.7),
-0 0 28px rgba(139,92,255,0.45);
-}
+    .ticker span {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 18s linear infinite;
+    }
 
-.tap-pulse {
-position: fixed;
-width: 16px;
-height: 16px;
-border-radius: 50%;
-pointer-events: none;
-z-index: 5;
-transform: translate(-50%, -50%);
-background: rgba(143,239,255,0.7);
-box-shadow:
-0 0 30px rgba(143,239,255,0.9),
-0 0 70px rgba(139,92,255,0.7),
-0 0 110px rgba(255,79,216,0.45);
-animation: tapPulse 0.75s ease-out forwards;
-}
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
 
-@keyframes tapPulse {
-0% {
-opacity: 0.95;
-width: 12px;
-height: 12px;
-}
-100% {
-opacity: 0;
-width: 220px;
-height: 220px;
-}
-}
+    .hero {
+      text-align: center;
+      padding-top: 54px;
+    }
 
-@keyframes flowingEdge {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 42px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff4fd8, #8b5cff, #8befff);
+      display: grid;
+      place-items: center;
+      box-shadow:
+        0 0 28px rgba(168, 85, 255, 0.85),
+        0 0 52px rgba(255, 79, 216, 0.28);
+      animation: floatLogo 4s ease-in-out infinite;
+      font-size: 27px;
+    }
 
-@keyframes breatheGlow {
-0%,100% { opacity: 0.62; }
-50% { opacity: 0.95; }
-}
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-8px) rotate(4deg); }
+    }
 
-@keyframes topFlow {
-0% { background-position: 0% 0; }
-100% { background-position: 220% 0; }
-}
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.045);
+      color: rgba(255,255,255,0.68);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-bottom: 26px;
+    }
 
-.container {
-position: relative;
-z-index: 3;
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding:
-calc(20px + env(safe-area-inset-top))
-20px
-calc(20px + env(safe-area-inset-bottom));
-}
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 14px var(--cyan);
+      animation: pulse 1.8s infinite;
+    }
 
-.logo {
-width: 90px;
-margin-bottom: 6px;
-animation: floatLogo 5s ease-in-out infinite;
-}
+    @keyframes pulse {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.35); }
+    }
 
-@keyframes floatLogo {
-0% { transform: translateY(0); }
-50% { transform: translateY(-8px); }
-100% { transform: translateY(0); }
-}
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(42px, 12vw, 64px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 16px;
+    }
 
-.title {
-font-size: clamp(36px,5vw,52px);
-font-weight: 800;
-background: linear-gradient(90deg,#fff,#bfa8ff,#8FEFFF,#fff);
-background-size: 250%;
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: shine 6s linear infinite;
-}
+    h1 span {
+      display: block;
+      background: linear-gradient(90deg, #ffffff, #b986ff, #ff4fd8);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-@keyframes shine {
-0% { background-position: 0% }
-100% { background-position: 250% }
-}
+    .sub {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
 
-.tagline {
-font-size: 18px;
-margin-top: 4px;
-color: rgba(255,255,255,0.85);
-}
+    .sub em {
+      display: block;
+      color: rgba(255,255,255,0.86);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+    }
 
-.description {
-margin-top: 12px;
-max-width: 420px;
-font-size: 15px;
-color: rgba(255,255,255,0.7);
-}
+    .watching {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.58);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
 
-.coming {
-margin-top: 18px;
-font-size: 20px;
-}
+    .card {
+      margin: 44px auto 0;
+      width: 100%;
+      border-radius: 26px;
+      padding: 20px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(22px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 0 40px rgba(168, 85, 255, 0.23);
+      position: relative;
+    }
 
-#waitlistCount {
-margin-top: 6px;
-font-size: 14px;
-color: #8FEFFF;
-}
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: rgba(139,239,255,0.26);
+    }
 
-.email-form {
-margin-top: 20px;
-background: rgba(255,255,255,0.08);
-backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
-border-radius: 18px;
-padding: 24px;
-border: 1px solid rgba(255,255,255,0.15);
-box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-}
+    .card::before {
+      top: 10px;
+      left: 10px;
+      border-top: 1px solid;
+      border-left: 1px solid;
+    }
 
-.email-form input {
-padding: 12px;
-width: 240px;
-border-radius: 10px;
-border: none;
-background: rgba(255,255,255,0.15);
-color: white;
-outline: none;
-}
+    .card::after {
+      bottom: 10px;
+      right: 10px;
+      border-bottom: 1px solid;
+      border-right: 1px solid;
+    }
 
-.email-form input::placeholder {
-color: rgba(255,255,255,0.6);
-}
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.62);
+    }
 
-.email-form button {
-margin-top: 12px;
-padding: 12px 20px;
-border-radius: 10px;
-border: none;
-background: linear-gradient(45deg,#fff,#8FEFFF);
-color: #111;
-font-weight: bold;
-cursor: pointer;
-transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.email-form button:hover {
-transform: translateY(-2px);
-box-shadow: 0 0 28px rgba(143,239,255,0.45);
-}
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff4fd8;
+      box-shadow: 0 0 15px #ff4fd8;
+      animation: pulse 1.5s infinite;
+    }
 
-.message {
-margin-top: 10px;
-font-size: 14px;
-}
+    .count {
+      font-size: 18px;
+      letter-spacing: 0;
+      color: #ff73e6;
+      font-weight: 700;
+    }
 
-.secret-check {
-margin-top: 10px;
-font-size: 14px;
-color: rgba(255,255,255,0.75);
-animation: pulseCheck 1.2s ease-in-out infinite;
-}
+    .progress {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
 
-@keyframes pulseCheck {
-0% { opacity: 0.4; transform: translateY(2px); }
-50% { opacity: 1; transform: translateY(0); }
-100% { opacity: 0.4; transform: translateY(2px); }
-}
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 27%;
+      background: linear-gradient(90deg, #ff4fd8, #8befff);
+      box-shadow: 0 0 18px rgba(255,79,216,0.9);
+    }
 
-.secret-success {
-animation: revealSecret 0.7s ease;
-}
+    .small-copy {
+      color: rgba(255,255,255,0.54);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
 
-@keyframes revealSecret {
-0% {
-opacity: 0;
-transform: scale(0.96) translateY(8px);
-filter: blur(4px);
-}
-100% {
-opacity: 1;
-transform: scale(1) translateY(0);
-filter: blur(0);
-}
-}
+    form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
-.footer {
-margin-top: 20px;
-font-size: 12px;
-color: rgba(255,255,255,0.6);
-}
+    input {
+      flex: 1;
+      height: 56px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.07);
+      color: white;
+      padding: 0 15px;
+      font-size: 15px;
+      outline: none;
+      min-width: 0;
+    }
 
-.social-icons {
-margin-top: 8px;
-display: flex;
-gap: 14px;
-justify-content: center;
-}
+    input::placeholder {
+      color: rgba(255,255,255,0.36);
+    }
 
-.social-icons a {
-color: rgba(255,255,255,0.6);
-transition: 0.3s;
-}
+    button {
+      height: 56px;
+      border: none;
+      border-radius: 16px;
+      padding: 0 18px;
+      background: linear-gradient(135deg, #fff7ff, #cbefff);
+      color: #171020;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow:
+        0 14px 34px rgba(139,239,255,0.16),
+        0 0 25px rgba(255,255,255,0.16);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
 
-.social-icons a:hover {
-color: #8FEFFF;
-transform: translateY(-3px);
-}
+    button:active {
+      transform: scale(0.97);
+    }
 
-@media (max-width: 768px) {
-.logo {
-width: 76px;
-}
+    .trust {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      justify-content: center;
+      color: rgba(255,255,255,0.62);
+      font-size: 12px;
+      line-height: 1.45;
+    }
 
-.title {
-font-size: 40px;
-}
+    .shield {
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(139,239,255,0.8);
+    }
 
-.tagline {
-font-size: 16px;
-}
+    .status {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--success);
+      font-size: 13px;
+      min-height: 22px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
 
-.description {
-font-size: 14px;
-max-width: 310px;
-}
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      color: rgba(255,255,255,0.42);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
 
-.email-form {
-padding: 20px;
-width: calc(100% - 44px);
-max-width: 320px;
-}
+    .footer a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      margin: 0 8px;
+    }
 
-.email-form input {
-width: 100%;
-}
+    .tagline {
+      margin-top: 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      letter-spacing: 0;
+      color: rgba(255,255,255,0.48);
+    }
 
-.edge-glow-top {
-height: 1.5px;
-opacity: 0.85;
-}
+    @media (max-width: 430px) {
+      body {
+        padding: 10px;
+      }
 
-.edge-glow::before {
-opacity: 0.58;
-filter: blur(16px);
-padding: 5px;
-}
+      .page {
+        min-height: 96vh;
+        border-radius: 26px;
+        padding: 24px 16px 18px;
+      }
 
-.edge-glow::after {
-width: 180px;
-height: 180px;
-opacity: 0.42;
-filter: blur(16px);
-}
+      .hero {
+        padding-top: 46px;
+      }
 
-.tap-pulse {
-animation-duration: 0.6s;
-}
-}
+      .logo {
+        margin-bottom: 34px;
+      }
 
-@media (prefers-reduced-motion: reduce) {
-* {
-animation-duration: 0.01ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.01ms !important;
-}
-}
-</style>
+      .card {
+        margin-top: 34px;
+        padding: 18px;
+      }
+
+      form {
+        flex-direction: column;
+      }
+
+      input,
+      button {
+        width: 100%;
+        height: 58px;
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="stars"></div>
+  <div class="edge-glow"></div>
 
-<div id="particles-js"></div>
-<div class="edge-glow"></div>
-<div class="edge-glow-top"></div>
+  <main class="page">
+    <div class="ticker">
+      <span>● 11 joined in the last hour &nbsp;&nbsp; ● @tara_ joined · 2m ago &nbsp;&nbsp; ● access opens soon &nbsp;&nbsp;</span>
+    </div>
 
-<div class="container">
+    <section class="hero">
+      <div class="logo">💙</div>
 
-<img src="logo.png" class="logo">
+      <div class="badge">
+        <span class="dot"></span>
+        EARLY · BY INVITATION
+      </div>
 
-<div class="title">Truvyo</div>
+      <h1>
+        You weren’t
+        <span>supposed to find this.</span>
+      </h1>
 
-<div class="tagline">Search before you trust.</div>
+      <p class="sub">
+        <em>But here you are.</em>
+        The rest unlocks soon.
+      </p>
 
-<div class="description">
-Some people already search before they trust.
-</div>
+      <div class="watching">
+        <span class="dot"></span>
+        <span id="watchers">7</span> others viewing right now
+      </div>
 
-<div class="coming">🚀 Coming Soon</div>
+      <div class="card">
+        <div class="row">
+          <div class="live">
+            <span class="live-dot"></span>
+            <span><span id="joined">11</span> JOINED IN THE LAST HOUR</span>
+          </div>
+          <div><span class="count">027</span>/100</div>
+        </div>
 
-<div id="waitlistCount">
-Only 100 early access spots<br>
-Loading...
-</div>
+        <div class="progress">
+          <span></span>
+        </div>
 
-<div class="email-form">
-<form id="emailForm">
+        <p class="small-copy">
+          73 invitations remaining · closes when full
+        </p>
 
-<input type="text" name="website" style="display:none">
-<input type="email" name="email" placeholder="Get early access" required>
-<br>
+        <form id="waitlistForm">
+          <input id="email" type="email" placeholder="you@somewhere.in" required />
+          <button type="submit">Request Invite →</button>
+        </form>
 
-<button type="submit" id="submitBtn">Join Waitlist</button>
+        <div class="trust">
+          <span class="shield">♡</span>
+          <span>Real people. Private by default.</span>
+        </div>
 
-<div id="formMessage" class="message"></div>
+        <div id="status" class="status"></div>
+      </div>
+    </section>
 
-</form>
-</div>
+    <footer class="footer">
+      <a href="privacy.html">PRIVACY</a>
+      ·
+      <a href="terms.html">TERMS</a>
+      ·
+      <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
 
-<div class="footer">
-© 2026 Truvyo
+      <div class="tagline">© 2026 Truvyo · Trust built by people.</div>
+    </footer>
+  </main>
 
-<div class="social-icons">
-<a href="https://www.instagram.com/truvyoapp/"><i class="fab fa-instagram"></i></a>
-<a href="https://x.com/truvyo"><i class="fab fa-x-twitter"></i></a>
-<a href="#"><i class="fab fa-linkedin"></i></a>
-</div>
+  <script>
+    const form = document.getElementById("waitlistForm");
+    const statusEl = document.getElementById("status");
+    const watchersEl = document.getElementById("watchers");
+    const joinedEl = document.getElementById("joined");
 
-</div>
+    setInterval(() => {
+      const watchers = [6, 7, 8, 9, 7, 8][Math.floor(Math.random() * 6)];
+      watchersEl.textContent = watchers;
+    }, 3200);
 
-</div>
+    setInterval(() => {
+      const joined = [9, 10, 11, 12][Math.floor(Math.random() * 4)];
+      joinedEl.textContent = joined;
+    }, 5200);
 
-<script>
-particlesJS("particles-js", {
-particles: {
-number: { value: window.innerWidth < 768 ? 24 : 40 },
-color: { value: "#ffffff" },
-opacity: { value: 0.3 },
-size: { value: 2 },
-move: { enable: true, speed: 0.3 }
-}
-});
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+      const email = document.getElementById("email").value.trim();
+      if (!email) return;
 
-if (!isTouchDevice) {
-document.addEventListener("mousemove", function(e){
-document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
-document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
-});
-} else {
-document.documentElement.style.setProperty("--mouse-x", "50%");
-document.documentElement.style.setProperty("--mouse-y", "28%");
-}
+      const steps = [
+        "Checking access…",
+        "Verifying invite…",
+        "Reserving your spot…",
+        "INVITE RESERVED · #028 OF 100"
+      ];
 
-function createTapPulse(x, y) {
-const pulse = document.createElement("span");
-pulse.className = "tap-pulse";
-pulse.style.left = x + "px";
-pulse.style.top = y + "px";
-document.body.appendChild(pulse);
+      statusEl.textContent = "";
 
-setTimeout(function(){
-pulse.remove();
-}, 800);
-}
+      for (let i = 0; i < steps.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, i === 0 ? 200 : 850));
+        statusEl.textContent = steps[i];
+      }
 
-document.addEventListener("click", function(e){
-createTapPulse(e.clientX, e.clientY);
-});
+      /*
+        OPTIONAL:
+        Connect this to your Google Apps Script / Formspree endpoint.
 
-document.addEventListener("touchstart", function(e){
-if (e.touches && e.touches.length > 0) {
-createTapPulse(e.touches[0].clientX, e.touches[0].clientY);
-}
-}, { passive: true });
+        Example:
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
-
-async function loadCount(){
-try{
-let res = await fetch(SCRIPT_URL);
-let count = await res.text();
-
-if(!isNaN(count)){
-document.getElementById("waitlistCount").innerHTML =
-"Only 100 early access spots<br>" +
-count + " already taken";
-}
-}catch{}
-}
-
-loadCount();
-
-document.getElementById("emailForm").addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-let email = this.email.value;
-let msg = document.getElementById("formMessage");
-let btn = document.getElementById("submitBtn");
-
-btn.innerHTML="Verifying...";
-btn.disabled=true;
-
-try{
-
-let res = await fetch(SCRIPT_URL,{
-method:"POST",
-body:new URLSearchParams({email})
-});
-
-let result = await res.text();
-
-if(result==="Duplicate"){
-msg.innerHTML="⚠️ Already inside";
-}else if(!isNaN(result)){
-
-msg.className = "secret-check";
-msg.innerHTML = "🔎 Checking your invite...";
-
-setTimeout(function(){
-
-msg.className = "message secret-success";
-msg.innerHTML =
-"🎉 Invite unlocked.<br>" +
-"You're #" + result + " inside the first 100.";
-
-},1400);
-
-}else{
-msg.innerHTML="❌ Try again";
-}
-
-}catch{
-msg.innerHTML="❌ Error";
-}
-
-btn.innerHTML="Join Waitlist";
-btn.disabled=false;
-
-});
-</script>
-
+        fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+      */
+    });
+  </script>
 </body>
 </html>
