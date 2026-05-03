@@ -36,24 +36,56 @@ animation: bgFlow 18s ease infinite;
 100% { background-position: 0% 50%; }
 }
 
-/* ===== EDGE LED GLOW ===== */
+/* ===== NEXT LEVEL EDGE GLOW ===== */
 
 .edge-glow {
 position: fixed;
 inset: 0;
 pointer-events: none;
 z-index: 2;
-
-box-shadow:
-inset 0 0 40px rgba(120, 230, 255, 0.25),
-inset 0 0 80px rgba(160, 80, 255, 0.18);
-
-animation: edgePulse 4s ease-in-out infinite;
+overflow: hidden;
 }
 
-@keyframes edgePulse {
-0%, 100% { opacity: 0.6; }
-50% { opacity: 0.95; }
+.edge-glow::before {
+content: "";
+position: absolute;
+inset: -4px;
+background:
+linear-gradient(90deg, #8FEFFF, #8B5CFF, #FF4FD8, #8FEFFF);
+background-size: 300% 300%;
+filter: blur(18px);
+opacity: 0.45;
+animation: flowingEdge 6s linear infinite;
+
+mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+-webkit-mask:
+linear-gradient(#000 0 0) content-box,
+linear-gradient(#000 0 0);
+
+padding: 6px;
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+}
+
+.edge-glow::after {
+content: "";
+position: absolute;
+width: 280px;
+height: 280px;
+left: var(--mouse-x, 50%);
+top: var(--mouse-y, 50%);
+transform: translate(-50%, -50%);
+background: radial-gradient(circle, rgba(143,239,255,0.28), transparent 65%);
+filter: blur(20px);
+opacity: 0.8;
+}
+
+@keyframes flowingEdge {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
 }
 
 /* ===== PARTICLES ===== */
@@ -245,8 +277,6 @@ transform: translateY(-3px);
 <body>
 
 <div id="particles-js"></div>
-
-<!-- 🔥 EDGE LED -->
 <div class="edge-glow"></div>
 
 <div class="container">
@@ -307,6 +337,12 @@ opacity: { value: 0.3 },
 size: { value: 2 },
 move: { enable: true, speed: 0.3 }
 }
+});
+
+/* 🔥 Mouse Glow */
+document.addEventListener("mousemove", function(e){
+document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
+document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
 });
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
