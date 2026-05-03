@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Truvyo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const reviewId = params.get("id");
+
+      document.getElementById("reviewId").innerText = reviewId || "Not found";
+
+      // Future app deep link
+      const appLink = "truvyo://review?id=" + reviewId;
+
+      // Try opening app
+      window.location.href = appLink;
+
+      // Fallback after 2 seconds
+      setTimeout(function () {
+        window.location.href = "https://truvyo.app";
+      }, 2000);
+    };
+  </script>
+</head>
+
+<body style="font-family: Arial; text-align:center; padding:40px;">
+  <h2>Opening Truvyo...</h2>
+  <p>Review ID: <span id="reviewId"></span></p>
+  <p>If the app does not open, you will be redirected.</p>
+</body>
+</html>
