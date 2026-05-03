@@ -36,7 +36,20 @@ animation: bgFlow 18s ease infinite;
 100% { background-position: 0% 50%; }
 }
 
-/* ===== ULTRA PREMIUM EDGE LED ===== */
+/* ===== DEPTH LAYER ===== */
+
+body::after {
+content: "";
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 1;
+box-shadow:
+  inset 0 0 80px rgba(0,0,0,0.35),
+  inset 0 0 160px rgba(0,0,0,0.25);
+}
+
+/* ===== INSANE EDGE GLOW ===== */
 
 .edge-glow {
 position: fixed;
@@ -49,15 +62,30 @@ overflow: hidden;
 .edge-glow::before {
 content: "";
 position: absolute;
-inset: -5px;
-background:
-linear-gradient(90deg, #8FEFFF, #8B5CFF, #FF4FD8, #8FEFFF);
-background-size: 300% 300%;
-filter: blur(18px);
-opacity: 0.45;
-animation: flowingEdge 6s linear infinite;
+inset: -6px;
 
-padding: 6px;
+background: linear-gradient(
+120deg,
+#8FEFFF,
+#8B5CFF,
+#FF4FD8,
+#8FEFFF
+);
+
+background-size: 400% 400%;
+
+filter: blur(22px);
+opacity: 0.75;
+
+box-shadow:
+0 0 40px rgba(143,239,255,0.4),
+0 0 80px rgba(139,92,255,0.35),
+0 0 120px rgba(255,79,216,0.25);
+
+animation: flowingEdge 5s linear infinite;
+
+padding: 8px;
+
 -webkit-mask:
 linear-gradient(#000 0 0) content-box,
 linear-gradient(#000 0 0);
@@ -71,15 +99,15 @@ mask-composite: exclude;
 .edge-glow::after {
 content: "";
 position: absolute;
-width: 280px;
-height: 280px;
+width: 300px;
+height: 300px;
 left: var(--mouse-x, 50%);
-top: var(--mouse-y, 28%);
+top: var(--mouse-y, 30%);
 transform: translate(-50%, -50%);
-background: radial-gradient(circle, rgba(143,239,255,0.26), transparent 65%);
-filter: blur(22px);
-opacity: 0.75;
-transition: left 0.08s ease, top 0.08s ease;
+background: radial-gradient(circle, rgba(143,239,255,0.35), transparent 65%);
+filter: blur(24px);
+opacity: 0.9;
+transition: 0.08s ease;
 }
 
 @keyframes flowingEdge {
@@ -94,7 +122,7 @@ transition: left 0.08s ease, top 0.08s ease;
 position: fixed;
 width: 100%;
 height: 100%;
-z-index: 1;
+z-index: 0;
 }
 
 /* ===== LAYOUT ===== */
@@ -112,14 +140,12 @@ padding:
 calc(20px + env(safe-area-inset-top))
 20px
 calc(20px + env(safe-area-inset-bottom));
-box-sizing: border-box;
 }
 
 /* ===== LOGO ===== */
 
 .logo {
 width: 90px;
-margin-bottom: 6px;
 animation: floatLogo 5s ease-in-out infinite;
 }
 
@@ -146,31 +172,11 @@ animation: shine 6s linear infinite;
 100% { background-position: 250% }
 }
 
-/* ===== TAGLINE ===== */
+/* ===== TEXT ===== */
 
-.tagline {
-font-size: 18px;
-margin-top: 4px;
-color: rgba(255,255,255,0.85);
-}
-
-/* ===== DESCRIPTION ===== */
-
-.description {
-margin-top: 12px;
-max-width: 420px;
-font-size: 15px;
-color: rgba(255,255,255,0.7);
-}
-
-/* ===== COMING ===== */
-
-.coming {
-margin-top: 18px;
-font-size: 20px;
-}
-
-/* ===== WAITLIST ===== */
+.tagline { font-size: 18px; opacity: 0.9; }
+.description { margin-top: 10px; opacity: 0.7; }
+.coming { margin-top: 18px; font-size: 20px; }
 
 #waitlistCount {
 margin-top: 6px;
@@ -184,11 +190,10 @@ color: #8FEFFF;
 margin-top: 20px;
 background: rgba(255,255,255,0.08);
 backdrop-filter: blur(16px);
--webkit-backdrop-filter: blur(16px);
 border-radius: 18px;
 padding: 24px;
 border: 1px solid rgba(255,255,255,0.15);
-box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+box-shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
 .email-form input {
@@ -198,11 +203,6 @@ border-radius: 10px;
 border: none;
 background: rgba(255,255,255,0.15);
 color: white;
-outline: none;
-}
-
-.email-form input::placeholder {
-color: rgba(255,255,255,0.6);
 }
 
 .email-form button {
@@ -216,49 +216,12 @@ font-weight: bold;
 cursor: pointer;
 }
 
-.message {
-margin-top: 10px;
-font-size: 14px;
-}
-
-/* ===== SECRET ANIMATION ===== */
-
-.secret-check {
-margin-top: 10px;
-font-size: 14px;
-color: rgba(255,255,255,0.75);
-animation: pulseCheck 1.2s ease-in-out infinite;
-}
-
-@keyframes pulseCheck {
-0% { opacity: 0.4; transform: translateY(2px); }
-50% { opacity: 1; transform: translateY(0); }
-100% { opacity: 0.4; transform: translateY(2px); }
-}
-
-.secret-success {
-animation: revealSecret 0.7s ease;
-}
-
-@keyframes revealSecret {
-0% {
-opacity: 0;
-transform: scale(0.96) translateY(8px);
-filter: blur(4px);
-}
-100% {
-opacity: 1;
-transform: scale(1) translateY(0);
-filter: blur(0);
-}
-}
-
 /* ===== FOOTER ===== */
 
 .footer {
 margin-top: 20px;
 font-size: 12px;
-color: rgba(255,255,255,0.6);
+opacity: 0.6;
 }
 
 .social-icons {
@@ -268,72 +231,33 @@ gap: 14px;
 justify-content: center;
 }
 
-.social-icons a {
-color: rgba(255,255,255,0.6);
-transition: 0.3s;
-}
-
-.social-icons a:hover {
-color: #8FEFFF;
-transform: translateY(-3px);
-}
-
-/* ===== MOBILE OPTIMIZATION ===== */
+/* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
-body {
-overflow: hidden;
-}
-
-.logo {
-width: 76px;
-}
-
-.title {
-font-size: 40px;
-}
-
-.tagline {
-font-size: 16px;
-}
-
-.description {
-font-size: 14px;
-max-width: 310px;
-}
-
-.email-form {
-padding: 20px;
-width: calc(100% - 44px);
-max-width: 320px;
-}
-
-.email-form input {
-width: 100%;
-box-sizing: border-box;
-}
 
 .edge-glow::before {
-filter: blur(10px);
-opacity: 0.34;
-padding: 4px;
+opacity: 0.55;
+filter: blur(16px);
 }
 
 .edge-glow::after {
 width: 180px;
 height: 180px;
-opacity: 0.36;
-filter: blur(16px);
-}
+opacity: 0.4;
 }
 
-/* ===== REDUCED MOTION SUPPORT ===== */
+.email-form {
+width: calc(100% - 40px);
+}
+
+}
+
+/* ===== REDUCED MOTION ===== */
 
 @media (prefers-reduced-motion: reduce) {
 * {
-animation-duration: 0.01ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.01ms !important;
+animation: none !important;
+transition: none !important;
 }
 }
 
@@ -349,149 +273,54 @@ transition-duration: 0.01ms !important;
 
 <img src="logo.png" class="logo">
 
-<div class="title">Truvyo</div>
-
-<div class="tagline">Search before you trust.</div>
-
-<div class="description">
-Some people already search before they trust.
-</div>
+<h1 class="title">Truvyo</h1>
+<p class="tagline">Search before you trust.</p>
+<p class="description">Some people already search before they trust.</p>
 
 <div class="coming">🚀 Coming Soon</div>
 
-<div id="waitlistCount">
-Only 100 early access spots<br>
-Loading...
-</div>
+<div id="waitlistCount">Loading...</div>
 
 <div class="email-form">
-
 <form id="emailForm">
-
-<input type="text" name="website" style="display:none">
-<input type="email" name="email" placeholder="Get early access" required>
-<br>
-
-<button type="submit" id="submitBtn">Join Waitlist</button>
-
-<div id="formMessage" class="message"></div>
-
+<input type="email" name="email" placeholder="Get early access" required><br>
+<button type="submit">Join Waitlist</button>
+<div id="formMessage"></div>
 </form>
-
 </div>
 
 <div class="footer">
 © 2026 Truvyo
-
 <div class="social-icons">
-<a href="https://www.instagram.com/truvyoapp/"><i class="fab fa-instagram"></i></a>
-<a href="https://x.com/truvyo"><i class="fab fa-x-twitter"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-x-twitter"></i></a>
 <a href="#"><i class="fab fa-linkedin"></i></a>
 </div>
-
 </div>
 
 </div>
 
 <script>
 
-/* PARTICLES */
-
 particlesJS("particles-js", {
 particles: {
-number: { value: window.innerWidth < 768 ? 24 : 40 },
-color: { value: "#ffffff" },
-opacity: { value: 0.3 },
+number: { value: window.innerWidth < 768 ? 20 : 40 },
 size: { value: 2 },
-move: { enable: true, speed: 0.3 }
+move: { speed: 0.3 }
 }
 });
 
-/* ULTRA PREMIUM DESKTOP MOUSE GLOW + MOBILE FALLBACK */
+const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-if (!isTouchDevice) {
-document.addEventListener("mousemove", function(e){
+if (!isTouch) {
+document.addEventListener("mousemove", e => {
 document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
 document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
 });
 } else {
 document.documentElement.style.setProperty("--mouse-x", "50%");
-document.documentElement.style.setProperty("--mouse-y", "28%");
+document.documentElement.style.setProperty("--mouse-y", "30%");
 }
-
-/* CONFIG */
-
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
-
-/* LOAD COUNT */
-
-async function loadCount(){
-try{
-let res = await fetch(SCRIPT_URL);
-let count = await res.text();
-
-if(!isNaN(count)){
-document.getElementById("waitlistCount").innerHTML =
-"Only 100 early access spots<br>" +
-count + " already taken";
-}
-}catch{}
-}
-
-loadCount();
-
-/* FORM */
-
-document.getElementById("emailForm").addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-let email = this.email.value;
-let msg = document.getElementById("formMessage");
-let btn = document.getElementById("submitBtn");
-
-btn.innerHTML="Verifying...";
-btn.disabled=true;
-
-try{
-
-let res = await fetch(SCRIPT_URL,{
-method:"POST",
-body:new URLSearchParams({email})
-});
-
-let result = await res.text();
-
-if(result==="Duplicate"){
-msg.innerHTML="⚠️ Already inside";
-}else if(!isNaN(result)){
-
-msg.className = "secret-check";
-msg.innerHTML = "🔎 Checking your invite...";
-
-setTimeout(function(){
-
-msg.className = "message secret-success";
-msg.innerHTML =
-"🎉 Invite unlocked.<br>" +
-"You're #" + result + " inside the first 100.";
-
-},1400);
-
-}else{
-msg.innerHTML="❌ Try again";
-}
-
-}catch{
-msg.innerHTML="❌ Error";
-}
-
-btn.innerHTML="Join Waitlist";
-btn.disabled=false;
-
-});
 
 </script>
 
