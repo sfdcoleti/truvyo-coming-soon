@@ -13,20 +13,15 @@
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
 <style>
-
-/* ===== BACKGROUND ===== */
-
 body {
 margin: 0;
 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
 color: white;
 overflow: hidden;
-
 background:
 radial-gradient(circle at 30% 40%, rgba(123,63,242,0.25), transparent 35%),
 radial-gradient(circle at 70% 30%, rgba(0,220,255,0.15), transparent 30%),
 linear-gradient(180deg,#15164a,#23165f,#121a45);
-
 animation: bgFlow 18s ease infinite;
 }
 
@@ -36,7 +31,14 @@ animation: bgFlow 18s ease infinite;
 100% { background-position: 0% 50%; }
 }
 
-/* ===== DEPTH LAYER ===== */
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+z-index: 0;
+pointer-events: none;
+background: radial-gradient(circle at center, rgba(143,239,255,0.08), transparent 60%);
+}
 
 body::after {
 content: "";
@@ -45,11 +47,16 @@ inset: 0;
 pointer-events: none;
 z-index: 1;
 box-shadow:
-  inset 0 0 80px rgba(0,0,0,0.35),
-  inset 0 0 160px rgba(0,0,0,0.25);
+inset 0 0 80px rgba(0,0,0,0.35),
+inset 0 0 160px rgba(0,0,0,0.25);
 }
 
-/* ===== INSANE EDGE GLOW ===== */
+#particles-js {
+position: fixed;
+width: 100%;
+height: 100%;
+z-index: 1;
+}
 
 .edge-glow {
 position: fixed;
@@ -63,29 +70,16 @@ overflow: hidden;
 content: "";
 position: absolute;
 inset: -6px;
-
-background: linear-gradient(
-120deg,
-#8FEFFF,
-#8B5CFF,
-#FF4FD8,
-#8FEFFF
-);
-
+background: linear-gradient(120deg,#8FEFFF,#8B5CFF,#FF4FD8,#8FEFFF);
 background-size: 400% 400%;
-
 filter: blur(22px);
 opacity: 0.75;
-
 box-shadow:
 0 0 40px rgba(143,239,255,0.4),
 0 0 80px rgba(139,92,255,0.35),
 0 0 120px rgba(255,79,216,0.25);
-
-animation: flowingEdge 5s linear infinite;
-
+animation: flowingEdge 5s linear infinite, breatheGlow 3s ease-in-out infinite;
 padding: 8px;
-
 -webkit-mask:
 linear-gradient(#000 0 0) content-box,
 linear-gradient(#000 0 0);
@@ -110,22 +104,34 @@ opacity: 0.9;
 transition: 0.08s ease;
 }
 
+.edge-glow-top {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 2px;
+z-index: 4;
+pointer-events: none;
+background: linear-gradient(90deg,transparent,#8FEFFF,#8B5CFF,#FF4FD8,transparent);
+background-size: 200% 100%;
+animation: topFlow 4s linear infinite;
+}
+
 @keyframes flowingEdge {
 0% { background-position: 0% 50%; }
 50% { background-position: 100% 50%; }
 100% { background-position: 0% 50%; }
 }
 
-/* ===== PARTICLES ===== */
-
-#particles-js {
-position: fixed;
-width: 100%;
-height: 100%;
-z-index: 0;
+@keyframes breatheGlow {
+0%,100% { opacity: 0.65; }
+50% { opacity: 0.95; }
 }
 
-/* ===== LAYOUT ===== */
+@keyframes topFlow {
+0% { background-position: 0% 0; }
+100% { background-position: 200% 0; }
+}
 
 .container {
 position: relative;
@@ -140,12 +146,12 @@ padding:
 calc(20px + env(safe-area-inset-top))
 20px
 calc(20px + env(safe-area-inset-bottom));
+box-sizing: border-box;
 }
-
-/* ===== LOGO ===== */
 
 .logo {
 width: 90px;
+margin-bottom: 6px;
 animation: floatLogo 5s ease-in-out infinite;
 }
 
@@ -154,8 +160,6 @@ animation: floatLogo 5s ease-in-out infinite;
 50% { transform: translateY(-8px); }
 100% { transform: translateY(0); }
 }
-
-/* ===== TITLE ===== */
 
 .title {
 font-size: clamp(36px,5vw,52px);
@@ -172,11 +176,23 @@ animation: shine 6s linear infinite;
 100% { background-position: 250% }
 }
 
-/* ===== TEXT ===== */
+.tagline {
+font-size: 18px;
+margin-top: 4px;
+color: rgba(255,255,255,0.85);
+}
 
-.tagline { font-size: 18px; opacity: 0.9; }
-.description { margin-top: 10px; opacity: 0.7; }
-.coming { margin-top: 18px; font-size: 20px; }
+.description {
+margin-top: 12px;
+max-width: 420px;
+font-size: 15px;
+color: rgba(255,255,255,0.7);
+}
+
+.coming {
+margin-top: 18px;
+font-size: 20px;
+}
 
 #waitlistCount {
 margin-top: 6px;
@@ -184,12 +200,11 @@ font-size: 14px;
 color: #8FEFFF;
 }
 
-/* ===== FORM ===== */
-
 .email-form {
 margin-top: 20px;
 background: rgba(255,255,255,0.08);
 backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
 border-radius: 18px;
 padding: 24px;
 border: 1px solid rgba(255,255,255,0.15);
@@ -203,6 +218,11 @@ border-radius: 10px;
 border: none;
 background: rgba(255,255,255,0.15);
 color: white;
+outline: none;
+}
+
+.email-form input::placeholder {
+color: rgba(255,255,255,0.6);
 }
 
 .email-form button {
@@ -216,12 +236,45 @@ font-weight: bold;
 cursor: pointer;
 }
 
-/* ===== FOOTER ===== */
+.message {
+margin-top: 10px;
+font-size: 14px;
+}
+
+.secret-check {
+margin-top: 10px;
+font-size: 14px;
+color: rgba(255,255,255,0.75);
+animation: pulseCheck 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseCheck {
+0% { opacity: 0.4; transform: translateY(2px); }
+50% { opacity: 1; transform: translateY(0); }
+100% { opacity: 0.4; transform: translateY(2px); }
+}
+
+.secret-success {
+animation: revealSecret 0.7s ease;
+}
+
+@keyframes revealSecret {
+0% {
+opacity: 0;
+transform: scale(0.96) translateY(8px);
+filter: blur(4px);
+}
+100% {
+opacity: 1;
+transform: scale(1) translateY(0);
+filter: blur(0);
+}
+}
 
 .footer {
 margin-top: 20px;
 font-size: 12px;
-opacity: 0.6;
+color: rgba(255,255,255,0.6);
 }
 
 .social-icons {
@@ -231,36 +284,71 @@ gap: 14px;
 justify-content: center;
 }
 
-/* ===== MOBILE ===== */
+.social-icons a {
+color: rgba(255,255,255,0.6);
+transition: 0.3s;
+}
+
+.social-icons a:hover {
+color: #8FEFFF;
+transform: translateY(-3px);
+}
 
 @media (max-width: 768px) {
+.logo {
+width: 76px;
+}
+
+.title {
+font-size: 40px;
+}
+
+.tagline {
+font-size: 16px;
+}
+
+.description {
+font-size: 14px;
+max-width: 310px;
+}
+
+.email-form {
+padding: 20px;
+width: calc(100% - 44px);
+max-width: 320px;
+}
+
+.email-form input {
+width: 100%;
+box-sizing: border-box;
+}
+
+.edge-glow-top {
+height: 1.5px;
+opacity: 0.8;
+}
 
 .edge-glow::before {
 opacity: 0.55;
 filter: blur(16px);
+padding: 5px;
 }
 
 .edge-glow::after {
 width: 180px;
 height: 180px;
 opacity: 0.4;
+filter: blur(16px);
 }
-
-.email-form {
-width: calc(100% - 40px);
 }
-
-}
-
-/* ===== REDUCED MOTION ===== */
 
 @media (prefers-reduced-motion: reduce) {
 * {
-animation: none !important;
-transition: none !important;
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.01ms !important;
 }
 }
-
 </style>
 </head>
 
@@ -268,60 +356,142 @@ transition: none !important;
 
 <div id="particles-js"></div>
 <div class="edge-glow"></div>
+<div class="edge-glow-top"></div>
 
 <div class="container">
 
 <img src="logo.png" class="logo">
 
-<h1 class="title">Truvyo</h1>
-<p class="tagline">Search before you trust.</p>
-<p class="description">Some people already search before they trust.</p>
+<div class="title">Truvyo</div>
+
+<div class="tagline">Search before you trust.</div>
+
+<div class="description">
+Some people already search before they trust.
+</div>
 
 <div class="coming">🚀 Coming Soon</div>
 
-<div id="waitlistCount">Loading...</div>
+<div id="waitlistCount">
+Only 100 early access spots<br>
+Loading...
+</div>
 
 <div class="email-form">
 <form id="emailForm">
-<input type="email" name="email" placeholder="Get early access" required><br>
-<button type="submit">Join Waitlist</button>
-<div id="formMessage"></div>
+
+<input type="text" name="website" style="display:none">
+<input type="email" name="email" placeholder="Get early access" required>
+<br>
+
+<button type="submit" id="submitBtn">Join Waitlist</button>
+
+<div id="formMessage" class="message"></div>
+
 </form>
 </div>
 
 <div class="footer">
 © 2026 Truvyo
+
 <div class="social-icons">
-<a href="#"><i class="fab fa-instagram"></i></a>
-<a href="#"><i class="fab fa-x-twitter"></i></a>
+<a href="https://www.instagram.com/truvyoapp/"><i class="fab fa-instagram"></i></a>
+<a href="https://x.com/truvyo"><i class="fab fa-x-twitter"></i></a>
 <a href="#"><i class="fab fa-linkedin"></i></a>
 </div>
+
 </div>
 
 </div>
 
 <script>
-
 particlesJS("particles-js", {
 particles: {
-number: { value: window.innerWidth < 768 ? 20 : 40 },
+number: { value: window.innerWidth < 768 ? 24 : 40 },
+color: { value: "#ffffff" },
+opacity: { value: 0.3 },
 size: { value: 2 },
-move: { speed: 0.3 }
+move: { enable: true, speed: 0.3 }
 }
 });
 
-const isTouch = window.matchMedia("(pointer: coarse)").matches;
+const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
-if (!isTouch) {
-document.addEventListener("mousemove", e => {
+if (!isTouchDevice) {
+document.addEventListener("mousemove", function(e){
 document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
 document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
 });
 } else {
 document.documentElement.style.setProperty("--mouse-x", "50%");
-document.documentElement.style.setProperty("--mouse-y", "30%");
+document.documentElement.style.setProperty("--mouse-y", "28%");
 }
 
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxdzVEZEDKAm7EDCCE0iXCoR5ZEWtlFTNlfgtzMKLZaRrkPA3KSjQZp8Uom6swsr3LM/exec";
+
+async function loadCount(){
+try{
+let res = await fetch(SCRIPT_URL);
+let count = await res.text();
+
+if(!isNaN(count)){
+document.getElementById("waitlistCount").innerHTML =
+"Only 100 early access spots<br>" +
+count + " already taken";
+}
+}catch{}
+}
+
+loadCount();
+
+document.getElementById("emailForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let email = this.email.value;
+let msg = document.getElementById("formMessage");
+let btn = document.getElementById("submitBtn");
+
+btn.innerHTML="Verifying...";
+btn.disabled=true;
+
+try{
+
+let res = await fetch(SCRIPT_URL,{
+method:"POST",
+body:new URLSearchParams({email})
+});
+
+let result = await res.text();
+
+if(result==="Duplicate"){
+msg.innerHTML="⚠️ Already inside";
+}else if(!isNaN(result)){
+
+msg.className = "secret-check";
+msg.innerHTML = "🔎 Checking your invite...";
+
+setTimeout(function(){
+
+msg.className = "message secret-success";
+msg.innerHTML =
+"🎉 Invite unlocked.<br>" +
+"You're #" + result + " inside the first 100.";
+
+},1400);
+
+}else{
+msg.innerHTML="❌ Try again";
+}
+
+}catch{
+msg.innerHTML="❌ Error";
+}
+
+btn.innerHTML="Join Waitlist";
+btn.disabled=false;
+
+});
 </script>
 
 </body>
