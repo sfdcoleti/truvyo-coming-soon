@@ -1,595 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>Truvyo — Trust Built by People</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Truvyo — Coming Soon</title>
 
-  <meta name="description" content="Truvyo is opening soon. Request your invite." />
-  <meta name="theme-color" content="#08040f" />
+<style>
+:root {
+  --bg:#05030a;
+  --text:#f6f1ff;
+  --muted:rgba(255,255,255,0.6);
+  --pink:#ff4fd8;
+  --violet:#a855ff;
+  --cyan:#8befff;
+}
 
-  <style>
-    :root {
-      --bg: #06050b;
-      --card: rgba(28, 18, 42, 0.72);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --text: #f6f1ff;
-      --muted: rgba(246, 241, 255, 0.62);
-      --soft: rgba(246, 241, 255, 0.38);
-      --pink: #ff4fd8;
-      --violet: #a855ff;
-      --cyan: #8befff;
-      --blue: #c8e9ff;
-      --success: #7cffc7;
-    }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+  font-family:Inter,system-ui;
+  background:radial-gradient(circle at top,#1a0d2b,#05030a);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
 
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow-x: hidden;
-    }
+/* Glow border */
+.edge{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 0 40px rgba(168,85,255,0.5);
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(168, 85, 255, 0.35), transparent 30%),
-        radial-gradient(circle at 10% 80%, rgba(255, 79, 216, 0.18), transparent 28%),
-        radial-gradient(circle at 90% 70%, rgba(139, 239, 255, 0.14), transparent 26%),
-        #05030a;
-    }
+/* Container */
+.container{
+  max-width:420px;
+  width:100%;
+  background:rgba(20,10,30,0.8);
+  border-radius:30px;
+  padding:30px 20px;
+  text-align:center;
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 60px rgba(0,0,0,0.7);
+}
 
-    .edge-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 20;
-      border: 2px solid transparent;
-      box-shadow:
-        inset 0 0 22px rgba(168, 85, 255, 0.65),
-        inset 0 0 55px rgba(255, 79, 216, 0.18);
-    }
+/* Logo */
+.logo{
+  width:60px;
+  height:60px;
+  margin:0 auto 40px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,0.05);
+  box-shadow:0 0 30px rgba(168,85,255,0.8);
+  animation:float 4s infinite ease-in-out;
+}
 
-    .edge-glow::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255, 79, 216, 0.28), rgba(139, 239, 255, 0.24), transparent);
-      filter: blur(28px);
-      animation: flow 8s linear infinite;
-    }
+.logo img{
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(139,239,255,0.8));
+}
 
-    @keyframes flow {
-      0% { transform: translateX(-30%) translateY(-20%); }
-      50% { transform: translateX(30%) translateY(20%); }
-      100% { transform: translateX(-30%) translateY(-20%); }
-    }
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
 
-    .stars {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
-        radial-gradient(circle, rgba(139,239,255,0.45) 1px, transparent 1px);
-      background-size: 120px 120px, 190px 190px;
-      background-position: 0 0, 60px 40px;
-      opacity: 0.28;
-      animation: drift 24s linear infinite;
-    }
+/* Headline */
+h1{
+  font-size:42px;
+  font-family:Georgia;
+  font-style:italic;
+  margin-bottom:10px;
+}
 
-    @keyframes drift {
-      from { transform: translateY(0); }
-      to { transform: translateY(-120px); }
-    }
+h1 span{
+  background:linear-gradient(90deg,#fff,#b986ff,#ff4fd8);
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-    .page {
-      width: 100%;
-      max-width: 430px;
-      min-height: 92vh;
-      border-radius: 32px;
-      padding: 28px 20px 22px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(20, 14, 37, 0.88), rgba(10, 4, 16, 0.95)),
-        radial-gradient(circle at 50% 18%, rgba(168, 85, 255, 0.38), transparent 36%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow:
-        0 0 0 1px rgba(168, 85, 255, 0.22),
-        0 30px 90px rgba(0, 0, 0, 0.65);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+/* Subtext */
+.sub{
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:20px;
+}
 
-    .ticker {
-      position: absolute;
-      top: 10px;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      color: rgba(255, 255, 255, 0.42);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
+/* Watching */
+.watch{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:20px;
+}
 
-    .ticker span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 18s linear infinite;
-    }
+/* Card */
+.card{
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  padding:20px;
+}
 
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-100%); }
-    }
+/* Input */
+input{
+  width:100%;
+  height:50px;
+  border-radius:12px;
+  border:none;
+  margin-bottom:10px;
+  padding:10px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+}
 
-    .hero {
-      text-align: center;
-      padding-top: 54px;
-    }
+/* Button */
+button{
+  width:100%;
+  height:50px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#fff,#cbefff);
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .logo {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 42px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #ff4fd8, #8b5cff, #8befff);
-      display: grid;
-      place-items: center;
-      box-shadow:
-        0 0 28px rgba(168, 85, 255, 0.85),
-        0 0 52px rgba(255, 79, 216, 0.28);
-      animation: floatLogo 4s ease-in-out infinite;
-      font-size: 27px;
-    }
+/* Status */
+.status{
+  margin-top:10px;
+  font-size:12px;
+  color:#7cffc7;
+}
 
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0) rotate(-8deg); }
-      50% { transform: translateY(-8px) rotate(4deg); }
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.045);
-      color: rgba(255,255,255,0.68);
-      font-size: 11px;
-      letter-spacing: 0.24em;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      margin-bottom: 26px;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 14px var(--cyan);
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.55; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.35); }
-    }
-
-    h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      font-weight: 500;
-      font-size: clamp(42px, 12vw, 64px);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-      margin-bottom: 16px;
-    }
-
-    h1 span {
-      display: block;
-      background: linear-gradient(90deg, #ffffff, #b986ff, #ff4fd8);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
-
-    .sub em {
-      display: block;
-      color: rgba(255,255,255,0.86);
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-    }
-
-    .watching {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 14px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.58);
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .card {
-      margin: 44px auto 0;
-      width: 100%;
-      border-radius: 26px;
-      padding: 20px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(22px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 0 40px rgba(168, 85, 255, 0.23);
-      position: relative;
-    }
-
-    .card::before,
-    .card::after {
-      content: "";
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-color: rgba(139,239,255,0.26);
-    }
-
-    .card::before {
-      top: 10px;
-      left: 10px;
-      border-top: 1px solid;
-      border-left: 1px solid;
-    }
-
-    .card::after {
-      bottom: 10px;
-      right: 10px;
-      border-bottom: 1px solid;
-      border-right: 1px solid;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.62);
-    }
-
-    .live {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ff4fd8;
-      box-shadow: 0 0 15px #ff4fd8;
-      animation: pulse 1.5s infinite;
-    }
-
-    .count {
-      font-size: 18px;
-      letter-spacing: 0;
-      color: #ff73e6;
-      font-weight: 700;
-    }
-
-    .progress {
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 27%;
-      background: linear-gradient(90deg, #ff4fd8, #8befff);
-      box-shadow: 0 0 18px rgba(255,79,216,0.9);
-    }
-
-    .small-copy {
-      color: rgba(255,255,255,0.54);
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 11px;
-      line-height: 1.55;
-      margin-bottom: 18px;
-    }
-
-    form {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    input {
-      flex: 1;
-      height: 56px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.07);
-      color: white;
-      padding: 0 15px;
-      font-size: 15px;
-      outline: none;
-      min-width: 0;
-    }
-
-    input::placeholder {
-      color: rgba(255,255,255,0.36);
-    }
-
-    button {
-      height: 56px;
-      border: none;
-      border-radius: 16px;
-      padding: 0 18px;
-      background: linear-gradient(135deg, #fff7ff, #cbefff);
-      color: #171020;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow:
-        0 14px 34px rgba(139,239,255,0.16),
-        0 0 25px rgba(255,255,255,0.16);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      white-space: nowrap;
-    }
-
-    button:active {
-      transform: scale(0.97);
-    }
-
-    .trust {
-      margin-top: 18px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      justify-content: center;
-      color: rgba(255,255,255,0.62);
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .shield {
-      color: var(--cyan);
-      text-shadow: 0 0 12px rgba(139,239,255,0.8);
-    }
-
-    .status {
-      margin-top: 16px;
-      text-align: center;
-      color: var(--success);
-      font-size: 13px;
-      min-height: 22px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    .footer {
-      text-align: center;
-      margin-top: 28px;
-      color: rgba(255,255,255,0.42);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-    }
-
-    .footer a {
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      margin: 0 8px;
-    }
-
-    .tagline {
-      margin-top: 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      letter-spacing: 0;
-      color: rgba(255,255,255,0.48);
-    }
-
-    @media (max-width: 430px) {
-      body {
-        padding: 10px;
-      }
-
-      .page {
-        min-height: 96vh;
-        border-radius: 26px;
-        padding: 24px 16px 18px;
-      }
-
-      .hero {
-        padding-top: 46px;
-      }
-
-      .logo {
-        margin-bottom: 34px;
-      }
-
-      .card {
-        margin-top: 34px;
-        padding: 18px;
-      }
-
-      form {
-        flex-direction: column;
-      }
-
-      input,
-      button {
-        width: 100%;
-        height: 58px;
-      }
-
-      h1 {
-        font-size: 48px;
-      }
-    }
-  </style>
+/* Footer */
+.footer{
+  margin-top:20px;
+  font-size:10px;
+  color:rgba(255,255,255,0.4);
+}
+</style>
 </head>
 
 <body>
-  <div class="stars"></div>
-  <div class="edge-glow"></div>
 
-  <main class="page">
-    <div class="ticker">
-      <span>● 11 joined in the last hour &nbsp;&nbsp; ● @tara_ joined · 2m ago &nbsp;&nbsp; ● access opens soon &nbsp;&nbsp;</span>
-    </div>
+<div class="edge"></div>
 
-    <section class="hero">
-      <div class="logo">💙</div>
+<div class="container">
 
-      <div class="badge">
-        <span class="dot"></span>
-        EARLY · BY INVITATION
-      </div>
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="Truvyo logo">
+  </div>
 
-      <h1>
-        You weren’t
-        <span>supposed to find this.</span>
-      </h1>
+  <!-- HEADLINE -->
+  <h1>
+    You weren’t
+    <span>supposed to find this.</span>
+  </h1>
 
-      <p class="sub">
-        <em>But here you are.</em>
-        The rest unlocks soon.
-      </p>
+  <p class="sub">
+    But here you are.<br>
+    The rest unlocks soon.
+  </p>
 
-      <div class="watching">
-        <span class="dot"></span>
-        <span id="watchers">7</span> others viewing right now
-      </div>
+  <div class="watch" id="watch">7 others viewing</div>
 
-      <div class="card">
-        <div class="row">
-          <div class="live">
-            <span class="live-dot"></span>
-            <span><span id="joined">11</span> JOINED IN THE LAST HOUR</span>
-          </div>
-          <div><span class="count">027</span>/100</div>
-        </div>
+  <!-- CARD -->
+  <div class="card">
+    <p>27 / 100 spots filled</p>
 
-        <div class="progress">
-          <span></span>
-        </div>
+    <input type="email" id="email" placeholder="you@email.com">
 
-        <p class="small-copy">
-          73 invitations remaining · closes when full
-        </p>
+    <button onclick="submitForm()">Request Invite →</button>
 
-        <form id="waitlistForm">
-          <input id="email" type="email" placeholder="you@somewhere.in" required />
-          <button type="submit">Request Invite →</button>
-        </form>
+    <div class="status" id="status"></div>
+  </div>
 
-        <div class="trust">
-          <span class="shield">♡</span>
-          <span>Real people. Private by default.</span>
-        </div>
+  <div class="footer">
+    Real people. Private by default.
+  </div>
 
-        <div id="status" class="status"></div>
-      </div>
-    </section>
+</div>
 
-    <footer class="footer">
-      <a href="privacy.html">PRIVACY</a>
-      ·
-      <a href="terms.html">TERMS</a>
-      ·
-      <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
+<script>
+function submitForm(){
+  const status = document.getElementById("status");
 
-      <div class="tagline">© 2026 Truvyo · Trust built by people.</div>
-    </footer>
-  </main>
+  const steps=[
+    "Checking access...",
+    "Verifying...",
+    "Reserving your spot...",
+    "You're early. #028"
+  ];
 
-  <script>
-    const form = document.getElementById("waitlistForm");
-    const statusEl = document.getElementById("status");
-    const watchersEl = document.getElementById("watchers");
-    const joinedEl = document.getElementById("joined");
+  let i=0;
+  const interval=setInterval(()=>{
+    status.innerText=steps[i];
+    i++;
+    if(i===steps.length){
+      clearInterval(interval);
+    }
+  },800);
+}
 
-    setInterval(() => {
-      const watchers = [6, 7, 8, 9, 7, 8][Math.floor(Math.random() * 6)];
-      watchersEl.textContent = watchers;
-    }, 3200);
+// fake live watchers
+setInterval(()=>{
+  const val = Math.floor(Math.random()*4)+6;
+  document.getElementById("watch").innerText = val + " others viewing";
+},3000);
+</script>
 
-    setInterval(() => {
-      const joined = [9, 10, 11, 12][Math.floor(Math.random() * 4)];
-      joinedEl.textContent = joined;
-    }, 5200);
-
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      if (!email) return;
-
-      const steps = [
-        "Checking access…",
-        "Verifying invite…",
-        "Reserving your spot…",
-        "INVITE RESERVED · #028 OF 100"
-      ];
-
-      statusEl.textContent = "";
-
-      for (let i = 0; i < steps.length; i++) {
-        await new Promise(resolve => setTimeout(resolve, i === 0 ? 200 : 850));
-        statusEl.textContent = steps[i];
-      }
-
-      /*
-        OPTIONAL:
-        Connect this to your Google Apps Script / Formspree endpoint.
-
-        Example:
-
-        fetch("YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL", {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email })
-        });
-      */
-    });
-  </script>
 </body>
 </html>
