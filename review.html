@@ -4,20 +4,23 @@
   <title>Open Truvyo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
- <script>
-  window.onload = function () {
-    const params = new URLSearchParams(window.location.search);
-    const reviewId = params.get("id");
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const reviewId = params.get("id");
 
-    // Try opening app
-    window.location.href = "truvyo://review?id=" + reviewId;
+      // Show ID on screen (for debugging)
+      document.getElementById("reviewId").innerText = reviewId || "Not found";
 
-    // If app not installed → fallback
-    setTimeout(function () {
-      window.location.href = "https://truvyo.app"; // your coming soon page
-    }, 1500);
-  };
-</script>
+      // Try opening app
+      window.location.href = "truvyo://review?id=" + reviewId;
+
+      // Fallback (increase delay for visibility)
+      setTimeout(function () {
+        window.location.href = "https://truvyo.app";
+      }, 3000);
+    };
+  </script>
 </head>
 
 <body style="font-family: Arial; text-align:center; padding:40px;">
