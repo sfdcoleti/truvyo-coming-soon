@@ -1,98 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<title>Thank You — Truvyo</title>
-<link rel="icon" type="image/png" href="/favicon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-
-body {
-
-margin: 0;
-font-family: Arial, sans-serif;
-
-height: 100vh;
-
-background: radial-gradient(
-circle at center,
-#7B3FF2 0%,
-#4A148C 50%,
-#1A237E 100%
-);
-
-color: white;
-
-display: flex;
-justify-content: center;
-align-items: center;
-text-align: center;
-
-}
-
-.container {
-
-padding: 20px;
-
-}
-
-.title {
-
-font-size: 36px;
-font-weight: bold;
-
-}
-
-.message {
-
-margin-top: 16px;
-font-size: 18px;
-
-}
-
-.button {
-
-margin-top: 28px;
-
-display: inline-block;
-
-padding: 12px 20px;
-
-background: white;
-color: #1A237E;
-
-border-radius: 6px;
-
-text-decoration: none;
-
-font-weight: bold;
-
-}
-
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Truvyo</title>
+  <meta name="description" content="Thank you for joining the Truvyo early access waitlist." />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="assets/truvyo.css" />
 </head>
 
 <body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Truvyo home">
+        <span class="brand-mark"><img src="logo.png" alt="Truvyo logo" /></span>
+        <span>
+          <span class="wordmark">Truvyo</span>
+          <span class="brand-line">Trust built by people</span>
+        </span>
+      </a>
 
-<div class="container">
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="privacy.html">Privacy</a>
+        <a class="nav-link" href="terms.html">Terms</a>
+      </nav>
+    </header>
 
-<div class="title">
-✅ Thank You!
-</div>
+    <main>
+      <section class="glass-card center-card" aria-labelledby="thanks-title">
+        <div class="status-icon" aria-hidden="true">✓</div>
+        <div class="kicker">Early access</div>
+        <h1 id="thanks-title">Thank you.</h1>
+        <p class="hero-copy">You've been added to the Truvyo early access list.</p>
+        <p class="hero-copy">We will reach out when the private launch opens.</p>
+        <p style="margin-top: 28px;">
+          <a class="button" href="/">Back to Home</a>
+        </p>
+      </section>
+    </main>
 
-<div class="message">
-You've been added to the Truvyo early access list.
-</div>
-
-<a href="/" class="button">
-← Back to Home
-</a>
-
-</div>
-
+    <footer class="site-footer">
+      <a href="privacy.html">PRIVACY</a>
+      ·
+      <a href="terms.html">TERMS</a>
+      ·
+      <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
+      <div class="footer-line">© 2026 Truvyo · Trust built by people.</div>
+    </footer>
+  </div>
 </body>
-
 </html>
