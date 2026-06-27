@@ -485,6 +485,10 @@
       display: grid;
       gap: 18px;
       position: relative;
+      transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+      transform-style: preserve-3d;
+      transition: transform 0.18s ease-out;
+      will-change: transform;
     }
 
     .hero-stack::before {
@@ -873,6 +877,47 @@
       position: relative;
     }
 
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 8%;
+      right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(104,224,255,0.18), rgba(155,124,255,0.14), transparent);
+      filter: blur(0.2px);
+      opacity: 0.78;
+    }
+
+    .section::after {
+      content: "";
+      position: absolute;
+      top: -34px;
+      left: 20%;
+      right: 20%;
+      height: 70px;
+      background: radial-gradient(ellipse at center, rgba(104,224,255,0.065), transparent 68%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    body.reveal-ready .reveal,
+    body.reveal-ready .reveal-item {
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 720ms ease,
+        transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    body.reveal-ready .reveal.is-visible,
+    body.reveal-ready .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .section-head {
       max-width: 720px;
       margin-bottom: 30px;
@@ -1061,6 +1106,21 @@
         linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
       border: 1px solid var(--border);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 28px 80px rgba(0,0,0,0.22);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .privacy-spotlight::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      bottom: -150px;
+      background: radial-gradient(circle, rgba(114,240,188,0.14), transparent 64%);
+      filter: blur(10px);
+      animation: privacyGlow 10s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .privacy-copy .section-title {
@@ -1125,6 +1185,105 @@
       scrollbar-width: thin;
     }
 
+    .trust-flow {
+      position: relative;
+    }
+
+    .flow-track {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .flow-track::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(104,224,255,0.08), rgba(104,224,255,0.42), rgba(114,240,188,0.38), rgba(242,207,143,0.18));
+      box-shadow: 0 0 22px rgba(104,224,255,0.16);
+      z-index: 0;
+    }
+
+    .flow-track::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 7%;
+      width: 16px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--safe);
+      box-shadow: 0 0 22px rgba(114,240,188,0.7);
+      animation: flowPulse 6.5s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .flow-step {
+      min-height: 150px;
+      border-radius: 26px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.028)),
+        var(--surface-soft);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 46px rgba(0,0,0,0.18);
+      position: relative;
+      z-index: 2;
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .flow-step:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-strong);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.09), 0 28px 76px rgba(0,0,0,0.28);
+    }
+
+    .flow-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #07101d;
+      background: linear-gradient(135deg, #fffaf0, var(--trust));
+      box-shadow: 0 0 24px rgba(104,224,255,0.24);
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .flow-title {
+      color: rgba(255,255,255,0.94);
+      font-size: 15px;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .flow-copy {
+      color: rgba(247,242,255,0.58);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    @keyframes flowPulse {
+      0%, 100% { left: 7%; opacity: 0; transform: scale(0.75); }
+      12% { opacity: 1; }
+      50% { opacity: 1; transform: scale(1); }
+      88% { opacity: 1; }
+      100% { left: 90%; opacity: 0; transform: scale(0.75); }
+    }
+
+    @keyframes privacyGlow {
+      0%, 100% { opacity: 0.45; transform: translate3d(0, 0, 0) scale(0.96); }
+      50% { opacity: 0.72; transform: translate3d(-18px, -12px, 0) scale(1.06); }
+    }
+
     .use-case {
       border-radius: 26px;
       padding: 20px;
@@ -1187,18 +1346,53 @@
     }
 
     .footer {
-      text-align: center;
-      padding: 36px 0 4px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      padding: 46px 0 4px;
       color: rgba(255,255,255,0.42);
       font-size: 11px;
       letter-spacing: 0.14em;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      border-top: 1px solid rgba(203,224,255,0.1);
     }
 
     .footer a {
       color: rgba(255,255,255,0.58);
       text-decoration: none;
       margin: 0 8px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .footer-brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      filter: drop-shadow(0 0 14px rgba(104,224,255,0.4));
+    }
+
+    .footer-wordmark {
+      color: rgba(255,255,255,0.92);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .footer-mission {
+      color: rgba(222,232,255,0.58);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      letter-spacing: 0;
+      margin-top: 6px;
     }
 
     .social-icons {
@@ -1268,6 +1462,44 @@
 
       .faq-grid {
         grid-template-columns: 1fr;
+      }
+
+      .flow-track {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-track::before {
+        top: 0;
+        bottom: 0;
+        left: 28px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(104,224,255,0.08), rgba(104,224,255,0.38), rgba(114,240,188,0.32), rgba(242,207,143,0.16));
+      }
+
+      .flow-track::after {
+        top: 0;
+        left: 24px;
+        animation-name: flowPulseVertical;
+      }
+
+      .flow-step {
+        padding-left: 72px;
+      }
+
+      .flow-dot {
+        position: absolute;
+        left: 12px;
+        top: 18px;
+      }
+
+      @keyframes flowPulseVertical {
+        0%, 100% { top: 0; opacity: 0; transform: scale(0.75); }
+        12% { opacity: 1; }
+        50% { opacity: 1; transform: scale(1); }
+        88% { opacity: 1; }
+        100% { top: calc(100% - 12px); opacity: 0; transform: scale(0.75); }
       }
     }
 
@@ -1365,6 +1597,16 @@
         overflow-x: visible;
       }
 
+      .footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-brand {
+        justify-content: center;
+        text-align: center;
+      }
+
       .row {
         align-items: flex-start;
         flex-direction: column;
@@ -1401,8 +1643,18 @@
       }
 
       body::after,
-      .edge-glow::after {
+      .edge-glow::after,
+      .hero-stack::before,
+      .flow-track::after,
+      .privacy-spotlight::before {
         animation: none !important;
+      }
+
+      body.reveal-ready .reveal,
+      body.reveal-ready .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -1417,7 +1669,7 @@
       <span>● early access opening soon &nbsp;&nbsp; ● real people · private by default &nbsp;&nbsp; ● private launch remains limited &nbsp;&nbsp;</span>
     </div>
 
-    <section class="hero">
+    <section class="hero reveal">
       <div class="hero-copy">
         <div class="logo-row">
           <div class="logo-wrap">
@@ -1558,7 +1810,7 @@
       </div>
     </section>
 
-    <section class="section" id="benefits">
+    <section class="section reveal" id="benefits">
       <div class="section-head">
         <div class="section-kicker">What Truvyo does</div>
         <h2 class="section-title">What can Truvyo do for me?</h2>
@@ -1566,7 +1818,7 @@
       </div>
 
       <div class="bento-grid">
-        <div class="benefit-card featured">
+        <div class="benefit-card featured reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-id-card"></i></div>
             <div class="benefit-title">Build a trusted digital identity</div>
@@ -1574,7 +1826,7 @@
           <p class="benefit-copy">Create a private profile that grows through verified experiences and honest context.</p>
         </div>
 
-        <div class="benefit-card medium">
+        <div class="benefit-card medium reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></div>
             <div class="benefit-title">Collect authentic reviews from real experiences</div>
@@ -1582,7 +1834,7 @@
           <p class="benefit-copy">Trust grows from interactions that happened, not from noise.</p>
         </div>
 
-        <div class="benefit-card medium">
+        <div class="benefit-card medium reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></div>
             <div class="benefit-title">Stay private until you are ready</div>
@@ -1590,7 +1842,7 @@
           <p class="benefit-copy">Control when your profile appears and who gets to see it.</p>
         </div>
 
-        <div class="benefit-card small">
+        <div class="benefit-card small reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-qrcode"></i></div>
             <div class="benefit-title">Share your reputation with a QR profile</div>
@@ -1598,7 +1850,7 @@
           <p class="benefit-copy">Make trust portable when you choose to share it.</p>
         </div>
 
-        <div class="benefit-card small">
+        <div class="benefit-card small reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
             <div class="benefit-title">Discover people with more confidence</div>
@@ -1606,7 +1858,7 @@
           <p class="benefit-copy">Look for signals with context, not just polish.</p>
         </div>
 
-        <div class="benefit-card small">
+        <div class="benefit-card small reveal-item">
           <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
             <div class="benefit-title">Reduce fake profiles, spam, and harmful reviews</div>
@@ -1621,14 +1873,14 @@
       </div>
     </section>
 
-    <section class="section product-story" id="product-preview">
+    <section class="section product-story reveal" id="product-preview">
       <div class="section-head">
         <div class="section-kicker">Product story</div>
         <h2 class="section-title">Your reputation, without the noise.</h2>
         <p class="section-copy">Truvyo turns verified identity, private controls, review signals, and QR sharing into one calm reputation layer.</p>
       </div>
 
-      <div class="story-preview" aria-label="Truvyo app interface concept">
+      <div class="story-preview reveal-item" aria-label="Truvyo app interface concept">
         <div class="story-window">
           <div class="profile-card">
             <div class="profile-head">
@@ -1672,8 +1924,44 @@
       </div>
     </section>
 
-    <section class="section" id="private-by-default">
-      <div class="privacy-spotlight">
+    <section class="section trust-flow reveal" id="trust-flow">
+      <div class="section-head center">
+        <div class="section-kicker">Trust flow</div>
+        <h2 class="section-title">From private profile to portable trust.</h2>
+        <p class="section-copy">A simple path from identity to reputation, designed to stay controlled at every step.</p>
+      </div>
+
+      <div class="flow-track" aria-label="Truvyo reputation flow">
+        <div class="flow-step reveal-item">
+          <div class="flow-dot">01</div>
+          <div class="flow-title">Private profile</div>
+          <p class="flow-copy">Start with identity that stays yours.</p>
+        </div>
+        <div class="flow-step reveal-item">
+          <div class="flow-dot">02</div>
+          <div class="flow-title">Identity verified</div>
+          <p class="flow-copy">Reduce fake activity before trust forms.</p>
+        </div>
+        <div class="flow-step reveal-item">
+          <div class="flow-dot">03</div>
+          <div class="flow-title">Trusted reviews</div>
+          <p class="flow-copy">Let real experiences add context.</p>
+        </div>
+        <div class="flow-step reveal-item">
+          <div class="flow-dot">04</div>
+          <div class="flow-title">AI reputation</div>
+          <p class="flow-copy">Moderation helps protect the signal.</p>
+        </div>
+        <div class="flow-step reveal-item">
+          <div class="flow-dot">05</div>
+          <div class="flow-title">QR profile</div>
+          <p class="flow-copy">Share credibility when it matters.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="private-by-default">
+      <div class="privacy-spotlight reveal-item">
         <div class="privacy-copy">
           <div class="section-kicker">Private by default</div>
           <h2 class="section-title">Your profile should not become public before you are ready.</h2>
@@ -1712,7 +2000,7 @@
       </div>
     </section>
 
-    <section class="section" id="use-cases">
+    <section class="section reveal" id="use-cases">
       <div class="section-head center">
         <div class="section-kicker">Where trust matters</div>
         <h2 class="section-title">Why people may need Truvyo</h2>
@@ -1720,31 +2008,31 @@
       </div>
 
       <div class="use-case-strip">
-        <div class="use-case">
+        <div class="use-case reveal-item">
           <div class="use-case-title">Before meeting someone new</div>
           <p class="use-case-copy">Look for verified context before stepping into a new interaction.</p>
         </div>
-        <div class="use-case">
+        <div class="use-case reveal-item">
           <div class="use-case-title">Before trusting a profile</div>
           <p class="use-case-copy">See whether real signals sit behind the digital presence.</p>
         </div>
-        <div class="use-case">
+        <div class="use-case reveal-item">
           <div class="use-case-title">Before collaborating or hiring</div>
           <p class="use-case-copy">Add one more layer of confidence before working together.</p>
         </div>
-        <div class="use-case">
+        <div class="use-case reveal-item">
           <div class="use-case-title">Before joining a community</div>
           <p class="use-case-copy">Help communities feel intentional, trusted, and accountable.</p>
         </div>
-        <div class="use-case">
+        <div class="use-case reveal-item">
           <div class="use-case-title">Beyond followers and likes</div>
           <p class="use-case-copy">Let credibility come from experience, not just attention.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="not-social">
-      <div class="social-panel">
+    <section class="section reveal" id="not-social">
+      <div class="social-panel reveal-item">
         <div>
         <div class="section-kicker">A quieter network</div>
         <h2 class="section-title">Not another social app.</h2>
@@ -1759,38 +2047,38 @@
       </div>
     </section>
 
-    <section class="section" id="faq">
+    <section class="section reveal" id="faq">
       <div class="section-head center">
         <div class="section-kicker">FAQ</div>
         <h2 class="section-title">Before you request access.</h2>
       </div>
 
       <div class="faq-grid">
-        <div class="faq-item">
+        <div class="faq-item reveal-item">
           <div class="faq-question">What is Truvyo?</div>
           <p class="faq-answer">Truvyo is a privacy-first reputation platform where people can build trusted profiles through verified experiences and authentic reviews.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal-item">
           <div class="faq-question">Is my profile public?</div>
           <p class="faq-answer">No. Profiles are private by default and become visible only based on user-controlled privacy and launch rules.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal-item">
           <div class="faq-question">Why is Truvyo invite-only?</div>
           <p class="faq-answer">Invite-only launch helps keep the early community trusted, controlled, and safe.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal-item">
           <div class="faq-question">Is Truvyo for India?</div>
           <p class="faq-answer">Yes, the initial launch is focused on India.</p>
         </div>
-        <div class="faq-item">
+        <div class="faq-item reveal-item">
           <div class="faq-question">Do I need verification?</div>
           <p class="faq-answer">Verification helps reduce fake profiles, spam, and harmful reviews.</p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="request-access">
-      <div class="closing-card">
+    <section class="section reveal" id="request-access">
+      <div class="closing-card reveal-item">
         <div class="section-kicker">Early access</div>
         <h2 class="section-title">A reputation layer for people who value privacy.</h2>
         <p class="section-copy">
@@ -1802,19 +2090,28 @@
       </div>
     </section>
 
-    <footer class="footer">
-      <a href="privacy.html">PRIVACY</a>
-      ·
-      <a href="terms.html">TERMS</a>
-      ·
-      <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
-
-      <div class="social-icons">
-        <a href="https://www.instagram.com/truvyoapp/" aria-label="Truvyo on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-        <a href="https://x.com/truvyo" aria-label="Truvyo on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+    <footer class="footer reveal">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Truvyo logo" />
+        <div>
+          <div class="footer-wordmark">Truvyo</div>
+          <div class="footer-mission">Privacy-first reputation for verified people.</div>
+          <div class="tagline">Built in India · Trust built by people.</div>
+        </div>
       </div>
 
-      <div class="tagline">© 2026 Truvyo · Trust built by people.</div>
+      <div>
+        <a href="privacy.html">PRIVACY</a>
+        ·
+        <a href="terms.html">TERMS</a>
+        ·
+        <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
+
+        <div class="social-icons">
+          <a href="https://www.instagram.com/truvyoapp/" aria-label="Truvyo on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://x.com/truvyo" aria-label="Truvyo on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+        </div>
+      </div>
     </footer>
   </main>
 
@@ -1828,6 +2125,35 @@
     const takenCountEl = document.getElementById("takenCount");
     const progressBar = document.getElementById("progressBar");
     const spotText = document.getElementById("spotText");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
+    if (!prefersReducedMotion && "IntersectionObserver" in window) {
+      document.body.classList.add("reveal-ready");
+
+      const revealTargets = document.querySelectorAll(".reveal, .reveal-item");
+      revealTargets.forEach(function(el, index) {
+        if (el.classList.contains("reveal-item")) {
+          el.style.setProperty("--reveal-delay", Math.min(index * 90, 420) + "ms");
+        }
+      });
+
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: "0px 0px -8% 0px"
+      });
+
+      revealTargets.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+    }
 
     function formatCount(count) {
       const num = Number(count);
@@ -1861,12 +2187,23 @@
 
     loadCount();
 
-    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
-
     if (!isTouchDevice) {
+      const heroStack = document.querySelector(".hero-stack");
+
       document.addEventListener("mousemove", function(e) {
         document.documentElement.style.setProperty("--mouse-x", e.clientX + "px");
         document.documentElement.style.setProperty("--mouse-y", e.clientY + "px");
+
+        if (!prefersReducedMotion && heroStack) {
+          const rect = heroStack.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const tiltY = Math.max(Math.min((e.clientX - centerX) / rect.width * 5, 3), -3);
+          const tiltX = Math.max(Math.min((centerY - e.clientY) / rect.height * 5, 3), -3);
+
+          heroStack.style.setProperty("--tilt-x", tiltX.toFixed(2) + "deg");
+          heroStack.style.setProperty("--tilt-y", tiltY.toFixed(2) + "deg");
+        }
       });
     }
 
