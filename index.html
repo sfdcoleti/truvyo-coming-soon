@@ -5,8 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
 
   <title>Truvyo — Trust Built by People</title>
-  <meta name="description" content="Search before you trust." />
+  <meta name="description" content="Truvyo is a privacy-first reputation platform for verified people, authentic reviews, and trusted digital profiles. Built for India." />
   <meta name="theme-color" content="#08040f" />
+  <link rel="canonical" href="https://www.truvyo.app/" />
+  <meta property="og:title" content="Truvyo — Trust Built by People" />
+  <meta property="og:description" content="Truvyo is a privacy-first reputation platform for verified people, authentic reviews, and trusted digital profiles. Built for India." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.truvyo.app/" />
+  <meta property="og:image" content="https://www.truvyo.app/logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Truvyo — Trust Built by People" />
+  <meta name="twitter:description" content="Truvyo is a privacy-first reputation platform for verified people, authentic reviews, and trusted digital profiles. Built for India." />
+  <meta name="twitter:image" content="https://www.truvyo.app/logo.png" />
 
   <link rel="icon" href="/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -44,9 +54,7 @@
 
     body {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       padding: 22px;
       background:
         radial-gradient(circle at 50% 10%, rgba(168, 85, 255, 0.35), transparent 30%),
@@ -138,6 +146,7 @@
       width: 100%;
       max-width: 430px;
       min-height: 92vh;
+      margin: 0 auto;
       border-radius: 32px;
       padding: 28px 20px 22px;
       position: relative;
@@ -151,7 +160,6 @@
         0 30px 90px rgba(0, 0, 0, 0.65);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       z-index: 5;
     }
 
@@ -260,7 +268,7 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.6;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .sub em {
@@ -268,6 +276,76 @@
       color: rgba(255,255,255,0.86);
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
+      margin-bottom: 6px;
+    }
+    .meant-line {
+      display: block;
+      color: rgba(255,255,255,0.9);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 18px;
+      margin: -4px 0 12px;
+    }
+
+    .product-line {
+      color: rgba(255,255,255,0.82);
+      font-size: 13px;
+      line-height: 1.6;
+      margin: 0 auto 18px;
+      max-width: 340px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 18px 0 2px;
+      flex-wrap: wrap;
+    }
+
+    .action-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 0 16px;
+      color: rgba(255,255,255,0.78);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.055);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .action-link.primary {
+      color: #171020;
+      border-color: transparent;
+      background: linear-gradient(135deg, #fff7ff, #cbefff);
+      box-shadow:
+        0 10px 28px rgba(139,239,255,0.18),
+        0 0 24px rgba(255,255,255,0.12);
+    }
+
+    .action-link:hover {
+      color: white;
+      border-color: rgba(139,239,255,0.35);
+      transform: translateY(-1px);
+    }
+
+    .action-link:focus-visible,
+    button:focus-visible,
+    input[type="email"]:focus-visible,
+    .footer a:focus-visible,
+    .social-icons a:focus-visible {
+      outline: 2px solid rgba(139,239,255,0.95);
+      outline-offset: 3px;
+    }
+
+    .action-link.primary:hover {
+      color: #171020;
     }
 
     .watching {
@@ -281,6 +359,13 @@
       border-radius: 999px;
       background: rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .hero-note {
+      margin-top: 12px;
+      color: rgba(255,255,255,0.5);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .card {
@@ -399,6 +484,18 @@
       min-width: 0;
     }
 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     input::placeholder {
       color: rgba(255,255,255,0.36);
     }
@@ -481,6 +578,233 @@
       }
     }
 
+    .content-section {
+      margin-top: 42px;
+      text-align: left;
+    }
+
+    .content-section.soft-panel {
+      border-radius: 26px;
+      padding: 22px 18px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)),
+        radial-gradient(circle at 10% 0%, rgba(139,239,255,0.08), transparent 45%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 22px 48px rgba(0,0,0,0.16);
+    }
+
+    .section-kicker {
+      color: rgba(139,239,255,0.78);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: 29px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-copy {
+      color: rgba(255,255,255,0.66);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .steps,
+    .feature-grid,
+    .benefit-grid,
+    .use-case-list,
+    .trust-points,
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .step,
+    .benefit-card,
+    .use-case,
+    .trust-point,
+    .feature-card,
+    .faq-item,
+    .privacy-panel {
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.032));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #171020;
+      background: linear-gradient(135deg, #fff7ff, #8befff);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .step-title,
+    .benefit-title,
+    .feature-title,
+    .use-case-title,
+    .trust-point-title,
+    .faq-question {
+      color: rgba(255,255,255,0.92);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .why-copy {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .why-copy p {
+      color: rgba(255,255,255,0.66);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .why-copy strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+    }
+
+    .privacy-panel {
+      padding: 18px;
+      margin-top: 14px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(139,239,255,0.12), transparent 40%),
+        linear-gradient(135deg, rgba(139,239,255,0.08), rgba(168,85,255,0.09)),
+        rgba(255,255,255,0.04);
+    }
+
+    .benefit-card,
+    .feature-card {
+      padding: 15px;
+    }
+
+    .benefit-card {
+      min-height: 118px;
+    }
+
+    .benefit-icon,
+    .feature-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      background: rgba(139,239,255,0.08);
+      margin-bottom: 10px;
+      text-shadow: 0 0 12px rgba(139,239,255,0.65);
+    }
+
+    .benefit-copy,
+    .feature-copy,
+    .use-case-copy,
+    .faq-answer {
+      color: rgba(255,255,255,0.58);
+      font-size: 13px;
+      line-height: 1.55;
+      margin-top: 6px;
+    }
+
+    .trust-points {
+      grid-template-columns: 1fr;
+    }
+
+    .trust-point,
+    .use-case {
+      padding: 14px;
+    }
+
+    .trust-point {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .trust-point i {
+      color: var(--cyan);
+      text-shadow: 0 0 12px rgba(139,239,255,0.65);
+    }
+
+    .social-contrast {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .social-contrast p {
+      color: rgba(255,255,255,0.62);
+      font-size: 14px;
+      line-height: 1.55;
+      padding-left: 14px;
+      border-left: 1px solid rgba(139,239,255,0.32);
+    }
+
+    .closing-card {
+      text-align: center;
+      padding: 24px 18px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,79,216,0.13), transparent 42%),
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 18px 44px rgba(0,0,0,0.18);
+    }
+
+    .closing-card .section-title,
+    .closing-card .section-copy {
+      text-align: center;
+    }
+
+    .section-cta {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .section-cta .action-link {
+      width: 100%;
+      max-width: 240px;
+    }
+
+    .faq-item {
+      padding: 15px;
+    }
+
     .footer {
       text-align: center;
       margin-top: 28px;
@@ -546,6 +870,33 @@
         padding: 18px;
       }
 
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .action-link {
+        width: 100%;
+      }
+
+      .content-section {
+        margin-top: 36px;
+      }
+
+      .content-section.soft-panel {
+        padding: 20px 15px;
+      }
+
+      .section-title {
+        font-size: 27px;
+      }
+
+      .benefit-card,
+      .feature-card,
+      .faq-item,
+      .privacy-panel {
+        border-radius: 20px;
+      }
+
       form {
         flex-direction: column;
       }
@@ -579,12 +930,12 @@
 </head>
 
 <body>
-  <div class="stars"></div>
-  <div class="edge-glow"></div>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="edge-glow" aria-hidden="true"></div>
 
   <main class="page">
     <div class="ticker">
-      <span>● early access opening soon &nbsp;&nbsp; ● real people · private by default &nbsp;&nbsp; ● access closes when full &nbsp;&nbsp;</span>
+      <span>● early access opening soon &nbsp;&nbsp; ● real people · private by default &nbsp;&nbsp; ● private launch remains limited &nbsp;&nbsp;</span>
     </div>
 
     <section class="hero">
@@ -593,7 +944,7 @@
       </div>
 
       <div class="badge">
-        <span class="dot"></span>
+        <span class="dot" aria-hidden="true"></span>
         EARLY · BY INVITATION
       </div>
 
@@ -602,21 +953,33 @@
         <span>supposed to find this.</span>
       </h1>
 
+      <span class="meant-line">But maybe you were meant to.</span>
+
       <p class="sub">
-        <em>But here you are.</em>
-        The rest unlocks soon.
+        Truvyo helps real people build trust, protect their reputation, and stay private until they choose to be seen.
       </p>
 
+      <p class="product-line">
+        Truvyo is a privacy-first reputation platform where real people build trusted profiles through verified experiences.
+      </p>
+
+      <div class="hero-actions">
+        <a class="action-link primary" href="#waitlistForm">Request Invite</a>
+        <a class="action-link" href="#benefits">See What Truvyo Does</a>
+      </div>
+
+      <p class="hero-note">Built for trust, privacy, and reputation. Not public exposure.</p>
+
       <div class="watching">
-        <span class="dot"></span>
-        <span id="watchers">7</span> others viewing right now
+        <span class="dot" aria-hidden="true"></span>
+        <span id="watchers">7</span> people exploring early access
       </div>
 
       <div class="card">
         <div class="row">
           <div class="live">
-            <span class="live-dot"></span>
-            <span><span id="joined">11</span> JOINED IN THE LAST HOUR</span>
+            <span class="live-dot" aria-hidden="true"></span>
+            <span><span id="joined">11</span> REQUESTS IN THE LAST HOUR</span>
           </div>
           <div><span class="count" id="takenCount">...</span>/100</div>
         </div>
@@ -631,17 +994,226 @@
 
         <form id="waitlistForm">
           <input type="text" name="website" style="display:none" autocomplete="off" tabindex="-1" />
-          <input id="email" name="email" type="email" placeholder="you@somewhere.in" required />
+          <label class="sr-only" for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@somewhere.in" autocomplete="email" inputmode="email" aria-describedby="spotText formMessage" required />
           <button type="submit" id="submitBtn">Request Invite →</button>
         </form>
 
         <div class="trust">
-          <span class="shield">♡</span>
+          <span class="shield" aria-hidden="true">♡</span>
           <span>Real people. Private by default.</span>
         </div>
 
-        <div id="formMessage" class="status"></div>
+        <div id="formMessage" class="status" role="status" aria-live="polite"></div>
       </div>
+
+      <section class="content-section soft-panel" id="benefits">
+        <div class="section-kicker">What Truvyo does</div>
+        <h2 class="section-title">What can Truvyo do for me?</h2>
+        <p class="section-copy">
+          Truvyo gives your digital identity a quieter kind of credibility: useful when trust matters, private when it does not need to be public.
+        </p>
+
+        <div class="benefit-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-id-card"></i></div>
+            <div class="benefit-title">Build a trusted digital identity</div>
+            <p class="benefit-copy">Create a profile that shows who you are through real, verified experiences.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></div>
+            <div class="benefit-title">Collect authentic reviews from real experiences</div>
+            <p class="benefit-copy">Let trust grow from people who have actually interacted with you.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></div>
+            <div class="benefit-title">Stay private until you are ready</div>
+            <p class="benefit-copy">Keep your profile controlled while you decide when and where it should appear.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="benefit-title">Share your reputation with a QR profile</div>
+            <p class="benefit-copy">Offer a simple way for the right people to see your credibility when you choose.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="benefit-title">Discover people with more confidence</div>
+            <p class="benefit-copy">Look for signals that feel grounded in context, not noise or popularity.</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="benefit-title">Reduce fake profiles, spam, and harmful reviews</div>
+            <p class="benefit-copy">Verification and moderation help keep reputation safer and more useful.</p>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <a class="action-link primary" href="#waitlistForm">Request Invite</a>
+        </div>
+      </section>
+
+      <section class="content-section soft-panel" id="private-by-default">
+        <div class="section-kicker">Private by default</div>
+        <h2 class="section-title">Your reputation should not feel risky.</h2>
+        <div class="privacy-panel">
+          <p class="section-copy">
+            Truvyo is private by default. Your profile is not exposed publicly without control. The goal is to help people build trust safely, not force them into unwanted attention.
+          </p>
+        </div>
+
+        <div class="trust-points">
+          <div class="trust-point">
+            <i class="fa-solid fa-toggle-on" aria-hidden="true"></i>
+            <div class="trust-point-title">You control visibility</div>
+          </div>
+          <div class="trust-point">
+            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+            <div class="trust-point-title">Verification reduces fake activity</div>
+          </div>
+          <div class="trust-point">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <div class="trust-point-title">Moderation protects the community</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="how-it-works">
+        <div class="section-kicker">How Truvyo works</div>
+        <h2 class="section-title">Trust, earned quietly.</h2>
+        <p class="section-copy">
+          Start private, verify yourself, and build reputation from experiences that carry real context.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <div class="step-title">Create your private profile</div>
+          </div>
+          <div class="step">
+            <div class="step-number">02</div>
+            <div class="step-title">Verify your identity</div>
+          </div>
+          <div class="step">
+            <div class="step-number">03</div>
+            <div class="step-title">Build reputation through trusted reviews</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="use-cases">
+        <div class="section-kicker">Where trust matters</div>
+        <h2 class="section-title">Why people may need Truvyo</h2>
+        <p class="section-copy">
+          Some moments deserve more than a username, a follower count, or a polished bio.
+        </p>
+
+        <div class="use-case-list">
+          <div class="use-case">
+            <div class="use-case-title">Before meeting someone new</div>
+            <p class="use-case-copy">Look for verified context before stepping into a new interaction.</p>
+          </div>
+          <div class="use-case">
+            <div class="use-case-title">Before trusting a profile</div>
+            <p class="use-case-copy">Understand whether a person has real signals behind their digital presence.</p>
+          </div>
+          <div class="use-case">
+            <div class="use-case-title">Before collaborating or hiring</div>
+            <p class="use-case-copy">Use reputation as one more layer of confidence before starting work together.</p>
+          </div>
+          <div class="use-case">
+            <div class="use-case-title">Before joining a community</div>
+            <p class="use-case-copy">Help communities feel more intentional, trusted, and accountable.</p>
+          </div>
+          <div class="use-case">
+            <div class="use-case-title">To build reputation beyond followers and likes</div>
+            <p class="use-case-copy">Let credibility come from experience, not just attention.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section soft-panel" id="not-social">
+        <div class="section-kicker">A quieter network</div>
+        <h2 class="section-title">Not another social app.</h2>
+        <p class="section-copy">
+          Truvyo is not about becoming famous. It is about becoming trusted.
+        </p>
+        <div class="social-contrast">
+          <p>Followers can be fake.</p>
+          <p>Comments can be toxic.</p>
+          <p>Profiles can be misleading.</p>
+          <p>Trust needs context.</p>
+        </div>
+      </section>
+
+      <section class="content-section" id="trust">
+        <div class="section-kicker">Safety signals</div>
+        <h2 class="section-title">Built for guarded credibility.</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-user-check"></i></div>
+            <div class="feature-title">Verified profiles</div>
+            <p class="feature-copy">Identity verification helps reduce fake accounts and reputation abuse.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <div class="feature-title">AI-assisted moderation</div>
+            <p class="feature-copy">Reviews can be screened for spam, harmful behavior, and low-trust patterns.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-title">Private-by-default reputation</div>
+            <p class="feature-copy">Profiles stay controlled by the person behind them from the start.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-lock"></i></div>
+            <div class="feature-title">Invite-only launch</div>
+            <p class="feature-copy">Early access stays deliberately limited while the first community forms.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="feature-title">Built for India</div>
+            <p class="feature-copy">The first launch focuses on India and the trust problems people face here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section" id="faq">
+        <div class="section-kicker">FAQ</div>
+        <h2 class="section-title">Before you request access.</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">What is Truvyo?</div>
+            <p class="faq-answer">Truvyo is a privacy-first reputation platform where people can build trusted profiles through verified experiences and authentic reviews.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Is my profile public?</div>
+            <p class="faq-answer">No. Profiles are private by default and become visible only based on user-controlled privacy and launch rules.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Why is Truvyo invite-only?</div>
+            <p class="faq-answer">Invite-only launch helps keep the early community trusted, controlled, and safe.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Is Truvyo for India?</div>
+            <p class="faq-answer">Yes, the initial launch is focused on India.</p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Do I need verification?</div>
+            <p class="faq-answer">Verification helps reduce fake profiles, spam, and harmful reviews.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section closing-card" id="request-access">
+        <div class="section-kicker">Early access</div>
+        <h2 class="section-title">A reputation layer for people who value privacy.</h2>
+        <p class="section-copy">
+          Request an invite to join the first private launch of Truvyo in India.
+        </p>
+        <div class="section-cta">
+          <a class="action-link primary" href="#waitlistForm">Request Invite</a>
+        </div>
+      </section>
     </section>
 
     <footer class="footer">
@@ -652,9 +1224,8 @@
       <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
 
       <div class="social-icons">
-        <a href="https://www.instagram.com/truvyoapp/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/truvyo" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/truvyoapp/" aria-label="Truvyo on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://x.com/truvyo" aria-label="Truvyo on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
       </div>
 
       <div class="tagline">© 2026 Truvyo · Trust built by people.</div>
@@ -686,7 +1257,7 @@
 
       takenCountEl.textContent = formatCount(safeCount);
       progressBar.style.width = safeCount + "%";
-      spotText.textContent = remaining + " invitations remaining · closes when full";
+      spotText.textContent = remaining + " invitations remaining · private launch remains limited";
     }
 
     async function loadCount() {
