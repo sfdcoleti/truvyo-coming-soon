@@ -23,11 +23,14 @@
 
   <style>
     :root {
-      --bg: #06050b;
-      --card: rgba(28, 18, 42, 0.72);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --text: #f6f1ff;
-      --muted: rgba(246, 241, 255, 0.62);
+      --bg: #05030a;
+      --panel: rgba(18, 14, 29, 0.72);
+      --panel-strong: rgba(28, 21, 43, 0.86);
+      --line: rgba(255, 255, 255, 0.13);
+      --line-strong: rgba(255, 255, 255, 0.2);
+      --text: #f7f2ff;
+      --muted: rgba(247, 242, 255, 0.66);
+      --soft: rgba(247, 242, 255, 0.46);
       --pink: #ff4fd8;
       --violet: #a855ff;
       --cyan: #8befff;
@@ -50,17 +53,30 @@
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
       min-height: 100vh;
-      display: block;
-      padding: 22px;
       background:
-        radial-gradient(circle at 50% 10%, rgba(168, 85, 255, 0.35), transparent 30%),
-        radial-gradient(circle at 10% 80%, rgba(255, 79, 216, 0.18), transparent 28%),
-        radial-gradient(circle at 90% 70%, rgba(139, 239, 255, 0.14), transparent 26%),
-        #05030a;
+        radial-gradient(circle at 20% 8%, rgba(168, 85, 255, 0.32), transparent 28%),
+        radial-gradient(circle at 78% 18%, rgba(139, 239, 255, 0.18), transparent 22%),
+        radial-gradient(circle at 50% 72%, rgba(255, 79, 216, 0.13), transparent 30%),
+        linear-gradient(180deg, #08040f 0%, #05030a 42%, #030207 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.82), transparent 78%);
+      opacity: 0.42;
+      z-index: 0;
     }
 
     .stars {
@@ -68,57 +84,42 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.55) 1px, transparent 1px),
-        radial-gradient(circle, rgba(139,239,255,0.45) 1px, transparent 1px);
-      background-size: 120px 120px, 190px 190px;
-      background-position: 0 0, 60px 40px;
-      opacity: 0.28;
-      animation: drift 24s linear infinite;
+        radial-gradient(circle, rgba(255,255,255,0.52) 1px, transparent 1px),
+        radial-gradient(circle, rgba(139,239,255,0.38) 1px, transparent 1px);
+      background-size: 150px 150px, 230px 230px;
+      background-position: 0 0, 70px 48px;
+      opacity: 0.2;
+      animation: drift 34s linear infinite;
+      z-index: 0;
     }
 
     @keyframes drift {
       from { transform: translateY(0); }
-      to { transform: translateY(-120px); }
+      to { transform: translateY(-150px); }
     }
 
     .edge-glow {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 20;
-      border: 2px solid transparent;
+      z-index: 4;
       box-shadow:
-        inset 0 0 22px rgba(168, 85, 255, 0.65),
-        inset 0 0 55px rgba(255, 79, 216, 0.18);
-    }
-
-    .edge-glow::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255, 79, 216, 0.28), rgba(139, 239, 255, 0.24), transparent);
-      filter: blur(28px);
-      animation: flow 8s linear infinite;
+        inset 0 0 32px rgba(168, 85, 255, 0.4),
+        inset 0 0 84px rgba(255, 79, 216, 0.12);
     }
 
     .edge-glow::after {
       content: "";
       position: absolute;
-      width: 260px;
-      height: 260px;
+      width: 340px;
+      height: 340px;
       left: var(--mouse-x);
       top: var(--mouse-y);
       transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(143,239,255,0.26), transparent 65%);
-      filter: blur(22px);
-      opacity: 0.75;
+      background: radial-gradient(circle, rgba(139,239,255,0.18), transparent 68%);
+      filter: blur(24px);
+      opacity: 0.68;
       transition: left 0.08s ease, top 0.08s ease;
-    }
-
-    @keyframes flow {
-      0% { transform: translateX(-30%) translateY(-20%); }
-      50% { transform: translateX(30%) translateY(20%); }
-      100% { transform: translateX(-30%) translateY(-20%); }
     }
 
     .tap-pulse {
@@ -131,9 +132,9 @@
       transform: translate(-50%, -50%);
       background: rgba(143,239,255,0.7);
       box-shadow:
-        0 0 30px rgba(143,239,255,0.9),
-        0 0 70px rgba(139,92,255,0.7),
-        0 0 110px rgba(255,79,216,0.45);
+        0 0 30px rgba(143,239,255,0.8),
+        0 0 70px rgba(139,92,255,0.52),
+        0 0 110px rgba(255,79,216,0.32);
       animation: tapPulse 0.75s ease-out forwards;
     }
 
@@ -143,43 +144,34 @@
     }
 
     .page {
-      width: 100%;
-      max-width: 430px;
-      min-height: 92vh;
+      width: min(100%, 1180px);
       margin: 0 auto;
-      border-radius: 32px;
-      padding: 28px 20px 22px;
+      padding: 28px 24px 36px;
       position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(20, 14, 37, 0.88), rgba(10, 4, 16, 0.95)),
-        radial-gradient(circle at 50% 18%, rgba(168, 85, 255, 0.38), transparent 36%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow:
-        0 0 0 1px rgba(168, 85, 255, 0.22),
-        0 30px 90px rgba(0, 0, 0, 0.65);
-      display: flex;
-      flex-direction: column;
-      z-index: 5;
+      z-index: 2;
     }
 
     .ticker {
-      position: absolute;
-      top: 10px;
-      left: 0;
-      width: 100%;
+      width: min(100%, 720px);
+      margin: 0 auto 34px;
       overflow: hidden;
       white-space: nowrap;
-      color: rgba(255, 255, 255, 0.42);
+      color: rgba(255,255,255,0.48);
       font-size: 11px;
       letter-spacing: 0.18em;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.035);
+      padding: 9px 0;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
     .ticker span {
       display: inline-block;
       padding-left: 100%;
-      animation: ticker 18s linear infinite;
+      animation: ticker 22s linear infinite;
     }
 
     @keyframes ticker {
@@ -188,151 +180,193 @@
     }
 
     .hero {
-      text-align: center;
-      padding-top: 54px;
+      min-height: calc(100vh - 98px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+      gap: 54px;
+      align-items: center;
+      position: relative;
+      padding: 28px 0 88px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -120px;
+      top: 4%;
+      background:
+        radial-gradient(circle, rgba(139,239,255,0.18), transparent 58%),
+        radial-gradient(circle at 34% 62%, rgba(255,79,216,0.18), transparent 42%);
+      filter: blur(24px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
     }
 
     .logo-wrap {
-      width: 62px;
-      height: 62px;
-      margin: 0 auto 38px;
-      border-radius: 19px;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
       background: rgba(255,255,255,0.06);
       display: grid;
       place-items: center;
       box-shadow:
-        0 0 28px rgba(168, 85, 255, 0.85),
-        0 0 52px rgba(255, 79, 216, 0.28);
-      animation: floatLogo 4s ease-in-out infinite;
+        0 0 26px rgba(168, 85, 255, 0.78),
+        0 0 48px rgba(255, 79, 216, 0.24);
+      animation: floatLogo 4.5s ease-in-out infinite;
     }
 
     .logo-wrap img {
-      width: 46px;
-      height: 46px;
+      width: 43px;
+      height: 43px;
       object-fit: contain;
-      filter: drop-shadow(0 0 14px rgba(139,239,255,0.8));
+      filter: drop-shadow(0 0 14px rgba(139,239,255,0.72));
     }
 
     @keyframes floatLogo {
-      0%, 100% { transform: translateY(0) rotate(-6deg); }
-      50% { transform: translateY(-8px) rotate(3deg); }
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-7px) rotate(3deg); }
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 8px 16px;
+      padding: 9px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.045);
-      color: rgba(255,255,255,0.68);
+      border: 1px solid rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.72);
       font-size: 11px;
-      letter-spacing: 0.24em;
+      letter-spacing: 0.2em;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      margin-bottom: 26px;
     }
 
-    .dot {
+    .dot,
+    .live-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--cyan);
       box-shadow: 0 0 14px var(--cyan);
       animation: pulse 1.8s infinite;
+      flex: 0 0 auto;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--pink);
+      box-shadow: 0 0 15px var(--pink);
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 0.55; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.35); }
+      50% { opacity: 1; transform: scale(1.32); }
     }
 
     h1 {
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
       font-weight: 500;
-      font-size: clamp(42px, 12vw, 64px);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-      margin-bottom: 16px;
+      font-size: clamp(58px, 8vw, 118px);
+      line-height: 0.91;
+      letter-spacing: -0.06em;
+      max-width: 740px;
+      margin-bottom: 20px;
     }
 
     h1 span {
       display: block;
-      background: linear-gradient(90deg, #ffffff, #b986ff, #ff4fd8);
+      background: linear-gradient(95deg, #ffffff 0%, #d7c0ff 38%, #ff64df 78%);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .sub {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    .sub em {
-      display: block;
-      color: rgba(255,255,255,0.86);
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      margin-bottom: 6px;
-    }
     .meant-line {
       display: block;
       color: rgba(255,255,255,0.9);
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
-      font-size: 18px;
-      margin: -4px 0 12px;
+      font-size: clamp(22px, 2.4vw, 34px);
+      margin-bottom: 18px;
     }
 
-    .product-line {
-      color: rgba(255,255,255,0.82);
-      font-size: 13px;
+    .sub {
+      color: rgba(247,242,255,0.74);
+      font-size: clamp(17px, 1.5vw, 21px);
+      line-height: 1.55;
+      max-width: 620px;
+      margin-bottom: 16px;
+    }
+
+    .product-line,
+    .hero-note {
+      color: var(--soft);
+      font-size: 14px;
       line-height: 1.6;
-      margin: 0 auto 18px;
-      max-width: 340px;
+      max-width: 560px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin: 18px 0 2px;
+      gap: 12px;
       flex-wrap: wrap;
+      margin: 30px 0 14px;
     }
 
-    .action-link {
-      min-height: 44px;
+    .action-link,
+    button {
+      min-height: 52px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       border-radius: 999px;
-      padding: 0 16px;
-      color: rgba(255,255,255,0.78);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.055);
+      padding: 0 22px;
+      color: rgba(255,255,255,0.82);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
       text-decoration: none;
-      font-size: 12px;
-      font-weight: 700;
-      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
     }
 
-    .action-link.primary {
+    .action-link.primary,
+    button {
       color: #171020;
       border-color: transparent;
-      background: linear-gradient(135deg, #fff7ff, #cbefff);
+      background: linear-gradient(135deg, #fff9ff, #d6f6ff);
       box-shadow:
-        0 10px 28px rgba(139,239,255,0.18),
-        0 0 24px rgba(255,255,255,0.12);
+        0 18px 42px rgba(139,239,255,0.2),
+        0 0 28px rgba(255,255,255,0.13);
     }
 
-    .action-link:hover {
+    .action-link:hover,
+    button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(139,239,255,0.38);
       color: white;
-      border-color: rgba(139,239,255,0.35);
-      transform: translateY(-1px);
+    }
+
+    .action-link.primary:hover,
+    button:hover {
+      color: #171020;
     }
 
     .action-link:focus-visible,
@@ -341,11 +375,7 @@
     .footer a:focus-visible,
     .social-icons a:focus-visible {
       outline: 2px solid rgba(139,239,255,0.95);
-      outline-offset: 3px;
-    }
-
-    .action-link.primary:hover {
-      color: #171020;
+      outline-offset: 4px;
     }
 
     .watching {
@@ -361,49 +391,215 @@
       border: 1px solid rgba(255,255,255,0.09);
     }
 
-    .hero-note {
-      margin-top: 12px;
-      color: rgba(255,255,255,0.5);
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .card {
-      margin: 44px auto 0;
-      width: 100%;
-      border-radius: 26px;
-      padding: 20px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 0 40px rgba(168, 85, 255, 0.23);
+    .hero-stack {
+      display: grid;
+      gap: 18px;
       position: relative;
     }
 
-    .card::before,
-    .card::after {
+    .hero-stack::before {
       content: "";
       position: absolute;
-      width: 18px;
-      height: 18px;
-      border-color: rgba(139,239,255,0.26);
+      inset: -40px -34px;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 54% 16%, rgba(139,239,255,0.16), transparent 34%),
+        radial-gradient(circle at 24% 86%, rgba(255,79,216,0.18), transparent 38%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: -1;
     }
 
-    .card::before {
-      top: 10px;
-      left: 10px;
-      border-top: 1px solid;
-      border-left: 1px solid;
+    .mockup-shell,
+    .card,
+    .glass-panel,
+    .benefit-card,
+    .faq-item,
+    .use-case,
+    .privacy-control {
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.088), rgba(255,255,255,0.034)),
+        rgba(10, 8, 18, 0.58);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 24px 70px rgba(0,0,0,0.24);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
     }
 
-    .card::after {
-      bottom: 10px;
-      right: 10px;
-      border-bottom: 1px solid;
-      border-right: 1px solid;
+    .mockup-shell {
+      border-radius: 34px;
+      padding: 18px;
+      transform: rotate(1.6deg);
+    }
+
+    .mockup-inner {
+      border-radius: 27px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(139,239,255,0.16), transparent 36%),
+        linear-gradient(180deg, rgba(18,15,29,0.98), rgba(7,5,13,0.96));
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 520px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mockup-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: rgba(255,255,255,0.58);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .profile-card {
+      border-radius: 24px;
+      padding: 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.11);
+    }
+
+    .profile-head {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 18px;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      color: #171020;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff7ff, #8befff);
+      box-shadow: 0 0 28px rgba(139,239,255,0.18);
+    }
+
+    .profile-title {
+      color: rgba(255,255,255,0.94);
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .profile-sub {
+      color: rgba(255,255,255,0.54);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .verified-pill,
+    .privacy-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.055);
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .signal-tile {
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .signal-label {
+      color: rgba(255,255,255,0.52);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .signal-value {
+      color: rgba(255,255,255,0.9);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .review-card,
+    .qr-card {
+      border-radius: 22px;
+      padding: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .review-card {
+      display: grid;
+      gap: 9px;
+    }
+
+    .review-line {
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.38), rgba(255,255,255,0.08));
+    }
+
+    .review-line.short {
+      width: 68%;
+    }
+
+    .qr-card {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .qr-grid {
+      width: 78px;
+      height: 78px;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, #f7f2ff 10px, transparent 10px) 0 0 / 22px 22px,
+        linear-gradient(#f7f2ff 10px, transparent 10px) 0 0 / 22px 22px,
+        rgba(255,255,255,0.12);
+      border: 8px solid rgba(255,255,255,0.88);
+      box-shadow: 0 0 22px rgba(139,239,255,0.12);
+    }
+
+    .toggle {
+      width: 44px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(139,239,255,0.22);
+      border: 1px solid rgba(139,239,255,0.38);
+      padding: 3px;
+      display: inline-flex;
+      justify-content: flex-end;
+    }
+
+    .toggle span {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #eaffff;
+      box-shadow: 0 0 15px rgba(139,239,255,0.8);
+    }
+
+    .card {
+      border-radius: 28px;
+      padding: 20px;
     }
 
     .row {
@@ -414,7 +610,7 @@
       margin-bottom: 12px;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       color: rgba(255,255,255,0.62);
     }
 
@@ -424,24 +620,15 @@
       gap: 8px;
     }
 
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ff4fd8;
-      box-shadow: 0 0 15px #ff4fd8;
-      animation: pulse 1.5s infinite;
-    }
-
     .count {
       font-size: 18px;
       letter-spacing: 0;
       color: #ff73e6;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .progress {
-      height: 5px;
+      height: 6px;
       border-radius: 999px;
       background: rgba(255,255,255,0.1);
       overflow: hidden;
@@ -458,7 +645,7 @@
     }
 
     .small-copy {
-      color: rgba(255,255,255,0.54);
+      color: rgba(255,255,255,0.58);
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 11px;
       line-height: 1.55;
@@ -474,51 +661,28 @@
     input[type="email"] {
       flex: 1;
       height: 56px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.07);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.075);
       color: white;
-      padding: 0 15px;
+      padding: 0 16px;
       font-size: 15px;
       outline: none;
       min-width: 0;
     }
 
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
     input::placeholder {
-      color: rgba(255,255,255,0.36);
+      color: rgba(255,255,255,0.38);
     }
 
     button {
       height: 56px;
+      border-radius: 18px;
       border: none;
-      border-radius: 16px;
-      padding: 0 18px;
-      background: linear-gradient(135deg, #fff7ff, #cbefff);
-      color: #171020;
-      font-weight: 800;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow:
-        0 14px 34px rgba(139,239,255,0.16),
-        0 0 25px rgba(255,255,255,0.16);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-      white-space: nowrap;
     }
 
     button:active {
-      transform: scale(0.97);
+      transform: scale(0.98);
     }
 
     button:disabled {
@@ -527,12 +691,12 @@
     }
 
     .trust {
-      margin-top: 18px;
+      margin-top: 16px;
       display: flex;
       align-items: center;
       gap: 9px;
       justify-content: center;
-      color: rgba(255,255,255,0.62);
+      color: rgba(255,255,255,0.64);
       font-size: 12px;
       line-height: 1.45;
     }
@@ -566,33 +730,36 @@
     }
 
     @keyframes revealSecret {
-      0% {
-        opacity: 0;
-        transform: scale(0.96) translateY(8px);
-        filter: blur(4px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        filter: blur(0);
-      }
+      0% { opacity: 0; transform: scale(0.96) translateY(8px); filter: blur(4px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
     }
 
-    .content-section {
-      margin-top: 42px;
-      text-align: left;
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .content-section.soft-panel {
-      border-radius: 26px;
-      padding: 22px 18px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)),
-        radial-gradient(circle at 10% 0%, rgba(139,239,255,0.08), transparent 45%);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 22px 48px rgba(0,0,0,0.16);
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
 
     .section-kicker {
@@ -601,213 +768,291 @@
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .section-title {
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
       font-weight: 500;
-      font-size: 29px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      font-size: clamp(38px, 5vw, 70px);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+      margin-bottom: 16px;
     }
 
     .section-copy {
-      color: rgba(255,255,255,0.66);
-      font-size: 14px;
+      color: rgba(247,242,255,0.68);
+      font-size: 17px;
       line-height: 1.65;
     }
 
-    .steps,
-    .feature-grid,
-    .benefit-grid,
-    .use-case-list,
-    .trust-points,
-    .faq-list {
+    .bento-grid {
       display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .step,
-    .benefit-card,
-    .use-case,
-    .trust-point,
-    .feature-card,
-    .faq-item,
-    .privacy-panel {
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.032));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.06),
-        0 12px 30px rgba(0,0,0,0.12);
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 38px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 14px;
-    }
-
-    .step-number {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: #171020;
-      background: linear-gradient(135deg, #fff7ff, #8befff);
-      font-weight: 900;
-      font-size: 13px;
-    }
-
-    .step-title,
-    .benefit-title,
-    .feature-title,
-    .use-case-title,
-    .trust-point-title,
-    .faq-question {
-      color: rgba(255,255,255,0.92);
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.35;
-    }
-
-    .why-copy {
-      display: grid;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .why-copy p {
-      color: rgba(255,255,255,0.66);
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .why-copy strong {
-      color: rgba(255,255,255,0.9);
-      font-weight: 700;
-    }
-
-    .privacy-panel {
-      padding: 18px;
-      margin-top: 14px;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(139,239,255,0.12), transparent 40%),
-        linear-gradient(135deg, rgba(139,239,255,0.08), rgba(168,85,255,0.09)),
-        rgba(255,255,255,0.04);
-    }
-
-    .benefit-card,
-    .feature-card {
-      padding: 15px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: minmax(168px, auto);
+      gap: 16px;
     }
 
     .benefit-card {
-      min-height: 118px;
+      border-radius: 30px;
+      padding: 24px;
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .benefit-card.featured {
+      grid-column: span 3;
+      grid-row: span 2;
+      min-height: 356px;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(139,239,255,0.16), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.11), rgba(255,255,255,0.04)),
+        rgba(10, 8, 18, 0.62);
+    }
+
+    .benefit-card.medium {
+      grid-column: span 3;
+    }
+
+    .benefit-card.small {
+      grid-column: span 2;
     }
 
     .benefit-icon,
     .feature-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 11px;
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       color: var(--cyan);
-      background: rgba(139,239,255,0.08);
-      margin-bottom: 10px;
+      background: rgba(139,239,255,0.09);
+      margin-bottom: 18px;
       text-shadow: 0 0 12px rgba(139,239,255,0.65);
+    }
+
+    .benefit-title,
+    .faq-question,
+    .use-case-title {
+      color: rgba(255,255,255,0.94);
+      font-size: 18px;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .benefit-card.featured .benefit-title {
+      font-size: clamp(28px, 3vw, 42px);
+      max-width: 420px;
     }
 
     .benefit-copy,
-    .feature-copy,
+    .faq-answer,
     .use-case-copy,
-    .faq-answer {
-      color: rgba(255,255,255,0.58);
-      font-size: 13px;
-      line-height: 1.55;
-      margin-top: 6px;
+    .feature-copy {
+      color: rgba(247,242,255,0.6);
+      font-size: 14px;
+      line-height: 1.58;
+      margin-top: 10px;
     }
 
-    .trust-points {
-      grid-template-columns: 1fr;
-    }
-
-    .trust-point,
-    .use-case {
-      padding: 14px;
-    }
-
-    .trust-point {
+    .product-story {
       display: grid;
-      grid-template-columns: 28px 1fr;
-      gap: 10px;
+      grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+      gap: 42px;
       align-items: center;
     }
 
-    .trust-point i {
+    .story-preview {
+      border-radius: 38px;
+      padding: 18px;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(255,79,216,0.13), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.26);
+    }
+
+    .story-window {
+      border-radius: 30px;
+      padding: 20px;
+      background: rgba(5,3,10,0.72);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: grid;
+      gap: 14px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .mini-panel {
+      border-radius: 22px;
+      padding: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      min-height: 132px;
+    }
+
+    .mini-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .mini-title {
+      color: rgba(255,255,255,0.92);
+      font-weight: 850;
+      line-height: 1.25;
+    }
+
+    .privacy-spotlight {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.85fr);
+      gap: 34px;
+      align-items: center;
+      border-radius: 42px;
+      padding: 42px;
+      background:
+        radial-gradient(circle at 84% 18%, rgba(139,239,255,0.13), transparent 36%),
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 28px 80px rgba(0,0,0,0.22);
+    }
+
+    .privacy-copy .section-title {
+      max-width: 650px;
+    }
+
+    .privacy-points {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .privacy-point {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.74);
+      font-size: 14px;
+    }
+
+    .privacy-point i {
       color: var(--cyan);
-      text-shadow: 0 0 12px rgba(139,239,255,0.65);
+      text-shadow: 0 0 14px rgba(139,239,255,0.58);
+    }
+
+    .privacy-control {
+      border-radius: 30px;
+      padding: 22px;
+    }
+
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .control-row:last-child {
+      border-bottom: none;
+    }
+
+    .control-title {
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+    }
+
+    .control-copy {
+      color: rgba(255,255,255,0.52);
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.45;
+    }
+
+    .use-case-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(170px, 1fr));
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      scrollbar-width: thin;
+    }
+
+    .use-case {
+      border-radius: 26px;
+      padding: 20px;
+      min-height: 170px;
+    }
+
+    .social-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.9fr);
+      gap: 36px;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 56px 0;
     }
 
     .social-contrast {
       display: grid;
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
     }
 
     .social-contrast p {
-      color: rgba(255,255,255,0.62);
-      font-size: 14px;
-      line-height: 1.55;
-      padding-left: 14px;
-      border-left: 1px solid rgba(139,239,255,0.32);
+      border-radius: 18px;
+      padding: 16px 18px;
+      color: rgba(255,255,255,0.68);
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .faq-item {
+      border-radius: 24px;
+      padding: 22px;
     }
 
     .closing-card {
       text-align: center;
-      padding: 24px 18px;
-      border-radius: 28px;
+      max-width: 920px;
+      margin: 0 auto;
+      border-radius: 44px;
+      padding: 58px 28px;
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,79,216,0.13), transparent 42%),
-        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 18px 44px rgba(0,0,0,0.18);
-    }
-
-    .closing-card .section-title,
-    .closing-card .section-copy {
-      text-align: center;
+        radial-gradient(circle at 50% 0%, rgba(255,79,216,0.15), transparent 36%),
+        radial-gradient(circle at 50% 100%, rgba(139,239,255,0.12), transparent 40%),
+        linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.032));
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 28px 90px rgba(0,0,0,0.24);
     }
 
     .section-cta {
-      margin-top: 18px;
       display: flex;
       justify-content: center;
-    }
-
-    .section-cta .action-link {
-      width: 100%;
-      max-width: 240px;
-    }
-
-    .faq-item {
-      padding: 15px;
+      margin-top: 24px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 28px;
+      padding: 36px 0 4px;
       color: rgba(255,255,255,0.42);
       font-size: 11px;
       letter-spacing: 0.14em;
@@ -815,21 +1060,21 @@
     }
 
     .footer a {
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.58);
       text-decoration: none;
       margin: 0 8px;
     }
 
     .social-icons {
-      margin-top: 12px;
+      margin-top: 14px;
       display: flex;
-      gap: 14px;
+      gap: 16px;
       justify-content: center;
       font-size: 14px;
     }
 
     .social-icons a {
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.58);
       transition: 0.25s ease;
     }
 
@@ -843,78 +1088,139 @@
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
       letter-spacing: 0;
-      color: rgba(255,255,255,0.48);
+      color: rgba(255,255,255,0.5);
     }
 
-    @media (max-width: 430px) {
-      body {
-        padding: 10px;
+    @media (max-width: 980px) {
+      .page {
+        padding: 22px 18px 30px;
       }
 
-      .page {
-        min-height: 96vh;
-        border-radius: 26px;
-        padding: 24px 16px 18px;
+      .hero,
+      .product-story,
+      .privacy-spotlight,
+      .social-panel {
+        grid-template-columns: 1fr;
       }
 
       .hero {
-        padding-top: 46px;
+        min-height: auto;
+        padding: 24px 0 70px;
       }
 
-      .logo-wrap {
-        margin-bottom: 34px;
+      .hero-stack {
+        max-width: 620px;
+        margin: 0 auto;
       }
 
-      .card {
-        margin-top: 34px;
-        padding: 18px;
+      .mockup-shell {
+        transform: none;
       }
 
-      .hero-actions {
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .benefit-card.featured,
+      .benefit-card.medium,
+      .benefit-card.small {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 210px;
+      }
+
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 14px 12px 26px;
+      }
+
+      .ticker {
+        margin-bottom: 22px;
+      }
+
+      .logo-row {
+        align-items: flex-start;
         flex-direction: column;
+        gap: 16px;
+        margin-bottom: 24px;
       }
 
-      .action-link {
-        width: 100%;
+      h1 {
+        font-size: clamp(48px, 15vw, 72px);
       }
 
-      .content-section {
-        margin-top: 36px;
-      }
-
-      .content-section.soft-panel {
-        padding: 20px 15px;
-      }
-
-      .section-title {
-        font-size: 27px;
-      }
-
-      .benefit-card,
-      .feature-card,
-      .faq-item,
-      .privacy-panel {
-        border-radius: 20px;
-      }
-
+      .hero-actions,
       form {
         flex-direction: column;
       }
 
+      .action-link,
       input[type="email"],
       button {
         width: 100%;
-        height: 58px;
       }
 
-      h1 {
-        font-size: 48px;
+      .mockup-inner {
+        min-height: auto;
+        padding: 14px;
+      }
+
+      .mockup-shell,
+      .story-preview,
+      .privacy-spotlight,
+      .closing-card {
+        border-radius: 28px;
+        padding: 14px;
+      }
+
+      .signal-row,
+      .story-grid,
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .section-title {
+        font-size: clamp(34px, 12vw, 52px);
+      }
+
+      .section-copy,
+      .sub {
+        font-size: 16px;
+      }
+
+      .use-case-strip {
+        grid-template-columns: 1fr;
+        overflow-x: visible;
+      }
+
+      .row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .qr-card {
+        grid-template-columns: 64px 1fr;
+      }
+
+      .qr-grid {
+        width: 64px;
+        height: 64px;
+        border-radius: 14px;
       }
 
       .edge-glow::after {
-        width: 180px;
-        height: 180px;
-        opacity: 0.42;
+        width: 190px;
+        height: 190px;
+        opacity: 0.38;
         filter: blur(16px);
       }
     }
@@ -923,6 +1229,7 @@
       * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
       }
     }
@@ -939,272 +1246,373 @@
     </div>
 
     <section class="hero">
-      <div class="logo-wrap">
-        <img src="logo.png" alt="Truvyo logo" />
-      </div>
-
-      <div class="badge">
-        <span class="dot" aria-hidden="true"></span>
-        EARLY · BY INVITATION
-      </div>
-
-      <h1>
-        You weren’t
-        <span>supposed to find this.</span>
-      </h1>
-
-      <span class="meant-line">But maybe you were meant to.</span>
-
-      <p class="sub">
-        Truvyo helps real people build trust, protect their reputation, and stay private until they choose to be seen.
-      </p>
-
-      <p class="product-line">
-        Truvyo is a privacy-first reputation platform where real people build trusted profiles through verified experiences.
-      </p>
-
-      <div class="hero-actions">
-        <a class="action-link primary" href="#waitlistForm">Request Invite</a>
-        <a class="action-link" href="#benefits">See What Truvyo Does</a>
-      </div>
-
-      <p class="hero-note">Built for trust, privacy, and reputation. Not public exposure.</p>
-
-      <div class="watching">
-        <span class="dot" aria-hidden="true"></span>
-        <span id="watchers">7</span> people exploring early access
-      </div>
-
-      <div class="card">
-        <div class="row">
-          <div class="live">
-            <span class="live-dot" aria-hidden="true"></span>
-            <span><span id="joined">11</span> REQUESTS IN THE LAST HOUR</span>
+      <div class="hero-copy">
+        <div class="logo-row">
+          <div class="logo-wrap">
+            <img src="logo.png" alt="Truvyo logo" />
           </div>
-          <div><span class="count" id="takenCount">...</span>/100</div>
+
+          <div class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            EARLY · BY INVITATION
+          </div>
         </div>
 
-        <div class="progress">
-          <span id="progressBar"></span>
-        </div>
+        <h1>
+          You weren’t
+          <span>supposed to find this.</span>
+        </h1>
 
-        <p class="small-copy" id="spotText">
-          Loading early access spots...
+        <span class="meant-line">But maybe you were meant to.</span>
+
+        <p class="sub">
+          Truvyo helps real people build trust, protect their reputation, and stay private until they choose to be seen.
         </p>
 
-        <form id="waitlistForm">
-          <input type="text" name="website" style="display:none" autocomplete="off" tabindex="-1" />
-          <label class="sr-only" for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="you@somewhere.in" autocomplete="email" inputmode="email" aria-describedby="spotText formMessage" required />
-          <button type="submit" id="submitBtn">Request Invite →</button>
-        </form>
+        <p class="product-line">
+          A privacy-first reputation platform for verified experiences, authentic reviews, and controlled digital identity.
+        </p>
 
-        <div class="trust">
-          <span class="shield" aria-hidden="true">♡</span>
-          <span>Real people. Private by default.</span>
+        <div class="hero-actions">
+          <a class="action-link primary" href="#waitlistForm">Request Invite</a>
+          <a class="action-link" href="#benefits">See What Truvyo Does</a>
         </div>
 
-        <div id="formMessage" class="status" role="status" aria-live="polite"></div>
+        <p class="hero-note">Built for trust, privacy, and reputation. Not public exposure.</p>
+
+        <div class="watching">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="watchers">7</span> people exploring early access
+        </div>
       </div>
 
-      <section class="content-section soft-panel" id="benefits">
+      <div class="hero-stack">
+        <div class="mockup-shell" aria-label="Truvyo private profile preview">
+          <div class="mockup-inner">
+            <div class="mockup-top">
+              <span>Private Profile</span>
+              <span class="privacy-pill"><span class="dot" aria-hidden="true"></span> Locked</span>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-head">
+                <div class="avatar" aria-hidden="true">T</div>
+                <div>
+                  <div class="profile-title">Trusted profile</div>
+                  <div class="profile-sub">Visible only when shared</div>
+                </div>
+              </div>
+
+              <div class="verified-pill">
+                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                Verified identity ready
+              </div>
+
+              <div class="signal-row">
+                <div class="signal-tile">
+                  <div class="signal-label">Reputation signal</div>
+                  <div class="signal-value">Context verified</div>
+                </div>
+                <div class="signal-tile">
+                  <div class="signal-label">Privacy</div>
+                  <div class="signal-value">Default private</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="review-card">
+              <div class="mockup-top">
+                <span>Verified Review</span>
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+              </div>
+              <div class="review-line"></div>
+              <div class="review-line short"></div>
+            </div>
+
+            <div class="qr-card">
+              <div class="qr-grid" aria-hidden="true"></div>
+              <div>
+                <div class="signal-label">QR Profile</div>
+                <div class="signal-value">Share reputation when it matters</div>
+              </div>
+            </div>
+
+            <div class="control-row">
+              <div>
+                <div class="control-title">Privacy toggle</div>
+                <div class="control-copy">You choose when your profile becomes visible.</div>
+              </div>
+              <div class="toggle" aria-hidden="true"><span></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="row">
+            <div class="live">
+              <span class="live-dot" aria-hidden="true"></span>
+              <span><span id="joined">11</span> REQUESTS IN THE LAST HOUR</span>
+            </div>
+            <div><span class="count" id="takenCount">...</span>/100</div>
+          </div>
+
+          <div class="progress">
+            <span id="progressBar"></span>
+          </div>
+
+          <p class="small-copy" id="spotText">
+            Loading early access spots...
+          </p>
+
+          <form id="waitlistForm">
+            <input type="text" name="website" style="display:none" autocomplete="off" tabindex="-1" />
+            <label class="sr-only" for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@somewhere.in" autocomplete="email" inputmode="email" aria-describedby="spotText formMessage" required />
+            <button type="submit" id="submitBtn">Request Invite →</button>
+          </form>
+
+          <div class="trust">
+            <span class="shield" aria-hidden="true">♡</span>
+            <span>Real people. Private by default.</span>
+          </div>
+
+          <div id="formMessage" class="status" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benefits">
+      <div class="section-head">
         <div class="section-kicker">What Truvyo does</div>
         <h2 class="section-title">What can Truvyo do for me?</h2>
-        <p class="section-copy">
-          Truvyo gives your digital identity a quieter kind of credibility: useful when trust matters, private when it does not need to be public.
-        </p>
+        <p class="section-copy">A calmer way to show credibility when trust matters, without making your identity public by default.</p>
+      </div>
 
-        <div class="benefit-grid">
-          <div class="benefit-card">
+      <div class="bento-grid">
+        <div class="benefit-card featured">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-id-card"></i></div>
             <div class="benefit-title">Build a trusted digital identity</div>
-            <p class="benefit-copy">Create a profile that shows who you are through real, verified experiences.</p>
           </div>
-          <div class="benefit-card">
+          <p class="benefit-copy">Create a private profile that grows through verified experiences and honest context.</p>
+        </div>
+
+        <div class="benefit-card medium">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></div>
             <div class="benefit-title">Collect authentic reviews from real experiences</div>
-            <p class="benefit-copy">Let trust grow from people who have actually interacted with you.</p>
           </div>
-          <div class="benefit-card">
+          <p class="benefit-copy">Trust grows from interactions that happened, not from noise.</p>
+        </div>
+
+        <div class="benefit-card medium">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-eye-slash"></i></div>
             <div class="benefit-title">Stay private until you are ready</div>
-            <p class="benefit-copy">Keep your profile controlled while you decide when and where it should appear.</p>
           </div>
-          <div class="benefit-card">
+          <p class="benefit-copy">Control when your profile appears and who gets to see it.</p>
+        </div>
+
+        <div class="benefit-card small">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-qrcode"></i></div>
             <div class="benefit-title">Share your reputation with a QR profile</div>
-            <p class="benefit-copy">Offer a simple way for the right people to see your credibility when you choose.</p>
           </div>
-          <div class="benefit-card">
+          <p class="benefit-copy">Make trust portable when you choose to share it.</p>
+        </div>
+
+        <div class="benefit-card small">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
             <div class="benefit-title">Discover people with more confidence</div>
-            <p class="benefit-copy">Look for signals that feel grounded in context, not noise or popularity.</p>
           </div>
-          <div class="benefit-card">
+          <p class="benefit-copy">Look for signals with context, not just polish.</p>
+        </div>
+
+        <div class="benefit-card small">
+          <div>
             <div class="benefit-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
             <div class="benefit-title">Reduce fake profiles, spam, and harmful reviews</div>
-            <p class="benefit-copy">Verification and moderation help keep reputation safer and more useful.</p>
+          </div>
+          <p class="benefit-copy">Verification and moderation make reputation feel safer.</p>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <a class="action-link primary" href="#waitlistForm">Request Invite</a>
+      </div>
+    </section>
+
+    <section class="section product-story" id="product-preview">
+      <div class="section-head">
+        <div class="section-kicker">Product story</div>
+        <h2 class="section-title">Your reputation, without the noise.</h2>
+        <p class="section-copy">Truvyo turns verified identity, private controls, review signals, and QR sharing into one calm reputation layer.</p>
+      </div>
+
+      <div class="story-preview" aria-label="Truvyo app interface concept">
+        <div class="story-window">
+          <div class="profile-card">
+            <div class="profile-head">
+              <div class="avatar" aria-hidden="true">T</div>
+              <div>
+                <div class="profile-title">Profile card</div>
+                <div class="profile-sub">Verified badge · Private by default</div>
+              </div>
+            </div>
+            <div class="verified-pill">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+              Verified badge active
+            </div>
+          </div>
+
+          <div class="story-grid">
+            <div class="mini-panel">
+              <div class="mini-label">Review signal</div>
+              <div class="mini-title">Authentic experiences become trusted context.</div>
+              <div class="review-card">
+                <div class="review-line"></div>
+                <div class="review-line short"></div>
+              </div>
+            </div>
+            <div class="mini-panel">
+              <div class="mini-label">QR identity</div>
+              <div class="qr-grid" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="mini-panel">
+            <div class="control-row">
+              <div>
+                <div class="control-title">Private by default</div>
+                <div class="control-copy">Visibility stays controlled until you decide otherwise.</div>
+              </div>
+              <div class="toggle" aria-hidden="true"><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="private-by-default">
+      <div class="privacy-spotlight">
+        <div class="privacy-copy">
+          <div class="section-kicker">Private by default</div>
+          <h2 class="section-title">Your profile should not become public before you are ready.</h2>
+          <p class="section-copy">Your reputation should help you feel safer, not more exposed. Truvyo keeps visibility controlled from the beginning.</p>
+
+          <div class="privacy-points">
+            <div class="privacy-point"><i class="fa-solid fa-toggle-on" aria-hidden="true"></i> You control visibility</div>
+            <div class="privacy-point"><i class="fa-solid fa-user-shield" aria-hidden="true"></i> Verification reduces fake activity</div>
+            <div class="privacy-point"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Moderation protects the community</div>
           </div>
         </div>
 
-        <div class="section-cta">
-          <a class="action-link primary" href="#waitlistForm">Request Invite</a>
-        </div>
-      </section>
-
-      <section class="content-section soft-panel" id="private-by-default">
-        <div class="section-kicker">Private by default</div>
-        <h2 class="section-title">Your reputation should not feel risky.</h2>
-        <div class="privacy-panel">
-          <p class="section-copy">
-            Truvyo is private by default. Your profile is not exposed publicly without control. The goal is to help people build trust safely, not force them into unwanted attention.
-          </p>
-        </div>
-
-        <div class="trust-points">
-          <div class="trust-point">
-            <i class="fa-solid fa-toggle-on" aria-hidden="true"></i>
-            <div class="trust-point-title">You control visibility</div>
+        <div class="privacy-control" aria-label="Privacy control preview">
+          <div class="control-row">
+            <div>
+              <div class="control-title">Profile visibility</div>
+              <div class="control-copy">Private until shared</div>
+            </div>
+            <div class="toggle" aria-hidden="true"><span></span></div>
           </div>
-          <div class="trust-point">
-            <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
-            <div class="trust-point-title">Verification reduces fake activity</div>
+          <div class="control-row">
+            <div>
+              <div class="control-title">Review moderation</div>
+              <div class="control-copy">Screen harmful signals before they spread</div>
+            </div>
+            <div class="toggle" aria-hidden="true"><span></span></div>
           </div>
-          <div class="trust-point">
-            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-            <div class="trust-point-title">Moderation protects the community</div>
+          <div class="control-row">
+            <div>
+              <div class="control-title">QR profile</div>
+              <div class="control-copy">Available only when you choose to share</div>
+            </div>
+            <div class="toggle" aria-hidden="true"><span></span></div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-section" id="how-it-works">
-        <div class="section-kicker">How Truvyo works</div>
-        <h2 class="section-title">Trust, earned quietly.</h2>
-        <p class="section-copy">
-          Start private, verify yourself, and build reputation from experiences that carry real context.
-        </p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">01</div>
-            <div class="step-title">Create your private profile</div>
-          </div>
-          <div class="step">
-            <div class="step-number">02</div>
-            <div class="step-title">Verify your identity</div>
-          </div>
-          <div class="step">
-            <div class="step-number">03</div>
-            <div class="step-title">Build reputation through trusted reviews</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="content-section" id="use-cases">
+    <section class="section" id="use-cases">
+      <div class="section-head center">
         <div class="section-kicker">Where trust matters</div>
         <h2 class="section-title">Why people may need Truvyo</h2>
-        <p class="section-copy">
-          Some moments deserve more than a username, a follower count, or a polished bio.
-        </p>
+        <p class="section-copy">Some moments deserve more than a username, follower count, or polished bio.</p>
+      </div>
 
-        <div class="use-case-list">
-          <div class="use-case">
-            <div class="use-case-title">Before meeting someone new</div>
-            <p class="use-case-copy">Look for verified context before stepping into a new interaction.</p>
-          </div>
-          <div class="use-case">
-            <div class="use-case-title">Before trusting a profile</div>
-            <p class="use-case-copy">Understand whether a person has real signals behind their digital presence.</p>
-          </div>
-          <div class="use-case">
-            <div class="use-case-title">Before collaborating or hiring</div>
-            <p class="use-case-copy">Use reputation as one more layer of confidence before starting work together.</p>
-          </div>
-          <div class="use-case">
-            <div class="use-case-title">Before joining a community</div>
-            <p class="use-case-copy">Help communities feel more intentional, trusted, and accountable.</p>
-          </div>
-          <div class="use-case">
-            <div class="use-case-title">To build reputation beyond followers and likes</div>
-            <p class="use-case-copy">Let credibility come from experience, not just attention.</p>
-          </div>
+      <div class="use-case-strip">
+        <div class="use-case">
+          <div class="use-case-title">Before meeting someone new</div>
+          <p class="use-case-copy">Look for verified context before stepping into a new interaction.</p>
         </div>
-      </section>
+        <div class="use-case">
+          <div class="use-case-title">Before trusting a profile</div>
+          <p class="use-case-copy">See whether real signals sit behind the digital presence.</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-title">Before collaborating or hiring</div>
+          <p class="use-case-copy">Add one more layer of confidence before working together.</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-title">Before joining a community</div>
+          <p class="use-case-copy">Help communities feel intentional, trusted, and accountable.</p>
+        </div>
+        <div class="use-case">
+          <div class="use-case-title">Beyond followers and likes</div>
+          <p class="use-case-copy">Let credibility come from experience, not just attention.</p>
+        </div>
+      </div>
+    </section>
 
-      <section class="content-section soft-panel" id="not-social">
+    <section class="section" id="not-social">
+      <div class="social-panel">
+        <div>
         <div class="section-kicker">A quieter network</div>
         <h2 class="section-title">Not another social app.</h2>
-        <p class="section-copy">
-          Truvyo is not about becoming famous. It is about becoming trusted.
-        </p>
+          <p class="section-copy">Truvyo is not about becoming famous. It is about becoming trusted.</p>
+        </div>
         <div class="social-contrast">
           <p>Followers can be fake.</p>
           <p>Comments can be toxic.</p>
           <p>Profiles can be misleading.</p>
           <p>Trust needs context.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="content-section" id="trust">
-        <div class="section-kicker">Safety signals</div>
-        <h2 class="section-title">Built for guarded credibility.</h2>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-user-check"></i></div>
-            <div class="feature-title">Verified profiles</div>
-            <p class="feature-copy">Identity verification helps reduce fake accounts and reputation abuse.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <div class="feature-title">AI-assisted moderation</div>
-            <p class="feature-copy">Reviews can be screened for spam, harmful behavior, and low-trust patterns.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="feature-title">Private-by-default reputation</div>
-            <p class="feature-copy">Profiles stay controlled by the person behind them from the start.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-lock"></i></div>
-            <div class="feature-title">Invite-only launch</div>
-            <p class="feature-copy">Early access stays deliberately limited while the first community forms.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="feature-title">Built for India</div>
-            <p class="feature-copy">The first launch focuses on India and the trust problems people face here.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="content-section" id="faq">
+    <section class="section" id="faq">
+      <div class="section-head center">
         <div class="section-kicker">FAQ</div>
         <h2 class="section-title">Before you request access.</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">What is Truvyo?</div>
-            <p class="faq-answer">Truvyo is a privacy-first reputation platform where people can build trusted profiles through verified experiences and authentic reviews.</p>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Is my profile public?</div>
-            <p class="faq-answer">No. Profiles are private by default and become visible only based on user-controlled privacy and launch rules.</p>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Why is Truvyo invite-only?</div>
-            <p class="faq-answer">Invite-only launch helps keep the early community trusted, controlled, and safe.</p>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Is Truvyo for India?</div>
-            <p class="faq-answer">Yes, the initial launch is focused on India.</p>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Do I need verification?</div>
-            <p class="faq-answer">Verification helps reduce fake profiles, spam, and harmful reviews.</p>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      <section class="content-section closing-card" id="request-access">
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">What is Truvyo?</div>
+          <p class="faq-answer">Truvyo is a privacy-first reputation platform where people can build trusted profiles through verified experiences and authentic reviews.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is my profile public?</div>
+          <p class="faq-answer">No. Profiles are private by default and become visible only based on user-controlled privacy and launch rules.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Why is Truvyo invite-only?</div>
+          <p class="faq-answer">Invite-only launch helps keep the early community trusted, controlled, and safe.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is Truvyo for India?</div>
+          <p class="faq-answer">Yes, the initial launch is focused on India.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Do I need verification?</div>
+          <p class="faq-answer">Verification helps reduce fake profiles, spam, and harmful reviews.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="request-access">
+      <div class="closing-card">
         <div class="section-kicker">Early access</div>
         <h2 class="section-title">A reputation layer for people who value privacy.</h2>
         <p class="section-copy">
@@ -1213,7 +1621,7 @@
         <div class="section-cta">
           <a class="action-link primary" href="#waitlistForm">Request Invite</a>
         </div>
-      </section>
+      </div>
     </section>
 
     <footer class="footer">
