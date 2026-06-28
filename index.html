@@ -17,6 +17,7 @@
   <meta name="twitter:title" content="Truvyo — Trust Built by People" />
   <meta name="twitter:description" content="Truvyo is a privacy-first reputation platform for verified people, authentic reviews, and trusted digital profiles. Built for India." />
   <meta name="twitter:image" content="https://www.truvyo.app/logo.png" />
+  <link rel="preload" as="image" href="assets/screenshots/profile.webp" type="image/webp" />
 
   <link rel="icon" href="/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -485,6 +486,7 @@
       display: grid;
       gap: 18px;
       position: relative;
+      min-height: 760px;
       transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
       transform-style: preserve-3d;
       transition: transform 0.18s ease-out;
@@ -710,6 +712,232 @@
     @keyframes mockupFloat {
       0%, 100% { transform: rotate(1.6deg) translateY(0); }
       50% { transform: rotate(1.1deg) translateY(-10px); }
+    }
+
+    .device-shell {
+      position: relative;
+      border-radius: 40px;
+      padding: 12px;
+      border: 1px solid rgba(203, 224, 255, 0.18);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06)),
+        linear-gradient(145deg, rgba(8, 14, 26, 0.98), rgba(3, 5, 10, 0.98));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 34px 84px rgba(0,0,0,0.36),
+        0 0 0 1px rgba(104,224,255,0.08),
+        0 0 48px rgba(104,224,255,0.12);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .device-shell::before {
+      content: "";
+      position: absolute;
+      inset: 10px 14px auto auto;
+      width: 42%;
+      height: 14%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.34), rgba(255,255,255,0));
+      filter: blur(14px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .device-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, rgba(255,255,255,0.18), transparent 22%),
+        radial-gradient(circle at 18% 12%, rgba(104,224,255,0.12), transparent 24%),
+        radial-gradient(circle at 88% 82%, rgba(155,124,255,0.08), transparent 28%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .device-shell-large {
+      width: min(100%, 404px);
+    }
+
+    .device-shell-small {
+      width: min(100%, 244px);
+    }
+
+    .device-screen {
+      position: relative;
+      aspect-ratio: 1320 / 2868;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #04050a;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 0 0 12px rgba(0,0,0,0.02);
+    }
+
+    .device-screen img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-device-main {
+      position: relative;
+      z-index: 2;
+      margin: 0 auto;
+      transform: rotate(-2deg);
+      animation: mockupFloat 7.6s ease-in-out infinite;
+    }
+
+    .hero-device-float {
+      position: absolute;
+      z-index: 1;
+    }
+
+    .hero-device-float-left {
+      left: -34px;
+      top: 96px;
+      transform: rotate(-11deg);
+    }
+
+    .hero-device-float-right {
+      right: -26px;
+      bottom: 42px;
+      transform: rotate(10deg);
+    }
+
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .shot-card {
+      border-radius: 30px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(104,224,255,0.12), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        var(--surface-soft);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 22px 66px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .shot-card .device-screen {
+      border-radius: 24px;
+    }
+
+    .shot-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+
+    .shot-kicker {
+      color: var(--trust);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .shot-title {
+      color: rgba(255,255,255,0.94);
+      font-size: 16px;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .shot-copy {
+      color: rgba(247,242,255,0.62);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: right;
+    }
+
+    .flow-preview-rail {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .flow-preview-card {
+      border-radius: 28px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        var(--surface-soft);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 20px 58px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    .flow-preview-card .device-screen {
+      border-radius: 22px;
+    }
+
+    .flow-preview-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      margin-top: 10px;
+    }
+
+    .flow-preview-copy {
+      color: rgba(247,242,255,0.58);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: right;
+    }
+
+    .privacy-screenshot-stack {
+      display: grid;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .privacy-shot {
+      margin: 0;
+      border-radius: 30px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 76% 6%, rgba(114,240,188,0.12), transparent 28%),
+        linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03)),
+        var(--surface-soft);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 22px 62px rgba(0,0,0,0.22);
+      overflow: hidden;
+    }
+
+    .privacy-shot .device-screen {
+      border-radius: 24px;
+    }
+
+    .privacy-shot-main {
+      width: min(100%, 378px);
+      justify-self: end;
+    }
+
+    .privacy-shot-secondary {
+      width: min(88%, 308px);
+      justify-self: start;
+      margin-top: -34px;
+      margin-left: 18px;
     }
 
     .card {
@@ -1056,41 +1284,15 @@
       box-shadow: 0 30px 90px rgba(0,0,0,0.26);
     }
 
-    .story-window {
-      border-radius: 30px;
-      padding: 20px;
-      background: rgba(5,3,10,0.72);
-      border: 1px solid rgba(203,224,255,0.1);
+    .story-gallery {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .story-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-    }
-
-    .mini-panel {
-      border-radius: 22px;
-      padding: 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      min-height: 132px;
-    }
-
-    .mini-label {
-      color: rgba(255,255,255,0.5);
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .mini-title {
-      color: rgba(255,255,255,0.92);
-      font-weight: 850;
-      line-height: 1.25;
+    .story-gallery .shot-card:nth-child(1),
+    .story-gallery .shot-card:nth-child(2) {
+      min-height: 430px;
     }
 
     .privacy-spotlight {
@@ -1149,31 +1351,6 @@
     .privacy-control {
       border-radius: 30px;
       padding: 22px;
-    }
-
-    .control-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 16px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .control-row:last-child {
-      border-bottom: none;
-    }
-
-    .control-title {
-      color: rgba(255,255,255,0.92);
-      font-weight: 800;
-    }
-
-    .control-copy {
-      color: rgba(255,255,255,0.52);
-      font-size: 13px;
-      margin-top: 4px;
-      line-height: 1.45;
     }
 
     .use-case-strip {
@@ -1441,10 +1618,26 @@
       .hero-stack {
         max-width: 620px;
         margin: 0 auto;
+        min-height: 0;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .mockup-shell {
+      .device-shell {
         animation: none;
+        transform: none;
+      }
+
+      .hero-device-main {
+        grid-column: 1 / -1;
+      }
+
+      .hero-device-float {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
         transform: none;
       }
 
@@ -1500,6 +1693,22 @@
         50% { opacity: 1; transform: scale(1); }
         88% { opacity: 1; }
         100% { top: calc(100% - 12px); opacity: 0; transform: scale(0.75); }
+      }
+
+      .story-gallery,
+      .flow-preview-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-shot-main,
+      .privacy-shot-secondary {
+        width: 100%;
+        margin-left: 0;
+        justify-self: stretch;
+      }
+
+      .privacy-shot-secondary {
+        margin-top: 0;
       }
     }
 
@@ -1560,12 +1769,7 @@
         width: 100%;
       }
 
-      .mockup-inner {
-        min-height: auto;
-        padding: 14px;
-      }
-
-      .mockup-shell,
+      .device-shell,
       .story-preview,
       .privacy-spotlight,
       .closing-card {
@@ -1573,8 +1777,8 @@
         padding: 14px;
       }
 
-      .signal-row,
-      .story-grid,
+      .shot-grid,
+      .flow-preview-rail,
       .bento-grid {
         grid-template-columns: 1fr;
       }
@@ -1620,6 +1824,16 @@
         width: 64px;
         height: 64px;
         border-radius: 14px;
+      }
+
+      .story-gallery .shot-card:nth-child(1),
+      .story-gallery .shot-card:nth-child(2) {
+        min-height: 0;
+      }
+
+      .privacy-shot-main,
+      .privacy-shot-secondary {
+        max-width: none;
       }
 
       .edge-glow::after {
@@ -1716,63 +1930,42 @@
       </div>
 
       <div class="hero-stack">
-        <div class="mockup-shell" aria-label="Truvyo private profile preview">
-          <div class="mockup-inner">
-            <div class="mockup-top">
-              <span>Private Profile</span>
-              <span class="privacy-pill"><span class="dot" aria-hidden="true"></span> Locked</span>
-            </div>
+        <div class="device-shell device-shell-large hero-device-main" aria-label="Truvyo private profile preview">
+          <div class="device-screen">
+            <img
+              src="assets/screenshots/profile.webp"
+              alt="Truvyo profile screenshot"
+              width="1320"
+              height="2868"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        </div>
 
-            <div class="profile-card">
-              <div class="profile-head">
-                <div class="avatar" aria-hidden="true">T</div>
-                <div>
-                  <div class="profile-title">Trusted profile</div>
-                  <div class="profile-sub">Visible only when shared</div>
-                </div>
-              </div>
+        <div class="device-shell device-shell-small hero-device-float hero-device-float-left" aria-hidden="true">
+          <div class="device-screen">
+            <img
+              src="assets/screenshots/ai-reputation.webp"
+              alt=""
+              width="1320"
+              height="2868"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
 
-              <div class="verified-pill">
-                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-                Verified identity ready
-              </div>
-
-              <div class="signal-row">
-                <div class="signal-tile">
-                  <div class="signal-label">Reputation signal</div>
-                  <div class="signal-value">Context verified</div>
-                </div>
-                <div class="signal-tile">
-                  <div class="signal-label">Privacy</div>
-                  <div class="signal-value">Default private</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="review-card">
-              <div class="mockup-top">
-                <span>Verified Review</span>
-                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-              </div>
-              <div class="review-line"></div>
-              <div class="review-line short"></div>
-            </div>
-
-            <div class="qr-card">
-              <div class="qr-grid" aria-hidden="true"></div>
-              <div>
-                <div class="signal-label">QR Profile</div>
-                <div class="signal-value">Share reputation when it matters</div>
-              </div>
-            </div>
-
-            <div class="control-row">
-              <div>
-                <div class="control-title">Privacy toggle</div>
-                <div class="control-copy">You choose when your profile becomes visible.</div>
-              </div>
-              <div class="toggle" aria-hidden="true"><span></span></div>
-            </div>
+        <div class="device-shell device-shell-small hero-device-float hero-device-float-right" aria-hidden="true">
+          <div class="device-screen">
+            <img
+              src="assets/screenshots/privacy.webp"
+              alt=""
+              width="1320"
+              height="2868"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         </div>
 
@@ -1880,46 +2073,97 @@
         <p class="section-copy">Truvyo turns verified identity, private controls, review signals, and QR sharing into one calm reputation layer.</p>
       </div>
 
-      <div class="story-preview reveal-item" aria-label="Truvyo app interface concept">
-        <div class="story-window">
-          <div class="profile-card">
-            <div class="profile-head">
-              <div class="avatar" aria-hidden="true">T</div>
+      <div class="story-preview reveal-item" aria-label="Truvyo screenshot gallery">
+        <div class="story-gallery">
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/overview.webp" alt="Truvyo home and reputation overview screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shot-meta">
               <div>
-                <div class="profile-title">Profile card</div>
-                <div class="profile-sub">Verified badge · Private by default</div>
+                <div class="shot-kicker">Overview</div>
+                <div class="shot-title">Reputation at a glance</div>
+              </div>
+              <div class="shot-copy">Quiet summary of trust, activity, and visibility.</div>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/privacy.webp" alt="Truvyo privacy center screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
               </div>
             </div>
-            <div class="verified-pill">
-              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
-              Verified badge active
-            </div>
-          </div>
-
-          <div class="story-grid">
-            <div class="mini-panel">
-              <div class="mini-label">Review signal</div>
-              <div class="mini-title">Authentic experiences become trusted context.</div>
-              <div class="review-card">
-                <div class="review-line"></div>
-                <div class="review-line short"></div>
-              </div>
-            </div>
-            <div class="mini-panel">
-              <div class="mini-label">QR identity</div>
-              <div class="qr-grid" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <div class="mini-panel">
-            <div class="control-row">
+            <div class="shot-meta">
               <div>
-                <div class="control-title">Private by default</div>
-                <div class="control-copy">Visibility stays controlled until you decide otherwise.</div>
+                <div class="shot-kicker">Privacy</div>
+                <div class="shot-title">Private by default</div>
               </div>
-              <div class="toggle" aria-hidden="true"><span></span></div>
+              <div class="shot-copy">Control visibility before anything becomes public.</div>
             </div>
-          </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/ai-reputation.webp" alt="Truvyo AI reputation summary screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shot-meta">
+              <div>
+                <div class="shot-kicker">AI reputation</div>
+                <div class="shot-title">Signal with context</div>
+              </div>
+              <div class="shot-copy">Surface what matters and keep noise out.</div>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/write-review.webp" alt="Truvyo trust composer screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shot-meta">
+              <div>
+                <div class="shot-kicker">Write review</div>
+                <div class="shot-title">Trusted feedback, composed calmly</div>
+              </div>
+              <div class="shot-copy">A structured way to add real context.</div>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/reviews.webp" alt="Truvyo received reviews screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shot-meta">
+              <div>
+                <div class="shot-kicker">Reviews</div>
+                <div class="shot-title">Authentic experiences</div>
+              </div>
+              <div class="shot-copy">Short, real, and review-safe feedback only.</div>
+            </div>
+          </article>
+
+          <article class="shot-card">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/discover.webp" alt="Truvyo discover search screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="shot-meta">
+              <div>
+                <div class="shot-kicker">Discover</div>
+                <div class="shot-title">Find people with context</div>
+              </div>
+              <div class="shot-copy">Search built around trust, not noise.</div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1958,6 +2202,53 @@
           <p class="flow-copy">Share credibility when it matters.</p>
         </div>
       </div>
+
+      <div class="flow-preview-rail">
+        <div class="flow-preview-card reveal-item">
+          <div class="device-shell">
+            <div class="device-screen">
+              <img src="assets/screenshots/overview.webp" alt="Truvyo overview screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flow-preview-meta">
+            <div>
+              <div class="shot-kicker">Private profile</div>
+              <div class="shot-title">Clear starting point</div>
+            </div>
+            <div class="flow-preview-copy">A simple reputation home base.</div>
+          </div>
+        </div>
+
+        <div class="flow-preview-card reveal-item">
+          <div class="device-shell">
+            <div class="device-screen">
+              <img src="assets/screenshots/analytics.webp" alt="Truvyo analytics and reputation coach screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flow-preview-meta">
+            <div>
+              <div class="shot-kicker">AI reputation</div>
+              <div class="shot-title">Coached signal</div>
+            </div>
+            <div class="flow-preview-copy">Guidance that stays calm and focused.</div>
+          </div>
+        </div>
+
+        <div class="flow-preview-card reveal-item">
+          <div class="device-shell">
+            <div class="device-screen">
+              <img src="assets/screenshots/security.webp" alt="Truvyo security checkup screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flow-preview-meta">
+            <div>
+              <div class="shot-kicker">QR profile</div>
+              <div class="shot-title">Trust protected</div>
+            </div>
+            <div class="flow-preview-copy">Identity and sharing controls together.</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="section reveal" id="private-by-default">
@@ -1974,28 +2265,21 @@
           </div>
         </div>
 
-        <div class="privacy-control" aria-label="Privacy control preview">
-          <div class="control-row">
-            <div>
-              <div class="control-title">Profile visibility</div>
-              <div class="control-copy">Private until shared</div>
+        <div class="privacy-screenshot-stack" aria-label="Privacy and security screenshots">
+          <figure class="privacy-shot privacy-shot-main">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/privacy.webp" alt="Truvyo privacy center screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
             </div>
-            <div class="toggle" aria-hidden="true"><span></span></div>
-          </div>
-          <div class="control-row">
-            <div>
-              <div class="control-title">Review moderation</div>
-              <div class="control-copy">Screen harmful signals before they spread</div>
+          </figure>
+          <figure class="privacy-shot privacy-shot-secondary">
+            <div class="device-shell">
+              <div class="device-screen">
+                <img src="assets/screenshots/security.webp" alt="Truvyo security checkup screenshot" width="1320" height="2868" loading="lazy" decoding="async" />
+              </div>
             </div>
-            <div class="toggle" aria-hidden="true"><span></span></div>
-          </div>
-          <div class="control-row">
-            <div>
-              <div class="control-title">QR profile</div>
-              <div class="control-copy">Available only when you choose to share</div>
-            </div>
-            <div class="toggle" aria-hidden="true"><span></span></div>
-          </div>
+          </figure>
         </div>
       </div>
     </section>
