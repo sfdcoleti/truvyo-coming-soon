@@ -213,13 +213,13 @@
     }
 
     .hero {
-      min-height: calc(100vh - 98px);
+      min-height: 0;
       display: grid;
       grid-template-columns: minmax(0, 1.06fr) minmax(430px, 0.94fr);
       gap: clamp(64px, 7vw, 108px);
       align-items: center;
       position: relative;
-      padding: 28px 0 88px;
+      padding: 12px 0 52px;
     }
 
     .hero::before {
@@ -247,7 +247,7 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
     .logo-wrap {
@@ -372,6 +372,14 @@
       margin-bottom: 16px;
     }
 
+    .hero-explainer {
+      color: rgba(245,248,255,0.86);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.45;
+      max-width: 640px;
+      margin: -2px 0 16px;
+    }
+
     .product-line,
     .hero-note {
       color: var(--soft);
@@ -384,7 +392,7 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin: 30px 0 14px;
+      margin: 24px 0 10px;
     }
 
     .action-link,
@@ -459,7 +467,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 10px;
       font-size: 12px;
       color: rgba(255,255,255,0.58);
       padding: 8px 14px;
@@ -472,9 +480,11 @@
       display: grid;
       gap: 18px;
       position: relative;
-      min-height: 720px;
+      min-height: 780px;
       width: min(100%, 560px);
       justify-self: end;
+      margin-top: -34px;
+      margin-bottom: -22px;
       transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
       transform-style: preserve-3d;
       transition: transform 0.18s ease-out;
@@ -751,11 +761,11 @@
     }
 
     .device-shell-large {
-      width: min(100%, 372px);
+      width: min(100%, 350px);
     }
 
     .device-shell-small {
-      width: min(100%, 208px);
+      width: min(100%, 196px);
     }
 
     .device-screen {
@@ -780,7 +790,7 @@
     .hero-device-main {
       position: relative;
       z-index: 4;
-      margin: 28px auto 0;
+      margin: 0 auto;
       transform: rotate(4deg);
       animation: heroPrimaryFloat 8.2s ease-in-out infinite, deviceGlowBreath 7.8s ease-in-out infinite;
     }
@@ -809,6 +819,18 @@
       opacity: 0.86;
       transform: rotate(7deg) translateZ(-56px);
       animation: heroSecondaryFloatRight 10.8s ease-in-out infinite;
+    }
+
+    .hero-stack > .card {
+      position: absolute;
+      z-index: 1;
+      right: -12px;
+      bottom: 86px;
+      width: min(80%, 380px);
+      transform: translate(22px, 8px) scale(0.84);
+      transform-origin: right bottom;
+      opacity: 0.82;
+      filter: blur(0.36px);
     }
 
     @keyframes heroAuraPulse {
@@ -903,6 +925,14 @@
       font-size: 13px;
       line-height: 1.45;
       text-align: right;
+    }
+
+    .ai-note {
+      color: rgba(247,242,255,0.58);
+      font-size: 12px;
+      line-height: 1.55;
+      margin-top: 10px;
+      max-width: 94%;
     }
 
     .flow-preview-rail {
@@ -1047,6 +1077,35 @@
       margin-bottom: 18px;
     }
 
+    .access-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1.25fr;
+      align-items: center;
+      gap: 8px;
+      margin: -2px 0 16px;
+      color: rgba(245,248,255,0.76);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .access-flow span {
+      min-height: 30px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border-radius: 999px;
+      padding: 0 10px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(203,224,255,0.1);
+    }
+
+    .access-flow i {
+      color: rgba(104,224,255,0.7);
+      font-style: normal;
+    }
+
     form {
       display: flex;
       gap: 10px;
@@ -1142,7 +1201,7 @@
     }
 
     .section {
-      padding: 92px 0;
+      padding: 76px 0;
       position: relative;
     }
 
@@ -1189,7 +1248,7 @@
 
     .section-head {
       max-width: 720px;
-      margin-bottom: 30px;
+      margin-bottom: 26px;
     }
 
     .section-head.center {
@@ -1653,8 +1712,8 @@
 
       .hero {
         min-height: auto;
-        padding: 24px 0 70px;
-        gap: 54px;
+        padding: 18px 0 52px;
+        gap: 46px;
       }
 
       .hero-stack {
@@ -1690,6 +1749,18 @@
         justify-self: center;
         opacity: 0.9;
         transform: none;
+      }
+
+      .hero-stack > .card {
+        position: relative;
+        z-index: auto;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        transform: none;
+        opacity: 1;
+        filter: none;
+        grid-column: 1 / -1;
       }
 
       .bento-grid {
@@ -1846,6 +1917,15 @@
         border-radius: 24px;
       }
 
+      .access-flow {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .access-flow i {
+        transform: rotate(90deg);
+      }
+
       .shot-grid,
       .flow-preview-rail,
       .bento-grid {
@@ -1853,7 +1933,7 @@
       }
 
       .section {
-        padding: 58px 0;
+        padding: 50px 0;
       }
 
       .section-title {
@@ -1977,6 +2057,10 @@
 
         <span class="meant-line">But maybe you were meant to.</span>
 
+        <p class="hero-explainer">
+          Create a private profile, verify your identity, collect trusted reviews, and choose when your reputation becomes visible.
+        </p>
+
         <p class="sub">
           Truvyo helps real people build trust, protect their reputation, and stay private until they choose to be seen.
         </p>
@@ -2054,6 +2138,14 @@
           <p class="small-copy" id="spotText">
             Loading early access spots...
           </p>
+
+          <div class="access-flow" aria-label="Early access steps">
+            <span>Request Invite</span>
+            <i aria-hidden="true">→</i>
+            <span>Get Approved</span>
+            <i aria-hidden="true">→</i>
+            <span>Create Your Private Reputation</span>
+          </div>
 
           <form id="waitlistForm">
             <input type="text" name="website" style="display:none" autocomplete="off" tabindex="-1" />
@@ -2187,6 +2279,9 @@
               </div>
               <div class="shot-copy">Surface what matters and keep noise out.</div>
             </div>
+            <p class="ai-note">
+              AI summarizes verified reviews to highlight consistent strengths and communication patterns. It does not replace individual reviews.
+            </p>
           </article>
 
           <article class="shot-card">
