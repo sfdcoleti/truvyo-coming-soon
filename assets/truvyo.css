@@ -339,12 +339,22 @@ h1 {
   min-height: 34px;
   display: inline-flex;
   align-items: center;
-  transition: color 0.22s ease, text-shadow 0.22s ease;
+  gap: 8px;
+  vertical-align: middle;
+  transition: color 0.22s ease, text-shadow 0.22s ease, transform 0.22s ease, opacity 0.22s ease;
+}
+
+.site-footer a svg {
+  width: 19px;
+  height: 19px;
+  color: currentColor;
+  flex: 0 0 auto;
 }
 
 .site-footer a:hover {
   color: var(--text);
   text-shadow: 0 0 18px rgba(104,224,255,0.34);
+  transform: translateY(-2px);
 }
 
 .footer-line {
