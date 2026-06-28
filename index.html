@@ -432,7 +432,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.45) 42%, transparent 70%);
+      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,0.58) 42%, transparent 70%);
       transform: translateX(-130%);
       transition: transform 0.75s ease;
     }
@@ -452,6 +452,9 @@
     .action-link.primary:hover,
     button:hover {
       color: #171020;
+      box-shadow:
+        0 20px 46px rgba(104,224,255,0.24),
+        0 0 34px rgba(255,255,255,0.18);
     }
 
     .action-link:focus-visible,
@@ -878,6 +881,18 @@
         inset 0 1px 0 rgba(255,255,255,0.08),
         0 22px 66px rgba(0,0,0,0.22);
       overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .shot-card:hover,
+    .flow-preview-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-strong);
+      filter: brightness(1.04);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.1),
+        0 30px 82px rgba(0,0,0,0.32),
+        0 0 34px rgba(104,224,255,0.08);
     }
 
     .shot-card .device-screen {
@@ -1231,30 +1246,30 @@
     body.reveal-ready .reveal-item,
     body.reveal-ready .reveal-node {
       --reveal-x: 0;
-      --reveal-y: 18px;
+      --reveal-y: 30px;
       --reveal-scale: 1;
       opacity: 0;
       transform: translate3d(var(--reveal-x), var(--reveal-y), 0) scale(var(--reveal-scale));
       transition:
-        opacity var(--reveal-duration, 680ms) ease,
-        transform var(--reveal-duration, 680ms) cubic-bezier(0.2, 0.78, 0.18, 1);
+        opacity var(--reveal-duration, 760ms) ease,
+        transform var(--reveal-duration, 760ms) cubic-bezier(0.16, 0.84, 0.22, 1);
       transition-delay: var(--reveal-delay, 0ms);
       will-change: opacity, transform;
     }
 
     body.reveal-ready .reveal-left {
-      --reveal-x: -22px;
-      --reveal-y: 8px;
+      --reveal-x: -34px;
+      --reveal-y: 10px;
     }
 
     body.reveal-ready .reveal-right {
-      --reveal-x: 22px;
-      --reveal-y: 8px;
+      --reveal-x: 34px;
+      --reveal-y: 10px;
     }
 
     body.reveal-ready .reveal-scale {
-      --reveal-y: 12px;
-      --reveal-scale: 0.975;
+      --reveal-y: 26px;
+      --reveal-scale: 0.965;
     }
 
     body.reveal-ready .reveal.is-visible,
@@ -1646,7 +1661,7 @@
       gap: 24px;
       align-items: end;
       padding: 46px 0 4px;
-      color: rgba(255,255,255,0.42);
+      color: rgba(245,248,255,0.68);
       font-size: 11px;
       letter-spacing: 0.14em;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -1654,9 +1669,15 @@
     }
 
     .footer a {
-      color: rgba(255,255,255,0.58);
+      color: rgba(245,248,255,0.82);
       text-decoration: none;
       margin: 0 8px;
+      transition: color 0.24s ease, text-shadow 0.24s ease, transform 0.24s ease;
+    }
+
+    .footer a:hover {
+      color: var(--text);
+      text-shadow: 0 0 18px rgba(104,224,255,0.38);
     }
 
     .footer-brand {
@@ -1694,13 +1715,17 @@
       margin-top: 14px;
       display: flex;
       gap: 16px;
-      justify-content: center;
-      font-size: 14px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      font-size: 12px;
     }
 
     .social-icons a {
-      color: rgba(255,255,255,0.58);
-      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(245,248,255,0.84);
+      min-height: 34px;
     }
 
     .social-icons a:hover {
@@ -1970,6 +1995,10 @@
       .footer-brand {
         justify-content: center;
         text-align: center;
+      }
+
+      .social-icons {
+        justify-content: center;
       }
 
       .row {
@@ -2570,8 +2599,8 @@
         <a href="mailto:hello@truvyo.app">HELLO@TRUVYO.APP</a>
 
         <div class="social-icons">
-          <a href="https://www.instagram.com/truvyoapp/" aria-label="Truvyo on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-          <a href="https://x.com/truvyo" aria-label="Truvyo on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/truvyoapp" aria-label="Truvyo on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>
+          <a href="https://x.com/truvyo" aria-label="Truvyo on X"><i class="fab fa-x-twitter" aria-hidden="true"></i> X</a>
         </div>
       </div>
     </footer>
@@ -2605,9 +2634,7 @@
         ".use-case",
         ".social-panel",
         ".faq-item",
-        ".closing-card",
-        ".footer-brand",
-        ".footer > div:not(.footer-brand)"
+        ".closing-card"
       ];
 
       const revealTargets = Array.from(new Set(
@@ -2639,16 +2666,11 @@
           el.classList.contains("closing-card")
         ) {
           el.classList.add("reveal-left");
-        } else if (
-          el.classList.contains("footer-brand") ||
-          el.matches(".footer > div:not(.footer-brand)")
-        ) {
-          el.classList.add("reveal-right");
         }
 
-        const delay = Math.min(revealIndex(el) * 95, 380);
+        const delay = Math.min(revealIndex(el) * 110, 440);
         el.style.setProperty("--reveal-delay", delay + "ms");
-        el.style.setProperty("--reveal-duration", el.classList.contains("reveal") ? "760ms" : "640ms");
+        el.style.setProperty("--reveal-duration", el.classList.contains("reveal") ? "860ms" : "760ms");
       });
 
       const revealObserver = new IntersectionObserver(function(entries) {

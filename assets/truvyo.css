@@ -326,16 +326,25 @@ h1 {
 .site-footer {
   text-align: center;
   padding: 44px 0 4px;
-  color: rgba(255,255,255,0.42);
+  color: rgba(245,248,255,0.68);
   font-size: 11px;
   letter-spacing: 0.14em;
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 .site-footer a {
-  color: rgba(255,255,255,0.58);
+  color: rgba(245,248,255,0.84);
   text-decoration: none;
   margin: 0 8px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.22s ease, text-shadow 0.22s ease;
+}
+
+.site-footer a:hover {
+  color: var(--text);
+  text-shadow: 0 0 18px rgba(104,224,255,0.34);
 }
 
 .footer-line {
