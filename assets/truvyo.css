@@ -346,10 +346,21 @@ h1 {
 }
 
 .site-footer a svg {
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
   color: currentColor;
   flex: 0 0 auto;
+}
+
+.footer-social-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: inline-block;
+  color: currentColor;
+  opacity: 1;
+  visibility: visible;
 }
 
 .site-footer a:hover {
