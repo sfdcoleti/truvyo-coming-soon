@@ -29,6 +29,7 @@ body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
+  touch-action: pan-y;
 }
 
 body {
@@ -452,6 +453,29 @@ h1 {
 
   .back-top {
     display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+  .site-shell,
+  main,
+  .content {
+    touch-action: pan-y;
+  }
+
+  body::before {
+    position: absolute;
+  }
+
+  .site-footer a:hover,
+  .nav-link:hover,
+  .button:hover {
+    transform: none;
+  }
+
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 }
 
