@@ -1697,6 +1697,24 @@
       background-size: 100% 1px;
     }
 
+    footer,
+    footer a,
+    .footer,
+    .footer a,
+    .social-icons,
+    .social-icons a,
+    .footer-social-icon {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    footer,
+    .footer,
+    .social-icons,
+    .footer-social-icon {
+      transform: none;
+    }
+
     .footer-brand {
       display: flex;
       align-items: center;
@@ -2788,7 +2806,7 @@
       </div>
     </section>
 
-    <footer class="footer reveal">
+    <footer class="footer">
       <div class="footer-brand">
         <img src="logo.png" alt="Truvyo logo" />
         <div>
@@ -2841,15 +2859,13 @@
         ".use-case",
         ".social-panel",
         ".faq-item",
-        ".closing-card",
-        ".footer",
-        ".footer a"
+        ".closing-card"
       ];
 
       const revealTargets = Array.from(new Set(
         document.querySelectorAll(revealSelectors.join(", "))
       ));
-      const revealOnceSelector = ".hero, .waitlist-panel, .footer, .footer a";
+      const revealOnceSelector = ".hero, .waitlist-panel";
       const enableRevealReset = !isTouchDevice;
       let lastScrollY = window.scrollY;
       let scrollDirection = "down";
@@ -2874,9 +2890,7 @@
           el.dataset.revealOnce = "true";
         }
 
-        if (el.matches(".footer a")) {
-          el.classList.add("footer-link");
-        } else if (!el.classList.contains("reveal") && !el.classList.contains("reveal-item")) {
+        if (!el.classList.contains("reveal") && !el.classList.contains("reveal-item")) {
           el.classList.add("reveal-node");
         }
 
@@ -2899,9 +2913,8 @@
         }
 
         const inSection = el.closest(".section") && !el.classList.contains("section");
-        const footerLink = el.matches(".footer a");
         const baseDelay = inSection ? 120 : 0;
-        const delay = Math.min(baseDelay + revealIndex(el) * 105, footerLink ? 360 : 520);
+        const delay = Math.min(baseDelay + revealIndex(el) * 105, 520);
         el.style.setProperty("--reveal-delay", delay + "ms");
         el.style.setProperty("--reveal-duration", el.classList.contains("reveal") ? "860ms" : "780ms");
       });

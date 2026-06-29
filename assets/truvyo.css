@@ -369,6 +369,27 @@ h1 {
   transform: translateY(-2px);
 }
 
+footer,
+footer a,
+.site-footer,
+.site-footer a,
+.footer-links,
+.footer-links a,
+.social-links,
+.social-links a,
+.footer-social-icon {
+  opacity: 1;
+  visibility: visible;
+}
+
+footer,
+.site-footer,
+.footer-links,
+.social-links,
+.footer-social-icon {
+  transform: none;
+}
+
 .footer-line {
   margin-top: 12px;
   font-family: Georgia, "Times New Roman", serif;
