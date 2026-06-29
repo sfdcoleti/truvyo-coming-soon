@@ -2296,9 +2296,9 @@
       <span>● early access opening soon &nbsp;&nbsp; ● real people · private by default &nbsp;&nbsp; ● private launch remains limited &nbsp;&nbsp;</span>
     </div>
 
-    <section class="hero reveal">
+    <section class="hero">
       <div class="hero-copy">
-        <div class="logo-row">
+        <div class="logo-row reveal-item">
           <div class="logo-wrap">
             <img src="logo.png" alt="Truvyo logo" />
           </div>
@@ -2314,22 +2314,22 @@
           </div>
         </div>
 
-        <h1>
+        <h1 class="reveal-item">
           You weren’t
           <span>supposed to find this.</span>
         </h1>
 
-        <span class="meant-line">But maybe you were meant to.</span>
+        <span class="meant-line reveal-item">But maybe you were meant to.</span>
 
-        <p class="hero-explainer">
+        <p class="hero-explainer reveal-item">
           Create a private profile, verify your identity, collect trusted reviews, and choose when your reputation becomes visible.
         </p>
 
-        <p class="sub">
+        <p class="sub reveal-item">
           Truvyo helps real people build trust, protect their reputation, and stay private until they choose to be seen.
         </p>
 
-        <p class="product-line">
+        <p class="product-line reveal-item">
           A privacy-first reputation platform for verified experiences, authentic reviews, and controlled digital identity.
         </p>
 
@@ -2338,9 +2338,9 @@
           <a class="action-link" href="#benefits">See What Truvyo Does</a>
         </div>
 
-      <p class="hero-note">Built for trust, privacy, and reputation. Not public exposure.</p>
+      <p class="hero-note reveal-item">Built for trust, privacy, and reputation. Not public exposure.</p>
 
-      <div class="watching">
+      <div class="watching reveal-item">
         <span class="dot" aria-hidden="true"></span>
         <span id="watchers">Private launch · limited early access</span>
       </div>
@@ -2386,7 +2386,7 @@
         </div>
       </div>
 
-      <div class="hero-stack">
+      <div class="hero-stack reveal-item">
         <div class="device-shell device-shell-large hero-device-main" aria-label="Truvyo private profile preview">
           <div class="device-screen">
             <img
@@ -2429,7 +2429,7 @@
       </div>
     </section>
 
-    <section class="section reveal" id="benefits">
+    <section class="section" id="benefits">
       <div class="section-head">
         <div class="section-kicker">What Truvyo does</div>
         <h2 class="section-title">What can Truvyo do for me?</h2>
@@ -2492,7 +2492,7 @@
       </div>
     </section>
 
-    <section class="section product-story reveal" id="product-preview">
+    <section class="section product-story" id="product-preview">
       <div class="section-head">
         <div class="section-kicker">Product story</div>
         <h2 class="section-title">Your reputation, without the noise.</h2>
@@ -2597,7 +2597,7 @@
       </div>
     </section>
 
-    <section class="section trust-flow reveal" id="trust-flow">
+    <section class="section trust-flow" id="trust-flow">
       <div class="section-head center">
         <div class="section-kicker">Trust flow</div>
         <h2 class="section-title">From private profile to portable trust.</h2>
@@ -2680,7 +2680,7 @@
       </div>
     </section>
 
-    <section class="section reveal" id="private-by-default">
+    <section class="section" id="private-by-default">
       <div class="privacy-spotlight reveal-item">
         <div class="privacy-copy">
           <div class="section-kicker">Private by default</div>
@@ -2713,7 +2713,7 @@
       </div>
     </section>
 
-    <section class="section reveal" id="use-cases">
+    <section class="section" id="use-cases">
       <div class="section-head center">
         <div class="section-kicker">Where trust matters</div>
         <h2 class="section-title">Why people may need Truvyo</h2>
@@ -2744,7 +2744,7 @@
       </div>
     </section>
 
-    <section class="section reveal" id="not-social">
+    <section class="section" id="not-social">
       <div class="social-panel reveal-item">
         <div>
         <div class="section-kicker">A quieter network</div>
@@ -2760,7 +2760,7 @@
       </div>
     </section>
 
-    <section class="section reveal" id="faq">
+    <section class="section" id="faq">
       <div class="section-head center">
         <div class="section-kicker">FAQ</div>
         <h2 class="section-title">Before you request access.</h2>
@@ -2790,8 +2790,8 @@
       </div>
     </section>
 
-    <section class="section reveal" id="request-access">
-      <div class="closing-card reveal-item">
+    <section class="section" id="request-access">
+      <div class="closing-card">
         <div class="section-kicker">Early access</div>
         <h2 class="section-title">A reputation layer for people who value privacy.</h2>
         <p class="section-copy">
@@ -2855,8 +2855,7 @@
         ".privacy-spotlight",
         ".use-case",
         ".social-panel",
-        ".faq-item",
-        ".closing-card"
+        ".faq-item"
       ];
 
       const revealTargets = Array.from(new Set(
